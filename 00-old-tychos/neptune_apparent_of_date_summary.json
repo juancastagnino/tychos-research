@@ -1,0 +1,55 @@
+{
+  "body": "neptune",
+  "profile": "none",
+  "input_file": "edits/data/derived/neptune_comparison.csv",
+  "reference_mode": "apparent-of-date",
+  "reference": "JPL Earth true-equator/equinox-of-date apparent RA/Dec (airless)",
+  "ecliptic_rotation": "Not computed: true-of-date RA/Dec must not be rotated with fixed J2000 obliquity",
+  "n_samples": 75969,
+  "start": "2000-06-21 00:00:00",
+  "stop": "2026-06-21 00:00:00",
+  "cadence_hours_median": 3.0,
+  "cadence_regular": true,
+  "fft_period_range_days": [
+    1.0,
+    500.0
+  ],
+  "fft_observable": "right ascension residual",
+  "ra_residual": {
+    "mean_deg": 0.031031977441072545,
+    "rms_deg": 0.04888471760823163,
+    "median_abs_deg": 0.04556663750003054,
+    "p95_abs_deg": 0.07861073749996873,
+    "max_abs_deg": 0.08929051249998565
+  },
+  "declination_residual": {
+    "mean_deg": -0.07842311102898697,
+    "rms_deg": 0.09647143477342866,
+    "median_abs_deg": 0.07773286111111233,
+    "p95_abs_deg": 0.1758140088888889,
+    "max_abs_deg": 0.19853858333333352
+  },
+  "angular_separation": {
+    "mean_deg": 0.09954868097170513,
+    "rms_deg": 0.1075366264967306,
+    "median_abs_deg": 0.08658339720589907,
+    "p95_abs_deg": 0.18290596708653267,
+    "max_abs_deg": 0.2151379576564729
+  },
+  "provenance": {
+    "analyzed_at_utc": "2026-10-08T00:40:40.151544+00:00",
+    "inputs": {
+      "tychos": {
+        "path": "edits/data/raw/tychos_ephemerides.txt",
+        "sha256": "3427ed76e1c17450c6e5f06fa2a94c45c435e2dd43d44b1696d812d7e17ffce6"
+      },
+      "jpl": {
+        "path": "edits/data/raw/jpl_ephemerides.txt",
+        "sha256": "12dbd9376dc5a1bca28f8fd16c1546312e1190d1eff153506eb907688e1585f3"
+      }
+    },
+    "export_label": "old tychos vs jpl apparent-of-date",
+    "declared_export_settings": null,
+    "settings_note": "User-declared, not embedded or verified by the TYCHOS export"
+  }
+}
