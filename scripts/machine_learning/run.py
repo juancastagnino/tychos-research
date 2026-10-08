@@ -74,8 +74,8 @@ def run(config, output):
     for label in ('train', 'validation', 'test'):
         if np.sum(split == label) < 30:
             raise ValueError(f'Insufficient samples in {label}')
-    ty_lon, _, jp_lon, _ = diagnostic_coordinates(config, *coordinates(config, dates, ty, jpl))
-    y = wrap_deg(ty_lon-jp_lon)
+    ty_ra, _, jp_ra, _ = diagnostic_coordinates(config, *coordinates(config, dates, ty, jpl))
+    y = wrap_deg(ty_ra-jp_ra)
     if not np.all(np.isfinite(y)) or np.max(np.abs(y)) >= 90:
         raise ValueError('Target is invalid or too close to angular wrapping for linear regression')
     t = np.array([(d-start).total_seconds()/86400 for d in dates])
@@ -123,7 +123,7 @@ def run(config, output):
     with (output/'dataset.csv').open('w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow(['date_utc', 'body', 'split', 't_days', *feature_names,
-                         'target_' + ('ra' if target == 'ra' else 'lon') + '_tychos_minus_jpl_deg', 'predicted_residual_deg', 'unexplained_residual_deg'])
+                         'target_ra_tychos_minus_jpl_deg', 'predicted_residual_deg', 'unexplained_residual_deg'])
         for i, date in enumerate(dates):
             writer.writerow([date.isoformat(), body, split[i], t[i], *x[i], y[i],
                              predictions[selected][i], y[i]-predictions[selected][i]])
@@ -214,15 +214,15 @@ if __name__ == '__main__':
     parser.add_argument('--output', type=Path, default=Path(__file__).with_name('outputs'))
     parser.add_argument('--bodies', nargs='+', help='Explicit subset of configured bodies')
     parser.add_argument('--available', action='store_true', help='Explicitly allow an incomplete body selection')
-    parser.add_argument('--reference', choices=('icrf', 'apparent-of-date', 'apparent_of_date', 'both'),
-                        help='Override config reference; both writes independent report directories')
+    parser.add_argument('--reference', choices=('apparent-of-date', 'apparent_of_date'),
+                        help='Only apparent-of-date is supported')
     args = parser.parse_args()
     config = json.loads(args.config.read_text(encoding='utf-8'))
     if args.bodies:
         config['bodies'] = args.bodies
     try:
-        selection = args.reference or config.get('reference', 'icrf')
-        modes = ('icrf', 'apparent-of-date') if selection == 'both' else (selection,)
+        selection = args.reference or config.get('reference', 'apparent-of-date')
+        modes = (selection,)
         for mode in modes:
             local = dict(config, reference=mode)
             mode = reference_mode(local)

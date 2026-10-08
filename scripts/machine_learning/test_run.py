@@ -45,6 +45,8 @@ class ExperimentTests(unittest.TestCase):
     def test_missing_apparent_coordinates_rejected(self):
         config, ty, jp = self.fixture()
         config['reference'] = 'apparent-of-date'
+        for row in jp.values():
+            del row['ra_app']
         with self.assertRaisesRegex(ValueError, 'Missing coordinates'):
             self.execute(config, ty, jp)
 
@@ -64,7 +66,7 @@ class ExperimentTests(unittest.TestCase):
         }
         dates = [datetime(2000, 1, 1)+timedelta(days=i) for i in range(182)]
         ty = {d: {'ra': 100 + np.sin(i), 'dec': 5} for i, d in enumerate(dates)}
-        jp = {d: {'ra_icrf': 100, 'dec_icrf': 5} for d in dates}
+        jp = {d: {'ra_app': 100, 'dec_app': 5} for d in dates}
         return config, ty, jp
 
     def execute(self, config, ty, jp):
@@ -79,7 +81,7 @@ class ExperimentTests(unittest.TestCase):
         first = self.execute(config, ty, jp)
         for date in jp:
             if date >= datetime(2000, 5, 1):
-                jp[date]['ra_icrf'] += 10
+                jp[date]['ra_app'] += 10
         second = self.execute(config, ty, jp)
         self.assertEqual(first['candidates'], second['candidates'])
         self.assertEqual(first['selected'], second['selected'])

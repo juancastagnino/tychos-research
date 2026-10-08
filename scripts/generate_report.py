@@ -3,10 +3,9 @@
 
 Example:
     py scripts/generate_report.py \
-        --summary reports/moon_summary.json \
-        --components reports/moon_periodic_components.csv \
-        --annual reports/moon_annual_stats.csv \
-        --output reports/moon_ephemeris_report.md
+        --summary reports/moon_apparent_of_date_summary.json \
+        --annual reports/moon_apparent_of_date_annual_stats.csv \
+        --output reports/moon_apparent_of_date_ephemeris_report.md
 
 Optionally provide --baseline-summary to add before/after improvement figures.
 """
@@ -44,16 +43,16 @@ def improvement(old, new):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--summary", required=True)
-    p.add_argument("--components")
     p.add_argument("--annual")
     p.add_argument("--baseline-summary")
     p.add_argument("--model-label")
-    p.add_argument("--output", default="reports/moon_ephemeris_report.md")
+    p.add_argument("--output", default="reports/moon_apparent_of_date_ephemeris_report.md")
     args = p.parse_args(argv)
 
     s = load_json(args.summary)
     baseline = load_json(args.baseline_summary) if args.baseline_summary else None
-    components = load_csv(args.components)
+    if s.get('reference_mode') != 'apparent-of-date' or (baseline and baseline.get('reference_mode') != 'apparent-of-date'):
+        raise ValueError('Only apparent-of-date summaries are supported')
     annual = load_csv(args.annual)
 
     lines = []
@@ -84,11 +83,6 @@ def main(argv=None):
         ("Declination", "declination_residual"),
         ("Angular separation", "angular_separation"),
     ]
-    if "ecliptic_longitude_residual" in s:
-        metric_rows.extend([
-            ("Ecliptic longitude", "ecliptic_longitude_residual"),
-            ("Ecliptic latitude", "ecliptic_latitude_residual"),
-        ])
     for label, key in metric_rows:
         d = s[key]
         lines.append(
@@ -102,14 +96,10 @@ def main(argv=None):
         lines.append("| Metric | Baseline RMS | Current RMS | Improvement |")
         lines.append("|---|---:|---:|---:|")
         baseline_rows = [
+            ("RA (coordinate)", "ra_residual"),
             ("Declination", "declination_residual"),
             ("Angular separation", "angular_separation"),
         ]
-        if "ecliptic_longitude_residual" in s and "ecliptic_longitude_residual" in baseline:
-            baseline_rows.extend([
-                ("Ecliptic longitude", "ecliptic_longitude_residual"),
-                ("Ecliptic latitude", "ecliptic_latitude_residual"),
-            ])
         for label, key in baseline_rows:
             old = baseline[key]["rms_deg"]
             new = s[key]["rms_deg"]
@@ -117,87 +107,24 @@ def main(argv=None):
             lines.append(f"| {label} | {fmt(old)}° | {fmt(new)}° | {fmt(imp, 2)}% |")
         lines.append("")
 
-    pf = s.get("primary_period_fit", {})
-    if pf:
-        lines.append("## Longitudinal residual structure")
-        lines.append("")
-        lines.append(
-            "A joint sinusoidal fit is used here as a diagnostic fingerprint of the residual, "
-            "not as a claim about physical causation."
-        )
-        lines.append("")
-        lines.append(f"- Longitude RMS before the four-period fit: **{fmt(pf.get('rms_before_deg'))}°**")
-        lines.append(f"- Longitude RMS after the four-period fit: **{fmt(pf.get('rms_after_deg'))}°**")
-        lines.append(f"- Variance explained: **{fmt(pf.get('variance_explained_percent'), 3)}%**")
-        lines.append("")
-
-    if components:
-        lines.append("### Fitted periodic components")
-        lines.append("")
-        lines.append("| Component | Period (days) | Amplitude in primary fit | Amplitude in full diagnostic fit |")
-        lines.append("|---|---:|---:|---:|")
-        for r in components:
-            lines.append(
-                f"| {r['name']} | {fmt(r['period_days'], 6)} | "
-                f"{fmt(r.get('primary_amplitude_deg'))}° | {fmt(r.get('full_fit_amplitude_deg'))}° |"
-            )
-        lines.append("")
-
     if annual:
         lines.append("## Annual stability")
         lines.append("")
-        if "rms_dlon_deg" in annual[0]:
-            lines.append("| Year | N | RMS longitude | RMS latitude | RMS Dec | RMS separation |")
-            lines.append("|---:|---:|---:|---:|---:|---:|")
-            for r in annual:
-                lines.append(
-                    f"| {r['year']} | {r['n']} | {fmt(r['rms_dlon_deg'])}° | "
-                    f"{fmt(r['rms_dlat_deg'])}° | {fmt(r['rms_ddec_deg'])}° | {fmt(r['rms_sep_deg'])}° |"
-                )
-        else:
-            lines.append("| Year | N | RMS RA | RMS Dec | RMS separation |")
-            lines.append("|---:|---:|---:|---:|---:|")
-            for r in annual:
-                lines.append(
-                    f"| {r['year']} | {r['n']} | {fmt(r['rms_dra_deg'])}° | "
-                    f"{fmt(r['rms_ddec_deg'])}° | {fmt(r['rms_sep_deg'])}° |"
-                )
+        lines.append("| Year | N | RMS RA | RMS Dec | RMS separation |")
+        lines.append("|---:|---:|---:|---:|---:|")
+        for r in annual:
+            lines.append(
+                f"| {r['year']} | {r['n']} | {fmt(r['rms_dra_deg'])}° | "
+                f"{fmt(r['rms_ddec_deg'])}° | {fmt(r['rms_sep_deg'])}° |"
+            )
         lines.append("")
 
     lines.append("## Interpretation notes")
     lines.append("")
-    if body != "moon":
-        lines.append("- No lunar periodic terms are fitted to this body.")
-        lines.append("- Compare shared-frame changes across bodies using the same epochs and declared export configuration.")
-        if s.get("reference_mode") == "apparent-of-date":
-            lines.append("- This is an exploratory moving-frame comparison. JPL apparent coordinates include light-time, light deflection, stellar aberration, precession and nutation.")
-            lines.append("- J2000 ecliptic residuals are intentionally omitted because fixed J2000 obliquity is not valid for true-of-date RA/Dec.")
-        else:
-            lines.append("- Ecliptic coordinates use a common fixed rotation; this does not establish the simulator's reference-frame accuracy.")
-        output = Path(args.output)
-        output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text("\n".join(lines) + "\n", encoding="utf-8")
-        print(f"Report written to: {output}")
-        return
-    if s.get("reference_mode") == "apparent-of-date":
-        lines.append(
-            "- This is an exploratory moving-frame comparison. JPL apparent coordinates include light-time, "
-            "light deflection, stellar aberration, precession and nutation."
-        )
-        lines.append("- Lunar ecliptic periodic diagnostics are intentionally omitted in this mode.")
-    else:
-        lines.append(
-            "- The periodic labels above identify frequencies present in the TYCHOS-minus-JPL residual. "
-            "They should not by themselves be interpreted as proof of a particular physical mechanism."
-        )
-        lines.append(
-            "- The lunar-plane modification should be evaluated primarily by whether it reduces latitude/declination "
-            "error without materially degrading the longitude already produced by the original TYCHOS geometry."
-        )
-        lines.append(
-            "- Remaining longitudinal structure can then be investigated within the geometry proposed by TYCHOS "
-            "without introducing perturbations or empirical correction terms."
-        )
+    lines.append("- JPL apparent coordinates include light-time, light deflection, stellar aberration, precession and nutation.")
+    lines.append("- J2000 ecliptic residuals are intentionally omitted because fixed J2000 obliquity is not valid for true-of-date RA/Dec.")
+    lines.append("- Compare RA, declination and angular separation using the same epochs and declared export settings.")
+    lines.append("- A lower residual does not establish exact equivalence of the native TYCHOS and JPL coordinate conventions.")
     lines.append("")
 
     output = Path(args.output)

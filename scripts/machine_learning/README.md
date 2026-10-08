@@ -71,24 +71,21 @@ No se promedian estos resultados como si fueran una calibración geométrica glo
 
 ## Ejecutar
 
-La configuración incluida usa `"reference": "apparent-of-date"` por defecto.
-Se acepta también `apparent_of_date`. Para esa referencia, el ajuste por cuerpo
-aprende `wrap(RA_TYCHOS - RA_JPL_aparente)`; el diagnóstico conjunto usa RA,
-declinación y componentes este/norte. No se aplica la rotación eclíptica J2000.
-`icrf` conserva el objetivo histórico de longitud y los diagnósticos de latitud.
-Ambos modos mantienen los mismos cortes temporales y períodos predeclarados.
+La única referencia admitida es `apparent-of-date` (también se acepta
+`apparent_of_date`). Es el valor predeterminado incluso si un JSON antiguo no
+incluye `reference`; una configuración que solicite `icrf` o `both` se rechaza.
+El ajuste por cuerpo aprende `wrap(RA_TYCHOS - RA_JPL_aparente)` en grados.
+El diagnóstico conjunto usa RA, declinación y componentes locales este/norte.
+No se aplica una rotación eclíptica J2000 ni se calculan residuos de longitud.
+Los cortes temporales y los períodos predeclarados se conservan.
 
 ```powershell
-.venv/Scripts/python.exe -B scripts/machine_learning/run.py --reference apparent_of_date
-.venv/Scripts/python.exe -B scripts/machine_learning/run.py --reference icrf
-# Ejecutar las dos referencias con ajustes independientes:
-.venv/Scripts/python.exe -B scripts/machine_learning/run.py --reference both
+.venv/Scripts/python.exe -B scripts/machine_learning/run.py --reference apparent-of-date
 ```
 
-El CLI guarda resultados en `outputs/apparent_of_date/` y `outputs/icrf/`.
-`--output` cambia la carpeta base, conservando esas subcarpetas. Los reportes
-JSON y Markdown indican la referencia y las variables utilizadas. No comparar
-directamente métricas de longitud ICRF con métricas de RA aparente.
+El CLI guarda resultados en `outputs/apparent_of_date/`; `--output` cambia la
+carpeta base. Los reportes JSON y Markdown identifican la referencia y variables.
+Las carpetas antiguas ICRF son evidencia histórica y no se regeneran.
 
 Desde la raíz del repositorio, en PowerShell:
 
@@ -137,7 +134,6 @@ filas no equivale al número de observaciones independientes.
 | Seno y coseno de las fases configuradas por cuerpo | Dos entradas por período | Sí |
 | `years_from_train_center` | Tendencia opcional, centro calculado solo en train | Sí |
 | `intercept` | Constante para aprender un sesgo | Sí |
-| `target_lon_tychos_minus_jpl_deg` | Etiqueta a aprender, en grados | No |
 | `target_ra_tychos_minus_jpl_deg` | Etiqueta alternativa en apparent-of-date, en grados de RA | No |
 | `predicted_residual_deg` | Salida del modelo elegido | Sí, con sus coeficientes |
 | `unexplained_residual_deg` | Etiqueta menos predicción; evaluación | No |
@@ -146,14 +142,11 @@ filas no equivale al número de observaciones independientes.
 Las columnas de etiqueta, predicción y evaluación no son entradas. El dataset
 incluye todas las características para inspección; cada candidato selecciona las suyas.
 
-El modo ICRF conserva como objetivo
-`wrap(longitud_TYCHOS - longitud_JPL)` en [-180°, 180°). El diagnóstico avanzado
-añade latitud eclíptica y componentes locales este-oeste/norte-sur. La selección
-avanzada minimiza el RMS combinado del plano tangente en validación; utiliza
-las componentes este/norte de la referencia elegida.
-
-Solo en ICRF, las coordenadas eclípticas aplican la misma oblicuidad J2000 a TYCHOS y JPL. Esta
-rotación común **no resuelve** una incompatibilidad entre marcos de origen.
+El objetivo por cuerpo es la diferencia firmada de RA en [-180°, 180°).
+El diagnóstico avanzado añade declinación y componentes locales este/norte.
+La selección avanzada minimiza el RMS combinado este/norte en validación.
+La elección de apparent-of-date es una convención de comparación útil para
+TYCHOS nativo; no demuestra que ambos motores tengan contratos idénticos.
 
 Períodos lunares fijados en la configuración: 14.765294, 27.554551, 31.811938 y
 365.256363 días. Provienen de los diagnósticos históricos del repositorio, no de
@@ -173,8 +166,7 @@ del elegido y de los dos controles; no se evalúan otros candidatos en test para
 elegir retrospectivamente. Cambiar el experimento después de ver test lo convierte
 en exploración: para otra confirmación se necesita un periodo reservado nuevo.
 
-Se informan RMSE, MAE, sesgo y percentil 95 absoluto, en grados de longitud
-(ICRF) o de RA (apparent-of-date).
+Se informan RMSE, MAE, sesgo y percentil 95 absoluto, en grados de RA (apparent-of-date).
 No son errores de separación angular total. El CSV anual permite ver deterioros
 que un promedio de seis años podría ocultar; no se calculan intervalos de confianza
 suponiendo independencia de muestras.
@@ -194,8 +186,7 @@ Archivos generados:
 `cross_body.py` ajusta por cuerpo controles cero/media y regresiones armónicas
 con/sin tendencia para varios valores de regularización ridge. El valor de ridge y
 el modelo se eligen exclusivamente por RMS este-oeste/norte-sur de validación. Se
-publican métricas separadas de longitud/latitud (ICRF) o RA/declinación
-(apparent-of-date), además de este y norte, para train, validación y test.
+publican métricas separadas de RA/declinación, además de este y norte, para train, validación y test.
 
 El mismo módulo estandariza usando solo train los residuos este/norte de todos los
 cuerpos y calcula hasta tres modos comunes mediante SVD/PCA. Esto detecta estructura
@@ -214,9 +205,9 @@ transferencia de coeficientes, **no descubrimiento completamente independiente**
 de periodicidades. El test tampoco es evidencia independiente de que la propia
 geometría del simulador nunca se haya ajustado usando esas fechas.
 
-La compatibilidad del marco TYCHOS con ICRF está pendiente. Además, las posiciones
+La equivalencia exacta entre el marco TYCHOS y el aparente de Horizons está pendiente. Además, las posiciones
 geométricas instantáneas del simulador no tienen el mismo contrato que las
-coordenadas astrométricas de Horizons con tiempo de luz. Consultar el
+coordenadas aparentes de Horizons con tiempo de luz y otras correcciones. Consultar el
 [README principal](../../README.md#reference-products) y las
 [definiciones de Horizons](https://ssd.jpl.nasa.gov/horizons/manual.html).
 La separación temporal sigue el principio documentado en

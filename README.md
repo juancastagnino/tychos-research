@@ -86,16 +86,11 @@ explicitly requested body must exist in both files.
 
 ## Reference products
 
-The CLI defaults to `icrf`; pass `--reference apparent-of-date` explicitly for
-the normal comparison shown above.
-
-One Horizons download contains both supported coordinate products:
-
-| Mode | JPL quantity | Intended use |
-|---|---|---|
-| `apparent-of-date` | Airless apparent RA/Dec in true equator/equinox of date | Normal comparison for the native TYCHOS export |
-| `icrf` | Astrometric RA/Dec in fixed ICRF | Controlled fixed-frame investigations using a compatible TYCHOS export |
-| `both` | Writes both report sets | Reference-frame research only |
+All active comparisons use `apparent-of-date`: airless apparent RA/Dec in
+Earth's true equator/equinox of date. This is the default and the only supported
+reference. `--reference apparent-of-date` remains accepted for explicit commands.
+New Horizons downloads request quantity 2 only. Existing bundles that also
+contain ICRF columns remain readable; only their apparent columns are used.
 
 Apparent true-of-date includes light-time, gravitational light deflection,
 stellar aberration, precession and nutation. It is used here because it gives the
@@ -104,8 +99,7 @@ physically identical to the TYCHOS frame.
 
 True-of-date reports include RA, declination, angular separation, annual
 statistics and FFT peaks of the signed RA residual. They intentionally avoid a
-fixed-J2000 ecliptic rotation. ICRF reports may additionally use ecliptic
-longitude and latitude diagnostics.
+fixed-J2000 ecliptic rotation. No ICRF or fixed-J2000 ecliptic comparisons are generated.
 
 ## Comparing with a saved baseline
 
@@ -138,11 +132,11 @@ inventory and each file's responsibility.
 | Location | Contents |
 |---|---|
 | `data/derived/<body>_comparison.csv` | Timestamp-matched coordinates and differences |
-| `reports/<body>_summary.json` | Metrics, dates, hashes and declared provenance |
-| `reports/<body>_ephemeris_report.md` | Per-body report |
-| `reports/<body>_annual_stats.csv` | Annual statistics |
-| `reports/<body>_residuals.csv` | Per-sample residuals |
-| `reports/<body>_fft_peaks.csv` | Finite-window spectral diagnostics |
+| `reports/<body>_apparent_of_date_summary.json` | Metrics, dates, hashes and declared provenance |
+| `reports/<body>_apparent_of_date_ephemeris_report.md` | Per-body report |
+| `reports/<body>_apparent_of_date_annual_stats.csv` | Annual statistics |
+| `reports/<body>_apparent_of_date_residuals.csv` | Per-sample residuals |
+| `reports/<body>_apparent_of_date_fft_peaks.csv` | Finite-window spectral diagnostics |
 | `reports/*_apparent_of_date_*` | Apparent true-of-date products |
 | `reports/ephemeris_overview.md` | Input and output overview |
 | `reports/analysis_notes.md` | Compact summary of the current run |

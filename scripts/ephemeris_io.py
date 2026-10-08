@@ -35,8 +35,8 @@ def validate_jpl_header(block):
     header = block.split('$$SOE', 1)[0]
     if not re.search(r"Center body name:.*?\(399\)", header) or not re.search(r"Center-site name:\s*GEOCENTRIC", header):
         raise ValueError("Expected Earth geocentric reference")
-    if not all(token in header for token in ('Date__(UT)', '(ICRF)', '(a-app)')):
-        raise ValueError("Expected UT CSV with ICRF and apparent RA/Dec")
+    if not all(token in header for token in ('Date__(UT)', '(a-app)')):
+        raise ValueError("Expected UT CSV with apparent-of-date RA/Dec")
     return header
 
 

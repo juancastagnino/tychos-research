@@ -1,21 +1,18 @@
 """Coordinate selection shared by single-body and cross-body diagnostics."""
 import numpy as np
 
-from analyze_ephemerides import equatorial_to_ecliptic
-
-
 def reference_mode(config):
-    mode = config.get('reference', 'icrf')
+    mode = config.get('reference', 'apparent-of-date')
     if mode == 'apparent_of_date':
         mode = 'apparent-of-date'
-    if mode not in ('icrf', 'apparent-of-date'):
+    if mode != 'apparent-of-date':
         raise ValueError(f'Unsupported JPL reference: {mode}')
     return mode
 
 
 def coordinates(config, dates, ty, jp):
     mode = reference_mode(config)
-    suffix = 'app' if mode == 'apparent-of-date' else 'icrf'
+    suffix = 'app'
     ty_ra = np.array([ty[d]['ra'] for d in dates])
     ty_dec = np.array([ty[d]['dec'] for d in dates])
     try:
@@ -29,14 +26,10 @@ def coordinates(config, dates, ty, jp):
 
 
 def diagnostic_coordinates(config, ty_ra, ty_dec, jp_ra, jp_dec):
-    if reference_mode(config) == 'apparent-of-date':
-        return ty_ra, ty_dec, jp_ra, jp_dec
-    ty_lon, ty_lat = equatorial_to_ecliptic(ty_ra, ty_dec)
-    jp_lon, jp_lat = equatorial_to_ecliptic(jp_ra, jp_dec)
-    return ty_lon, ty_lat, jp_lon, jp_lat
+    reference_mode(config)
+    return ty_ra, ty_dec, jp_ra, jp_dec
 
 
 def targets(config):
-    if reference_mode(config) == 'apparent-of-date':
-        return ('ra', 'declination', 'east', 'north')
-    return ('longitude', 'latitude', 'east', 'north')
+    reference_mode(config)
+    return ('ra', 'declination', 'east', 'north')

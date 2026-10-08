@@ -82,9 +82,8 @@ def load_body(config, registry, body):
         raise ValueError(f"{body}: incomplete or irregular configured grid")
 
     ty_ra, ty_dec, jp_ra, jp_dec = coordinates(config, dates, ty, jp)
-    ty_lon, ty_lat, jp_lon, jp_lat = diagnostic_coordinates(config, ty_ra, ty_dec, jp_ra, jp_dec)
     residuals = np.column_stack((
-        wrap_deg(ty_lon - jp_lon), ty_lat - jp_lat,
+        wrap_deg(ty_ra - jp_ra), ty_dec - jp_dec,
         wrap_deg(ty_ra - jp_ra) * np.cos(np.radians(jp_dec)),
         ty_dec - jp_dec,
     ))

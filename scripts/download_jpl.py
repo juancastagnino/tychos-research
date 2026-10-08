@@ -25,7 +25,7 @@ def build_url(target, start, stop, step):
     params = {
         'format': 'text', 'COMMAND': target, 'OBJ_DATA': 'NO', 'MAKE_EPHEM': 'YES',
         'EPHEM_TYPE': 'OBSERVER', 'CENTER': '500@399', 'START_TIME': start, 'STOP_TIME': stop,
-        'STEP_SIZE': step, 'QUANTITIES': '1,2', 'TIME_TYPE': 'UT', 'TIME_DIGITS': 'SECONDS',
+        'STEP_SIZE': step, 'QUANTITIES': '2', 'TIME_TYPE': 'UT', 'TIME_DIGITS': 'SECONDS',
         'REF_SYSTEM': 'ICRF', 'ANG_FORMAT': 'HMS', 'EXTRA_PREC': 'YES', 'CSV_FORMAT': 'YES',
     }
     return ENDPOINT+'?'+urlencode({k: v if k == 'format' else f"'{v}'" for k, v in params.items()})

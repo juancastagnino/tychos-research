@@ -2,16 +2,41 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 
-from dataset import read_export
+from dataset import read_export, prepare
 
 
 class ExportValidationTests(unittest.TestCase):
+    def test_prepare_requests_apparent_coordinates_only(self):
+        with tempfile.TemporaryDirectory() as directory:
+            args = SimpleNamespace(profile=Path(directory), start='2000-06-21 00:00',
+                                   stop='2000-06-21 06:00', wait=0.2)
+            prepare(args)
+            script = (Path(directory)/'scripts/export.ssc').read_text()
+            self.assertIn('setFlagLightTravelTime(true)', script)
+            self.assertIn('"StelCore.flagUseNutation", true', script)
+            self.assertIn('"StelCore.flagUseAberration", true', script)
+            self.assertNotIn('raJ2000', script)
+
+    def test_geometric_profile_and_disabled_corrections_rejected(self):
+        manifest, entries = self.fixture()
+        manifest.pop('reference_mode')
+        with self.assertRaisesRegex(ValueError, 'Old geometric'):
+            self.read(manifest, entries)
+        manifest['reference_mode'] = 'apparent-of-date'
+        for field in ('light_travel_time', 'aberration', 'nutation'):
+            entries[0][field] = False
+            with self.assertRaisesRegex(ValueError, 'settings'):
+                self.read(manifest, entries)
+            entries[0][field] = True
+
     def fixture(self):
         dates = ['2000-06-21T00:00:00', '2000-06-21T06:00:00']
-        manifest = {'dates': dates, 'bodies': ['moon'], 'run_id': 'test'}
+        manifest = {'dates': dates, 'bodies': ['moon'], 'run_id': 'test', 'reference_mode': 'apparent-of-date'}
         entries = [{'kind': 'metadata', 'source': 'Stellarium', 'run_id': 'test', 'planetocentric': True,
-                    'light_travel_time': False, 'aberration': False}]
+                    'light_travel_time': True, 'aberration': True, 'nutation': True,
+                    'aberration_factor': 1.0, 'atmosphere': False, 'reference_mode': 'apparent-of-date'}]
         for i, date in enumerate(dates):
             entries.append({'kind': 'position', 'date': date, 'actual_date': date,
                             'body': 'moon', 'ra': 317+i*3, 'dec': -18+i,
@@ -42,7 +67,7 @@ class ExportValidationTests(unittest.TestCase):
 
     def test_stale_positions(self):
         manifest, entries = self.fixture()
-        entries[2]['ra'], entries[2]['dec'] = entries[1]['ra'], entries[1]['dec']
+        entries[2]['ra_date'], entries[2]['dec_date'] = entries[1]['ra_date'], entries[1]['dec_date']
         with self.assertRaisesRegex(ValueError, 'Repeated'):
             self.read(manifest, entries)
 

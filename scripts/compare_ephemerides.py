@@ -5,7 +5,8 @@ Expected TYCHOS format (one position per line):
     YYYY-MM-DD | HH:MM:SS | 21h08m20.6s | -18°16'33.9"
 
 Expected JPL input: Horizons text output containing $$SOE/$$EOE and
-CSV columns for ICRF and apparent RA/Dec (QUANTITIES='1,2').
+CSV columns for apparent-of-date RA/Dec (QUANTITIES='2').
+Legacy quantity 1,2 bundles are read using only the apparent columns.
 
 Example to run the ephemerides comparison:
     py scripts/compare_ephemerides.py \
@@ -131,6 +132,11 @@ def read_jpl(path, strict=False, target_id=None):
 def parse_jpl(text, strict=False):
     data = {}
     inside = False
+    header = text.split('$$SOE', 1)[0]
+    table_header = next((line for line in header.splitlines() if 'Date__(UT)' in line), '')
+    apparent_index = 5 if '(ICRF)' in table_header else 3
+    if '(a-app)' not in header:
+        raise ValueError('JPL table must include apparent-of-date RA/Dec')
     with io.StringIO(text) as f:
         for raw in f:
             line = raw.strip()
@@ -143,18 +149,15 @@ def parse_jpl(text, strict=False):
                 continue
 
             cols = [c.strip() for c in raw.split(",")]
-            if len(cols) < 7:
+            if len(cols) <= apparent_index + 1:
                 if strict:
                     raise ValueError("Incomplete JPL data row")
                 continue
             try:
                 dt = datetime.strptime(cols[0], "%Y-%b-%d %H:%M:%S")
-                ra_icrf = parse_jpl_ra(cols[3])
-                dec_icrf = parse_jpl_dec(cols[4])
-                ra_app = parse_jpl_ra(cols[5])
-                dec_app = parse_jpl_dec(cols[6])
+                ra_app = parse_jpl_ra(cols[apparent_index])
+                dec_app = parse_jpl_dec(cols[apparent_index + 1])
                 if strict:
-                    validate_coordinates(ra_icrf, dec_icrf)
                     validate_coordinates(ra_app, dec_app)
             except (ValueError, IndexError):
                 if strict:
@@ -165,8 +168,6 @@ def parse_jpl(text, strict=False):
                 raise ValueError(f"Duplicate JPL timestamp: {dt}")
 
             data[dt] = {
-                "ra_icrf": ra_icrf,
-                "dec_icrf": dec_icrf,
                 "ra_app": ra_app,
                 "dec_app": dec_app,
             }
@@ -241,27 +242,15 @@ def main(argv=None):
         t = ty[dt]
         j = jp[dt]
 
-        dra_icrf = wrap_deg(t["ra"] - j["ra_icrf"])
-        ddec_icrf = t["dec"] - j["dec_icrf"]
         dra_app = wrap_deg(t["ra"] - j["ra_app"])
         ddec_app = t["dec"] - j["dec_app"]
 
-        mean_dec_icrf = math.radians((t["dec"] + j["dec_icrf"]) / 2.0)
         mean_dec_app = math.radians((t["dec"] + j["dec_app"]) / 2.0)
 
         rows.append({
             "date": dt.strftime("%Y-%m-%d %H:%M:%S"),
             "ty_ra_deg": t["ra"],
             "ty_dec_deg": t["dec"],
-            "jpl_ra_icrf_deg": j["ra_icrf"],
-            "jpl_dec_icrf_deg": j["dec_icrf"],
-            "dra_icrf_deg": dra_icrf,
-            "dra_icrf_seconds_time": dra_icrf * 240.0,
-            "dra_icrf_cosdec_deg": dra_icrf * math.cos(mean_dec_icrf),
-            "ddec_icrf_deg": ddec_icrf,
-            "sep_icrf_deg": angular_separation_deg(
-                t["ra"], t["dec"], j["ra_icrf"], j["dec_icrf"]
-            ),
             "jpl_ra_app_deg": j["ra_app"],
             "jpl_dec_app_deg": j["dec_app"],
             "dra_app_deg": dra_app,
@@ -280,7 +269,6 @@ def main(argv=None):
         writer.writeheader()
         writer.writerows(rows)
 
-    print_summary(rows, "JPL ICRF ASTROMETRIC", "icrf")
     print_summary(rows, "JPL APPARENT", "app")
     print(f"\nCSV written to: {output}")
 

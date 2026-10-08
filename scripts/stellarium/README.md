@@ -1,15 +1,20 @@
 # Dataset Stellarium para verificar las efemérides
 
-Exportación independiente de Stellarium: diez cuerpos según [analysis_config.json](../analysis_config.json),
-dos pares de coordenadas por fecha (J2000 y equinoccio de la fecha), grados decimales.
-No se modifica TYCHOS ni se reemplaza el TXT de JPL. No se presentan coordenadas
-Stellarium como si fueran datos astrométricos ICRF de Horizons.
+Exportación independiente de Stellarium: cuerpos e intervalo de
+[analysis_config.json](../analysis_config.json), un único par RA/Dec aparente
+en equinoccio de fecha por instante, en grados decimales. No se exporta J2000.
 
-El perfil de exportación usa Tierra, cálculo planetocéntrico (geocéntrico),
-tiempo detenido, sin atmósfera, sin tiempo de luz y sin aberración. Esto es un
-experimento geométrico, distinto de la vista observacional habitual de Stellarium.
-Las RA/Dec de la fecha incluyen las convenciones de orientación de Stellarium;
-no deben identificarse automáticamente con las coordenadas de TYCHOS.
+El perfil utiliza Tierra y cálculo geocéntrico, sin atmósfera, con tiempo de luz,
+aberración (factor 1) y nutación activados. Estas opciones se registran y validan.
+Stellarium conserva sus propias efemérides y convenciones: el perfil es el más
+cercano disponible aquí a apparent-of-date de Horizons, no una garantía de
+igualdad exacta. La [API de objetos](https://stellarium.org/doc/head/classStelObject.html)
+define `ra` y `dec` en el marco de fecha; las propiedades de corrección están
+documentadas en [StelCore](https://stellarium.org/doc/head/classStelCore.html).
+
+Los perfiles y exports anteriores con tiempo de luz/aberración desactivados
+se rechazan. Ejecutar `prepare`, exportar de nuevo y después ejecutar `collect`;
+no basta con cambiar las etiquetas de un dataset existente.
 
 ## Ejecutar desde la raíz del repositorio
 
@@ -56,7 +61,7 @@ mayor, pero debe contener cada instante solicitado; no se interpola.
 
 Se guardan en `data/stellarium/`:
 
-- `stellarium_ephemerides.jsonl`: dataset con procedencia explícita y ambas referencias.
+- `stellarium_ephemerides.jsonl`: dataset con procedencia explícita y sólo la referencia aparente de fecha.
 - `comparison.csv`: comparación con TYCHOS, diferencias RA/Dec y separación angular.
 - `report.md`, `report.json`: métricas por cuerpo, configuración, hashes y fechas.
 - `stellarium_log.txt`, `stellarium_config.ini`: versión, motores y opciones de la ejecución.
@@ -68,8 +73,7 @@ además del cálculo.
 No reducir la espera sin verificar primero que las coordenadas se actualizan.
 Comparar un piloto con dos esperas distintas ayuda a detectar resultados obsoletos.
 
-**El menor error no establece qué referencia es correcta.** Esta prueba permite
-comparar dos convenciones explícitas. El dataset no entra todavía en el pipeline
+**El menor error no establece qué referencia es correcta.** Esta prueba evalúa una convención aparente explícita. El dataset no entra todavía en el pipeline
 ML, que identifica sus etiquetas como JPL. Tampoco representa una observación
 independiente: Stellarium calcula posiciones mediante sus propias efemérides,
 que pueden compartir fuentes con JPL.
