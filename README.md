@@ -32,14 +32,14 @@ this repository.
 ```powershell
 py -m venv .venv
 # Use the environment interpreter directly; activation is optional.
-.venv/Scripts/python.exe -m pip install -r scripts/requirements.txt
+python.exe -m pip install -r scripts/requirements.txt
 
 # Configure scripts/analysis_config.json, then download JPL.
-.venv/Scripts/python.exe -B scripts/download_jpl.py
+python.exe -B scripts/download_jpl.py
 
 # Export identical bodies/timestamps from TYCHOS to
 # data/raw/tychos_ephemerides.txt, then run:
-.venv/Scripts/python.exe -B scripts/run_analysis.py --all `
+python.exe -B scripts/run_analysis.py --all `
   --reference apparent-of-date `
   --label "Description of the tested settings"
 ```
