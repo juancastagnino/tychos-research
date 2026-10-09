@@ -80,6 +80,72 @@ que pueden compartir fuentes con JPL.
 
 ## Verificación
 
+## Full reusable reference: 2000–2026, every 3 hours
+
+The full profile is prepared in `scripts/stellarium/profile_2000_2026_3h/`,
+separately from the successful one-month pilot. It covers **2000-06-21 00:00 UTC
+through 2026-06-21 00:00 UTC**, inclusive: 75,969 timestamps and 759,690 positions
+across ten bodies. At `--wait 0.2`, the wait alone takes 4.22 hours, plus computation.
+
+To regenerate the profile if the analysis configuration changes:
+
+```powershell
+.venv/Scripts/python.exe -B scripts/stellarium/dataset.py prepare --profile scripts/stellarium/profile_2000_2026_3h
+```
+
+Close any previous export instance, then launch the full export in a visible window:
+
+```powershell
+$exportProfile = (Resolve-Path scripts/stellarium/profile_2000_2026_3h).Path
+& 'C:/Program Files/Stellarium/stellarium.exe' --user-dir $exportProfile --startup-script export.ssc --full-screen no
+```
+
+After Stellarium finishes, validate and save the reference independently of TYCHOS:
+
+```powershell
+.venv/Scripts/python.exe -B scripts/stellarium/dataset.py collect --reference-only --profile scripts/stellarium/profile_2000_2026_3h --output data/stellarium
+```
+
+The saved reference contains `stellarium_ephemerides.jsonl`, `manifest.json`,
+`reference_provenance.json`, and the available Stellarium log/configuration.
+`--reference-only` refuses to replace an existing reference dataset.
+Keep these files together. Reuse this reference for subsequent TYCHOS exports;
+there is no need to run Stellarium again when only the TYCHOS model changes.
+
+The maintained reference now lives directly in `data/stellarium/`.
+Its large `stellarium_ephemerides.jsonl` is shared separately and ignored by Git;
+the manifest, provenance, log and configuration remain trackable. After cloning,
+restore the JSONL to `data/stellarium/stellarium_ephemerides.jsonl` before running
+analysis. Alternatively use `--stellarium path/to/stellarium_ephemerides.jsonl`,
+with its matching `manifest.json` beside it. Metadata does not replace the positions.
+The old one-month pilot and nested `baseline_2000_2026_3h/` layout are no longer
+the maintained reference.
+
+The standard analysis command now accepts Stellarium:
+
+```powershell
+.venv/Scripts/python.exe -B scripts/run_analysis.py --source stellarium --all --label "Current TYCHOS settings"
+```
+
+It reads the saved reference path from `analysis_config.json`, requires every
+reference timestamp in the TYCHOS export, and writes per-body comparison CSVs,
+RA/Dec/angular metrics, annual statistics, FFT diagnostics and reports to
+`reports/stellarium/`. It records the dataset hashes and Stellarium settings.
+The standard JPL command continues to write to `reports/`.
+
+For a controlled before/after comparison against the same Stellarium reference:
+
+```powershell
+.venv/Scripts/python.exe -B scripts/run_analysis.py --source stellarium --all --tychos 00-binary-baseline/tychos_ephemerides.txt --out-dir reports/stellarium-baseline --label "Binary baseline"
+.venv/Scripts/python.exe -B scripts/run_analysis.py --source stellarium --all --out-dir reports/stellarium --label "Author tweaks"
+.venv/Scripts/python.exe -B scripts/compare_summary_metrics.py --baseline reports/stellarium-baseline --candidate reports/stellarium moon jupiter saturn
+```
+
+The comparison tool rejects comparisons between different reference sources.
+Machine learning still uses JPL; this change adds Stellarium to ephemeris analysis.
+
+## Checks
+
 ```powershell
 .venv/Scripts/python.exe -B -m unittest discover -s scripts/stellarium -p "test_*.py"
 ```

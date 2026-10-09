@@ -52,6 +52,8 @@ def main() -> None:
         candidate = json.loads((args.candidate / name).read_text(encoding="utf-8"))
         if any(s.get('reference_mode') != 'apparent-of-date' for s in (baseline, candidate)):
             raise ValueError('Only apparent-of-date summaries can be compared')
+        if baseline.get('reference_source', 'jpl') != candidate.get('reference_source', 'jpl'):
+            raise ValueError('Baseline and candidate must use the same reference source')
         for label, group, field, signed_bias in METRICS:
             old = float(baseline[group][field])
             new = float(candidate[group][field])

@@ -159,6 +159,11 @@ simulator settings produced an already-existing export.
 
 ## Further workflows
 
+The analysis entry point also supports `--source stellarium --all`, reading the
+`stellarium` path from `scripts/analysis_config.json` and writing results to
+`reports/stellarium/`. Generate the full reference once and reuse it with new
+TYCHOS exports; see the [Stellarium workflow](scripts/stellarium/README.md).
+
 - [Analysis scripts](scripts/README.md): entry points and verification commands.
 - [Machine learning](scripts/machine_learning/README.md): fixed temporal splits,
   model selection and limits of residual regression.

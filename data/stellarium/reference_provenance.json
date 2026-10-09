@@ -1,0 +1,37 @@
+{
+  "source": "Stellarium",
+  "reference_mode": "apparent-of-date",
+  "settings": {
+    "kind": "metadata",
+    "source": "Stellarium",
+    "run_id": "caac5530074a4c41892bfc30daf1f3f9",
+    "planetocentric": true,
+    "light_travel_time": true,
+    "aberration": true,
+    "reference_mode": "apparent-of-date",
+    "nutation": true,
+    "aberration_factor": 1,
+    "atmosphere": false,
+    "delta_t_algorithm": "EspenakMeeusModified",
+    "location": {
+      "altitude": 0,
+      "latitude": 0,
+      "local-sidereal-time": 22.705250260734505,
+      "local-sidereal-time-hms": "  22h42m18.9s",
+      "location": "TSN, Western Europe",
+      "location-timezone": "Europe/Paris",
+      "longitude": 0,
+      "planet": "Earth",
+      "sidereal-day": 23.93447117430703,
+      "sidereal-year": 365.256363004,
+      "solar-day": 23.99999904087438,
+      "timezone": "Europe/Paris"
+    }
+  },
+  "positions": 759690,
+  "sha256": {
+    "stellarium_export.jsonl": "25610d1554cc7e24123776a5eab88e1e3cad6ced676f32bb896095b0b722b849",
+    "manifest.json": "53dd0ae877f0eb2278db4adf35ec5fb604459cff7b9378cb05f3e30f14d38244",
+    "export.ssc": "d19dcd63f648b56e7f857a05334455637ef51547c13955734fdb63afb68b7925"
+  }
+}

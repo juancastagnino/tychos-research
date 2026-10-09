@@ -71,6 +71,8 @@ core.quitStellarium();
     (profile/'scripts/export.ssc').write_text(script, encoding='utf-8')
     (profile/'manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
     print(f'Prepared {len(dates)*len(bodies)} positions in {profile}')
+    print(f"Interval: {dates[0]} through {dates[-1]} UTC; step {step} (inclusive)")
+    print(f"Minimum wait time: {len(dates)*args.wait/3600:.2f} hours, plus computation")
 
 
 def read_export(path, manifest):
@@ -116,6 +118,23 @@ def collect(args):
     manifest = json.loads((profile/'manifest.json').read_text(encoding='utf-8'))
     raw = profile/'stellarium_export.jsonl'
     meta, rows = read_export(raw, manifest)
+    if getattr(args, 'reference_only', False):
+        output = args.output.resolve()
+        if (output/'stellarium_ephemerides.jsonl').exists():
+            raise ValueError('Reference already exists; use a new output directory to preserve the baseline')
+        output.mkdir(parents=True, exist_ok=True)
+        (output/'stellarium_ephemerides.jsonl').write_bytes(raw.read_bytes())
+        (output/'manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
+        provenance = {'source': 'Stellarium', 'reference_mode': 'apparent-of-date',
+                      'settings': meta, 'positions': len(rows),
+                      'sha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+                                 for p in (raw, profile/'manifest.json', profile/'scripts/export.ssc')}}
+        (output/'reference_provenance.json').write_text(json.dumps(provenance, indent=2), encoding='utf-8')
+        for name in ('log.txt', 'config.ini'):
+            if (profile/name).exists():
+                (output/('stellarium_'+name)).write_bytes((profile/name).read_bytes())
+        print(f'Saved validated reusable Stellarium reference ({len(rows)} positions) to {output}')
+        return
     ty_path = ROOT/manifest['tychos']
     comparisons = []
     summary = {}
@@ -137,6 +156,7 @@ def collect(args):
     output.mkdir(parents=True, exist_ok=True)
     # Publish only after all data and TYCHOS timestamps have passed validation.
     (output/'stellarium_ephemerides.jsonl').write_bytes(raw.read_bytes())
+    (output/'manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
     provenance = {'manifest': manifest, 'settings': meta, 'summary': summary,
                   'sha256': {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in
                              (raw, ty_path, profile/'scripts/export.ssc')},
@@ -164,6 +184,7 @@ if __name__ == '__main__':
     parser.add_argument('action', choices=['prepare', 'collect'])
     parser.add_argument('--profile', type=Path, default=HERE/'profile')
     parser.add_argument('--output', type=Path, default=ROOT/'data/stellarium')
+    parser.add_argument('--reference-only', action='store_true', help='Collect a reusable reference without requiring TYCHOS or running a comparison')
     parser.add_argument('--start')
     parser.add_argument('--stop')
     parser.add_argument('--wait', type=float, default=0.2, help='Real seconds per date to let the scene update')

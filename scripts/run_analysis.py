@@ -152,6 +152,9 @@ def main(argv=None):
     parser.add_argument("--all", action="store_true", help="Process all registered bodies present in BOTH combined inputs")
     parser.add_argument("--tychos", type=Path, default=ROOT/defaults['tychos'])
     parser.add_argument("--jpl", type=Path, default=ROOT/defaults['jpl'])
+    parser.add_argument('--source', choices=('jpl', 'stellarium'), default='jpl')
+    parser.add_argument('--stellarium', type=Path, default=ROOT/defaults.get('stellarium', 'data/stellarium/stellarium_ephemerides.jsonl'))
+    parser.add_argument('--out-dir', type=Path, help='Stellarium report directory; default reports/stellarium')
     parser.add_argument("--label", help="User-declared export configuration, not inferred from current settings")
     parser.add_argument("--export-settings", type=Path, help="Optional JSON settings known to have been used for these exports")
     parser.add_argument(
@@ -163,6 +166,16 @@ def main(argv=None):
     parser.add_argument("--overview-only", action="store_true", help="Refresh input freshness statuses without rerunning analyses")
     args = parser.parse_args(argv)
     configs = json.loads(Path(__file__).with_name("bodies.json").read_text(encoding="utf-8"))
+    if args.source == 'stellarium':
+        if args.overview_only:
+            parser.error('--overview-only is currently available for JPL reports only')
+        if args.bodies and args.all:
+            parser.error('Specify body names OR --all')
+        from stellarium_analysis import run
+        run(args, configs, defaults)
+        return
+    if args.out_dir:
+        parser.error('--out-dir is currently available for Stellarium reports only')
     if args.overview_only:
         if args.bodies or args.all or args.label or args.export_settings:
             parser.error("--overview-only cannot be combined with analysis options")

@@ -4,5 +4,6 @@
   "stop": "2026-06-21 00:00",
   "step": "3 h",
   "tychos": "data/raw/tychos_ephemerides.txt",
-  "jpl": "data/raw/jpl_ephemerides.txt"
+  "jpl": "data/raw/jpl_ephemerides.txt",
+  "stellarium": "data/stellarium/stellarium_ephemerides.jsonl"
 }

@@ -26,8 +26,11 @@ def stats(a):
     return {'mean_deg': float(np.mean(a)), 'rms_deg': rms(a), 'median_abs_deg': float(np.median(np.abs(a))), 'p95_abs_deg': percentile_abs(a, 95), 'max_abs_deg': float(np.max(np.abs(a)))}
 REFERENCE_COLUMNS = {'apparent-of-date': {'ra': 'jpl_ra_app_deg', 'dec': 'jpl_dec_app_deg', 'ddec': 'ddec_app_deg', 'sep': 'sep_app_deg', 'label': 'JPL Earth true-equator/equinox-of-date apparent RA/Dec (airless)'}}
 
-def read_comparison(path, reference='apparent-of-date'):
+def read_comparison(path, reference='apparent-of-date', source='jpl'):
     columns = REFERENCE_COLUMNS[reference]
+    if source == 'stellarium':
+        columns = {'ra': 'stellarium_ra_deg', 'dec': 'stellarium_dec_deg',
+                   'ddec': 'ddec_deg', 'sep': 'sep_deg'}
     rows = []
     with open(path, 'r', encoding='utf-8-sig', newline='') as f:
         reader = csv.DictReader(f)
@@ -84,6 +87,7 @@ def main(argv=None):
     parser.add_argument('--profile', choices=('auto', 'none'), default='auto')
     parser.add_argument('--prefix', help='Output prefix; defaults to <body>_apparent_of_date')
     parser.add_argument('--reference', choices=tuple(REFERENCE_COLUMNS), default='apparent-of-date', help='JPL coordinate product to analyze (apparent-of-date only)')
+    parser.add_argument('--source', choices=('jpl', 'stellarium'), default='jpl')
     args = parser.parse_args(argv)
     if not re.fullmatch('[a-z][a-z0-9_]*', args.body):
         parser.error('Body must be a lowercase identifier')
@@ -92,7 +96,7 @@ def main(argv=None):
         parser.error('Prefix must be a lowercase identifier')
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    rows = read_comparison(args.comparison_csv, args.reference)
+    rows = read_comparison(args.comparison_csv, args.reference, args.source)
     dates = [r['date'] for r in rows]
     if dates != sorted(set(dates)):
         raise ValueError('Comparison dates must be unique and increasing')
@@ -113,6 +117,9 @@ def main(argv=None):
     if len(dates) > 1:
         cadence_hours = float(np.median(np.diff(t_days)) * 24.0)
     summary = {'body': args.body, 'profile': 'none', 'input_file': str(args.comparison_csv), 'reference_mode': args.reference, 'reference': REFERENCE_COLUMNS[args.reference]['label'], 'ecliptic_rotation': 'Not computed: true-of-date RA/Dec must not be rotated with fixed J2000 obliquity', 'n_samples': len(rows), 'start': dates[0].strftime('%Y-%m-%d %H:%M:%S'), 'stop': dates[-1].strftime('%Y-%m-%d %H:%M:%S'), 'cadence_hours_median': cadence_hours, 'cadence_regular': bool(len(t_days) < 2 or np.allclose(np.diff(t_days), np.diff(t_days)[0], rtol=0, atol=1e-09)), 'fft_period_range_days': [1.0, 500.0], 'fft_observable': fft_observable, 'ra_residual': stats(dra), 'declination_residual': stats(ddec), 'angular_separation': stats(sep)}
+    summary['reference_source'] = args.source
+    if args.source == 'stellarium':
+        summary['reference'] = 'Stellarium Earth geocentric apparent equinox-of-date RA/Dec (airless)'
     with (out_dir / f'{prefix}_summary.json').open('w', encoding='utf-8') as f:
         json.dump(summary, f, indent=2)
     peaks = fft_peaks(t_days, fft_values)
@@ -135,16 +142,17 @@ def main(argv=None):
             row['rms_dra_deg'] = rms(dra[idx])
             w.writerow(row)
     with (out_dir / f'{prefix}_residuals.csv').open('w', newline='', encoding='utf-8') as f:
-        fields = ['date', 'ty_ra_deg', 'ty_dec_deg', 'jpl_ra_deg', 'jpl_dec_deg', 'dra_deg', 'ddec_deg', 'sep_deg']
+        ref_ra, ref_dec = args.source + '_ra_deg', args.source + '_dec_deg'
+        fields = ['date', 'ty_ra_deg', 'ty_dec_deg', ref_ra, ref_dec, 'dra_deg', 'ddec_deg', 'sep_deg']
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         for i, d in enumerate(dates):
-            row = {'date': d.strftime('%Y-%m-%d %H:%M:%S'), 'ty_ra_deg': ty_ra[i], 'ty_dec_deg': ty_dec[i], 'jpl_ra_deg': jp_ra[i], 'jpl_dec_deg': jp_dec[i], 'dra_deg': dra[i], 'ddec_deg': ddec[i], 'sep_deg': sep[i]}
+            row = {'date': d.strftime('%Y-%m-%d %H:%M:%S'), 'ty_ra_deg': ty_ra[i], 'ty_dec_deg': ty_dec[i], ref_ra: jp_ra[i], ref_dec: jp_dec[i], 'dra_deg': dra[i], 'ddec_deg': ddec[i], 'sep_deg': sep[i]}
             w.writerow(row)
     print(f'Samples: {len(rows)}')
     print(f'Interval: {dates[0]} -> {dates[-1]}')
     print(f'Median cadence: {cadence_hours:.3f} h' if cadence_hours is not None else 'Median cadence: n/a')
-    print(f"Reference     : {REFERENCE_COLUMNS[args.reference]['label']}")
+    print(f"Reference     : {summary['reference']}")
     print(f'RA RMS        : {rms(dra):.6f} deg')
     print(f'Dec RMS      : {rms(ddec):.6f} deg')
     print(f'Separation RMS: {rms(sep):.6f} deg')

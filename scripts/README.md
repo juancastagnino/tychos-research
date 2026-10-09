@@ -13,6 +13,7 @@ The simulator and model settings are maintained in a separate project.
 | `bodies.json` | TYCHOS body names and JPL Horizons target IDs |
 | `download_jpl.py` | Download one Horizons bundle containing only apparent true-of-date coordinates |
 | `run_analysis.py` | Validate inputs and orchestrate comparison, analysis and report generation |
+| `stellarium_analysis.py` | Reuse a validated Stellarium dataset via `run_analysis.py --source stellarium` |
 | `compare_ephemerides.py` | Match TYCHOS and JPL samples for one body |
 | `analyze_ephemerides.py` | Calculate RA/Dec/angular metrics, annual statistics and FFT diagnostics |
 | `generate_report.py` | Render a per-body Markdown report |
@@ -50,3 +51,7 @@ new parameter experiment.
 Each workflow documents its own tests. The standard pipeline writes comparisons
 to `data/derived/` and reports to `reports/`; it does not update
 `00-old-tychos/` or `00-binary-baseline/`.
+
+For Stellarium, `--source stellarium` writes comparisons and reports to
+`reports/stellarium/` by default. See the [full export workflow](stellarium/README.md#full-reusable-reference-20002026-every-3-hours)
+for generating and preserving a reusable 2000–2026 reference.

@@ -1,0 +1,1335 @@
+C:\Program Files\Stellarium\stellarium.exe --user-dir C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h --startup-script export.ssc --full-screen no 
+[     0.093][INFO]  -------------------------------------------------------------
+[     0.094][INFO] [ This is Stellarium 26.2 (v26.2.0) - https://stellarium.org/ ]
+[     0.094][INFO] [ Copyright (C) 2000-2026 Stellarium Developers               ]
+[     0.094][INFO]  -------------------------------------------------------------
+[     0.094][INFO] 2026-10-08T18:32:10
+[     0.094][INFO] Operating System: Windows 10 (10.0)
+[     0.094][INFO] Platform: windows
+[     0.094][INFO] Compiled using MSVC 19.16.27035.0
+[     0.094][INFO] Qt runtime version: 5.12.6
+[     0.094][INFO] Qt compilation version: 5.12.6
+[     0.094][INFO] Build ABI: x86_64-little_endian-llp64
+[     0.094][INFO] Addressing mode: 64-bit
+[     0.094][INFO] CPU architecture: x86_64
+[     0.182][INFO] CPU name: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz
+[     0.182][INFO] CPU maximum speed: 1690 MHz
+[     0.182][INFO] CPU logical cores: 8
+[     0.189][INFO] Total physical memory: 16384 MB
+[     0.215][INFO] GPU name: Intel(R) Iris(R) Xe Graphics
+[     0.215][INFO] GPU RAM: 2047 MB
+[     0.215][INFO] Current resolution: 1920x1080
+[     0.217][INFO] Writing log file to: C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\log.txt
+[     0.217][INFO] File search paths:
+[     0.217][INFO]  [0]: C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h
+[     0.217][INFO]  [1]: C:\Program Files\Stellarium
+[     0.217][DBG ] Config file C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\config.ini does not exist. Copying the default file.
+[     0.228][INFO] Config file: C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\config.ini
+[     0.228][DBG ] Default surface format:  QSurfaceFormat(version 2.0, options QFlags<QSurfaceFormat::FormatOption>(), depthBufferSize -1, redBufferSize -1, greenBufferSize -1, blueBufferSize -1, alphaBufferSize -1, stencilBufferSize -1, samples -1, swapBehavior QSurfaceFormat::DefaultSwapBehavior, swapInterval 1, colorSpace QSurfaceFormat::DefaultColorSpace, profile  QSurfaceFormat::NoProfile)
+[     0.228][INFO] OpenGL module type: desktop OpenGL
+[     0.228][WARN] Warning: Setting a new default format with a different version or profile after the global shared context is created may cause issues with context sharing.
+[     0.231][INFO] System language (ISO 639 / ISO 3166): en_US
+[     0.287][DBG ] Default surface format:  QSurfaceFormat(version 3.3, options QFlags<QSurfaceFormat::FormatOption>(), depthBufferSize 24, redBufferSize 8, greenBufferSize 8, blueBufferSize 8, alphaBufferSize -1, stencilBufferSize 8, samples -1, swapBehavior QSurfaceFormat::DefaultSwapBehavior, swapInterval 1, colorSpace QSurfaceFormat::DefaultColorSpace, profile  QSurfaceFormat::CoreProfile)
+[     0.288][INFO] OpenGL module type: desktop OpenGL
+[     0.288][DBG ] StelGLWidget constructor
+[     0.288][DBG ] StelGraphicsScene constructor
+[     0.315][DBG ] initializeGL(windowWidth = 1024, windowHeight = 768)
+[     0.315][INFO] OpenGL supported version:  "3.3.0 - Build 32.0.101.7088"
+[     0.315][INFO] Current Format:  QSurfaceFormat(version 3.3, options QFlags<QSurfaceFormat::FormatOption>(), depthBufferSize 24, redBufferSize 8, greenBufferSize 8, blueBufferSize 8, alphaBufferSize 8, stencilBufferSize 8, samples 0, swapBehavior QSurfaceFormat::DoubleBuffer, swapInterval 1, colorSpace QSurfaceFormat::DefaultColorSpace, profile  QSurfaceFormat::CoreProfile)
+[     0.315][INFO] Initializing StelMainView
+[     0.315][INFO] Luminance textures are not supported
+[     0.315][INFO] Running in High Graphics Mode
+[     0.315][INFO] Maximum texture anisotropy: 16
+[     0.315][INFO] Maximum 2D texture size: 16384
+[     0.315][INFO] Detected: OpenGL 3.3
+[     0.315][INFO] Driver version string: 3.3.0 - Build 32.0.101.7088
+[     0.315][INFO] GL vendor: Intel
+[     0.315][INFO] GL renderer: Intel(R) Iris(R) Xe Graphics
+[     0.315][INFO] GL Shading Language version: 3.30 - Build 32.0.101.7088
+[     0.316][INFO] GLSL Version Number detected: 3.3
+[     0.316][INFO] GLSL version is fine, we should not see a graphics problem.
+[     0.316][INFO] Vertex Array Objects are supported
+[     0.316][INFO] Initial high-DPI scaling factor: 1
+[     0.590][INFO] Application language: en_US
+[     0.591][INFO] Sky language: en_US
+[     0.591][WARN] Empty translation file for language  "en_US" in section "stellarium-planetary-features"
+[     0.591][INFO] Planetary features language: en_US
+[     0.591][INFO] Scripts language: en_US
+[     0.591][INFO] Sky culture description language: en_US
+[     0.619][INFO] Cache directory: C:\Users\admin\AppData\Local\stellarium\stellarium\cache
+[     0.664][INFO] Loaded 252 countries
+[     0.664][INFO] Loaded 193 regions
+[     0.873][INFO] Loading Solar System data (1: planets and moons) ...
+[     0.873][INFO] Loading from: C:\Program Files\Stellarium\data\ssystem_major.ini
+[     0.928][INFO] Loaded 83 Solar System bodies from  C:\Program Files\Stellarium\data\ssystem_major.ini
+[     0.928][INFO] Solar System now has 83 entries.
+[     0.929][INFO] Loading Solar System data (2: minor bodies) ...
+[     0.929][INFO] Loading from: C:\Program Files\Stellarium\data\ssystem_minor.ini
+[     0.999][WARN] Minor body  (152637) has incomplete data (missing iau_designation or minor_planet_number) in C:\Program Files\Stellarium\data\ssystem_minor.ini section 152637(152637)
+[     1.001][WARN] Minor body  (66146) has incomplete data (missing iau_designation or minor_planet_number) in C:\Program Files\Stellarium\data\ssystem_minor.ini section 66146(66146)
+[     1.024][WARN] minor body  "(66146)" has no IAU code in section  "66146(66146)"
+[     1.033][WARN] libpng warning: iCCP: profile 'icc': 'GRAY': Gray color space not permitted on RGB PNG
+[     1.076][WARN] minor body  "(152637)" has no IAU code in section  "152637(152637)"
+[     1.089][INFO] Loaded 477 Solar System bodies from  C:\Program Files\Stellarium\data\ssystem_minor.ini
+[     1.089][INFO] Solar System now has 560 entries.
+[     1.092][INFO] File ssystem_minor.ini is loaded successfully...
+[     1.098][INFO] ExtendedElements: loaded epoch tables for 4 asteroids from "C:\\Program Files\\Stellarium\\data\\asteroid_elements.json" ( 0 not matched in ssystem_minor.ini)
+[     1.098][INFO] SolarSystem: We have configured 0 threads (plus main thread) for computePositions().
+[     1.105][WARN] libpng warning: iCCP: profile 'ICC profile': 'RGB ': RGB color space not permitted on grayscale PNG
+[     1.121][INFO] Loading nomenclature for Solar system bodies ...
+[     1.300][INFO] Loaded 16058 / 16094 items of planetary surface nomenclature
+[     1.300][INFO] Cannot find these planetary objects to assign nomenclature items: Arrokoth, Dactyl, Didymos, Dimorphos, Dinkinesh, Donaldjohanson
+[     1.303][WARN] Could not find the starsConfig.json file: will copy the default one.
+[     1.303][DBG ] Creating directory  "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\stars\\hip_gaia3"
+[     1.305][DBG ] Creates file  "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\stars\\hip_gaia3\\starsConfig.json"
+[     1.307][INFO] Loading star data ...
+[     1.307][INFO] Loading star catalog: C:\Program Files\Stellarium\stars\hip_gaia3\stars_0_0v0_21.cat - 0_0v0_21; 5046 entries
+[     1.307][INFO] Loading star catalog: C:\Program Files\Stellarium\stars\hip_gaia3\stars_1_0v0_16.cat - 1_0v0_16; 21612 entries
+[     1.307][INFO] Loading star catalog: C:\Program Files\Stellarium\stars\hip_gaia3\stars_2_0v0_17.cat - 2_0v0_17; 141738 entries
+[     1.307][INFO] Loading star catalog: C:\Program Files\Stellarium\stars\hip_gaia3\stars_3_0v0_10.cat - 3_0v0_10; 418129 entries
+[     1.327][INFO] Finished loading star catalogue data, max_geodesic_level: 3
+[     1.327][INFO] Loading scientific star designations from C:\Program Files\Stellarium\stars\hip_gaia3\name.fab
+[     1.332][INFO] Loaded 5060 / 5060 scientific designations
+[     1.333][INFO] Loading scientific star designations from C:\Program Files\Stellarium\stars\hip_gaia3\extra_name.fab
+[     1.356][INFO] Loaded 26200 / 26200 scientific designations
+[     1.357][INFO] Loading variable stars data from C:\Program Files\Stellarium\stars\hip_gaia3\gcvs.cat
+[     1.368][INFO] [...] GCVS 5.1-20250615
+[     1.544][INFO] Loaded 47323 / 47323 variable stars
+[     1.544][INFO] Loading double stars from C:\Program Files\Stellarium\stars\hip_gaia3\wds_hip_part.dat
+[     1.579][INFO] Loaded 22992 / 22992 double stars
+[     1.580][INFO] Loading cross-identification data from C:\Program Files\Stellarium\stars\hip_gaia3\cross-id.cat
+[     1.909][INFO] Loaded 327097 / 327097 cross-identification data records for stars
+[     1.909][INFO] Loading orbital parameters data for binary system from C:\Program Files\Stellarium\stars\hip_gaia3\binary_orbitparam.dat
+[     1.910][INFO] Loaded 15 / 15 orbital parameters data for binary system
+[     1.989][INFO] Lists of stars: 118205 HIP stars, 22992 are binaries, 6572 variable (600 Algol-type, 209 Cepheids), 316 Carbon stars, 159 Barium stars, and 220 have PM>1000mas/yr.
+[     2.041][INFO] navigation/preset_sky_time is a double - treating as jday: 2451514.25001
+[     2.116][INFO] Loading DSO data ...
+[     2.159][INFO] [...] Stellarium DSO Catalog, version 3.23 (standard edition)
+[     2.405][INFO] Loaded 94899 DSO records
+[     2.406][INFO] Loading DSO name data ...
+[     2.597][INFO] Loaded 1362 / 1389 DSO name records successfully
+[     2.597][WARN] No position data for 27 objects: PGC 2798, PGC 2907, PGC 23521, PGC 28759, PGC 29167, PGC 34658, PGC 42102, PGC 44750, PGC 54559, PGC 59117, PGC 59858, PGC 59953, PGC 69018, PGC 69877, PGC 73957, PGC 95597, PGC 100170, PGC 100170, PGC 119230, PGC 1000714, PGC 1436754, PGC 1694462, PGC 2822840, PGC 2826829, PGC 3098124, SNRG 194.7+00.4, SNRG 201.1+08.3
+[     2.597][INFO] Loading DSO outline data ...
+[     2.604][INFO] Loaded 100 DSO outline records successfully
+[     2.604][INFO] Loading DSO discovery data ...
+[     2.605][INFO] Loaded 183 / 183 DSO discovery records successfully
+[     2.676][INFO] Text to Speech requires Qt6.4 or higher
+[     2.688][INFO] LandscapeMgr: initialized Cache for 100 MB.
+[     2.892][INFO] Loading star names from C:\Program Files\Stellarium\skycultures\common_star_names.fab
+[     2.893][INFO] Loaded 411 / 411 common star names
+[     2.935][INFO] Loaded 88 / 88 constellation records successfully for culture modern
+[     2.935][DBG ] Cultural Sky Partition: Loaded partitions: (12, 3, 2, 5) 12 names,  12 symbols. 0 link stars.  ""
+[     2.935][INFO] Loading constellation boundary data ... 
+[     2.937][INFO] Loaded 781 constellation boundary segments
+[     2.945][WARN] Possible error in asterism "TA4": can't find star Gaia DR3 1233876351043694464... skipping asterism, please install more star catalogs
+[     2.945][WARN] Possible error in asterism "TA6": can't find star Gaia DR3 2569872520258433152... skipping asterism, please install more star catalogs
+[     2.946][WARN] Possible error in asterism "TA9": can't find star Gaia DR3 3530241707454156544... skipping asterism, please install more star catalogs
+[     2.946][WARN] Possible error in asterism "TA12": can't find star Gaia DR3 4472807013960674944... skipping asterism, please install more star catalogs
+[     2.946][INFO] Loaded 88 / 92 asterism records successfully for culture modern
+[     2.956][DBG ] CustomObjectMgr: can't create a file: C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\data\persistentCustomObjects.json
+[     3.191][INFO] Initializing basic GL shaders... 
+[     3.195][INFO] Creating GUI ...
+[     3.488][INFO] Loading style file: :/graphicGui/normalStyle.css
+[     3.517][INFO] Loaded plugin "Exoplanets"
+[     3.518][DBG ] Creating directory  "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\modules\\Exoplanets"
+[     3.519][INFO] [Exoplanets] No Exoplanets section exists in main config file - creating with defaults
+[     3.528][INFO] [Exoplanets] exoplanets.json does not exist - copying default catalog to C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\modules\Exoplanets\exoplanets.json
+[     3.539][DBG ] [Exoplanets] Default exoplanets.json to C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\modules\Exoplanets\exoplanets.json
+[     3.540][INFO] [Exoplanets] loading catalog file: C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\modules\Exoplanets\exoplanets.json
+[     4.782][DBG ] Position received from OS query: QGeoPositionInfo(QDateTime(2026-10-08 21:26:27.129 UTC Qt::UTC), QGeoCoordinate(-34.898183584, -60.020496175), GroundSpeed=nan, HorizontalAccuracy=113)
+[     4.801][INFO] Loaded plugin "MeteorShowers"
+[     4.821][DBG ] Creating directory  "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\modules\\MeteorShowers"
+[     4.822][INFO] [MeteorShowersMgr] Loading catalog file: C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\modules\MeteorShowers\MeteorShowers.json
+[     4.822][INFO] [MeteorShowersMgr] Trying to restore the default catalog to "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\modules\\MeteorShowers\\MeteorShowers.json"
+[     4.825][INFO] [MeteorShowersMgr] The default catalog was copied!
+[     4.829][INFO] [MeteorShowersMgr] Version of the format of the catalog: 2
+[     4.839][INFO] Loaded plugin "Novae"
+[     4.839][DBG ] Creating directory  "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\modules\\Novae"
+[     4.840][DBG ] [Novae] no Novae section exists in main config file - creating with defaults
+[     4.841][INFO] [Novae] novae.json does not exist - copying default file to C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\modules\Novae\novae.json
+[     4.843][DBG ] [Novae] copied default novae.json to "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\modules\\Novae\\novae.json"
+[     4.843][INFO] [Novae] Loading catalog file: C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\modules\Novae\novae.json
+[     4.872][INFO] Loaded plugin "Oculars"
+[     4.873][DBG ] Creating directory  "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\modules\\Oculars"
+[     4.876][WARN] Oculars::validateAndLoadIniFile() copied default_ocular.ini to  "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\modules\\Oculars\\ocular.ini"
+[     5.175][INFO] Loaded plugin "Satellites"
+[     5.176][DBG ] Creating directory  "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\modules\\Satellites"
+[     5.278][INFO] [Satellites] satellites.json does not exist - copying default file to  C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\modules\Satellites\satellites.json
+[     5.288][DBG ] [Satellites] copied default satellites.json to  "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\modules\\Satellites\\satellites.json"
+[     5.288][INFO] [Satellites] loading catalogue file: C:\Users\admin\OneDrive\Documentos\00-juan\tychos-research\TSN\scripts\stellarium\profile_2000_2026_3h\modules\Satellites\satellites.json
+[     5.313][WARN] Satellite has invalid orbit: "ODIN" "26702"
+[     5.318][WARN] Satellite has invalid orbit: "SAR Lupe 5" "33244"
+[     5.338][WARN] Satellite has invalid orbit: "D-STAR ONE (SPARROW)" "43881"
+[     5.345][WARN] Satellite has invalid orbit: "STARLINK-2342" "47883"
+[     5.347][WARN] Satellite has invalid orbit: "FARADAY_PHOENIX" "48924"
+[     5.350][WARN] Satellite has invalid orbit: "CUTE" "49263"
+[     5.352][WARN] Satellite has invalid orbit: "JILIN-1 GAOFEN 3D28" "52445"
+[     5.355][WARN] Satellite has invalid orbit: "2022-167F" "54687"
+[     5.358][WARN] Satellite has invalid orbit: "BRO-9" "56185"
+[     5.359][WARN] Satellite has invalid orbit: "TOMORROW-R2" "56962"
+[     5.364][WARN] Satellite has invalid orbit: "TRANSPORTER-11 OBJECT BF" "60521"
+[     5.366][WARN] Satellite has invalid orbit: "CORAL" "67684"
+[     5.366][WARN] Satellite has invalid orbit: "STARLINK-37691" "69205"
+[     5.367][WARN] Satellite has invalid orbit: "STARLINK-37558" "69239"
+[     5.367][WARN] Satellite has invalid orbit: "STARLINK-37680" "69240"
+[     5.367][WARN] Satellite has invalid orbit: "STARLINK-37742" "69241"
+[     5.367][WARN] Satellite has invalid orbit: "STARLINK-37718" "69242"
+[     5.367][WARN] Satellite has invalid orbit: "STARLINK-37735" "69243"
+[     5.367][WARN] Satellite has invalid orbit: "STARLINK-37412" "69248"
+[     5.367][WARN] Satellite has invalid orbit: "STARLINK-37398" "69249"
+[     5.367][WARN] Satellite has invalid orbit: "STARLINK-37517" "69254"
+[     5.367][WARN] Satellite has invalid orbit: "STARLINK-37378" "69255"
+[     5.368][WARN] Satellite has invalid orbit: "STARLINK-37396" "69256"
+[     5.368][WARN] Satellite has invalid orbit: "STARLINK-37435" "69265"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37651" "69353"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37652" "69354"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37593" "69355"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37597" "69356"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37598" "69357"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37599" "69360"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37040" "69362"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37436" "69365"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37631" "69369"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37673" "69370"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37685" "69373"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37632" "69374"
+[     5.369][WARN] Satellite has invalid orbit: "STARLINK-37454" "69375"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37439" "69377"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37411" "69380"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37427" "69381"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37537" "69420"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37585" "69421"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37820" "69423"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37822" "69424"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37836" "69425"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37555" "69431"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37870" "69432"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37815" "69434"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37783" "69438"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37771" "69439"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37629" "69443"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37641" "69445"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37640" "69447"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37577" "69452"
+[     5.370][WARN] Satellite has invalid orbit: "STARLINK-37575" "69454"
+[     5.371][WARN] Satellite has invalid orbit: "STARLINK-37526" "69463"
+[     5.371][WARN] Satellite has invalid orbit: "STARLINK-37583" "69466"
+[     5.371][WARN] Satellite has invalid orbit: "STARLINK-36536" "69510"
+[     5.372][WARN] Satellite has invalid orbit: "STARLINK-37232" "69515"
+[     5.372][WARN] Satellite has invalid orbit: "STARLINK-37357" "69517"
+[     5.372][WARN] Satellite has invalid orbit: "STARLINK-37490" "69525"
+[     5.372][WARN] Satellite has invalid orbit: "STARLINK-37407" "69534"
+[     5.374][WARN] Satellite has invalid orbit: "UNKNOWN" "84188"
+[     5.394][INFO] Loaded plugin "SolarSystemEditor"
+[     5.404][INFO] Trying to copy ssystem_minor.ini to "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\data\\ssystem_minor.ini"
+[     7.296][INFO] Loaded 895910 discovery circumstances records for minor planets...
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "453P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "467P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "465P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "466P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "468P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "470P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "472P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "475P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "477P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "473P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "476P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "479P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "480P"
+[     7.303][WARN] SSE: Comet cross-index data: Overwriting entry for "481P"
+[     7.303][INFO] Loaded 2576 discovery circumstances records for comets...
+[     7.417][WARN] Satellite has invalid orbit: "AEROCUBE 8C" "41853"
+[     7.435][WARN] Satellite has invalid orbit: "ASNARO" "40298"
+[     7.435][WARN] Satellite has invalid orbit: "ASRTU-1 (AO-123)" "61781"
+[     7.439][WARN] Satellite has invalid orbit: "AVION KALUGA 650" "57195"
+[     7.451][WARN] Satellite has invalid orbit: "BLUEWALKER-3" "53807"
+[     7.452][WARN] Satellite has invalid orbit: "BUGSAT-1 (TITA)" "40014"
+[     7.453][WARN] Satellite has invalid orbit: "CENTAURI-1" "43809"
+[     7.456][WARN] Satellite has invalid orbit: "COSMOS 1536" "14699"
+[     7.456][WARN] Satellite has invalid orbit: "COSMOS 1953" "19210"
+[     7.456][WARN] Satellite has invalid orbit: "COSMOS 1975" "19573"
+[     7.459][WARN] Satellite has invalid orbit: "COSMOS 2550" "48865"
+[     7.459][WARN] Satellite has invalid orbit: "CREW DRAGON 12" "67796"
+[     7.459][WARN] Satellite has invalid orbit: "CUTE-1.7+APD II (CO-65)" "32785"
+[     7.459][WARN] Satellite has invalid orbit: "CYGNUS NG-24" "68689"
+[     7.459][WARN] Satellite has invalid orbit: "CZ-4B R/B" "28415"
+[     7.460][WARN] Satellite has invalid orbit: "Curium One" "60242"
+[     7.462][WARN] Satellite has invalid orbit: "DONGPO 08" "54686"
+[     7.463][WARN] Satellite has invalid orbit: "DTUSAT-2" "40030"
+[     7.493][WARN] Satellite has invalid orbit: "FLORIPASAT-1" "44885"
+[     7.494][WARN] Satellite has invalid orbit: "FOX-1CLIFF (AO-95)" "43770"
+[     7.494][WARN] Satellite has invalid orbit: "FUNCUBE-1 (AO-73)" "39444"
+[     7.503][WARN] Satellite has invalid orbit: "GEOSCAN 2 (RS92S2)" "64890"
+[     7.503][WARN] Satellite has invalid orbit: "GEOSCAN 6 (RS92S6)" "64879"
+[     7.518][WARN] Satellite has invalid orbit: "HAWK-2A" "47505"
+[     7.518][WARN] Satellite has invalid orbit: "HAWK-2B" "47508"
+[     7.518][WARN] Satellite has invalid orbit: "HAWK-2C" "47502"
+[     7.518][WARN] Satellite has invalid orbit: "HAWK-6A" "55327"
+[     7.518][WARN] Satellite has invalid orbit: "HAWK-6B" "55324"
+[     7.518][WARN] Satellite has invalid orbit: "HAWK-7A" "56191"
+[     7.518][WARN] Satellite has invalid orbit: "HAWK-A" "43765"
+[     7.518][WARN] Satellite has invalid orbit: "HAWK-B" "43794"
+[     7.518][WARN] Satellite has invalid orbit: "HAWK-C" "43799"
+[     7.522][WARN] Satellite has invalid orbit: "HJ-2E" "54035"
+[     7.522][WARN] Satellite has invalid orbit: "HJ-2F" "57519"
+[     7.523][WARN] Satellite has invalid orbit: "HORS 1" "57188"
+[     7.523][WARN] Satellite has invalid orbit: "HST" "20580"
+[     7.524][WARN] Satellite has invalid orbit: "HUYGENS" "55093"
+[     7.525][WARN] Satellite has invalid orbit: "IGS 6" "37813"
+[     7.529][WARN] Satellite has invalid orbit: "INNOSAT 16 (RS92S7)" "64878"
+[     7.540][WARN] Satellite has invalid orbit: "ION SCV-004" "50993"
+[     7.540][WARN] Satellite has invalid orbit: "ION SCV-008" "55051"
+[     7.540][WARN] Satellite has invalid orbit: "ION SCV-010" "56192"
+[     7.540][WARN] Satellite has invalid orbit: "ION SCV-011" "56957"
+[     7.548][WARN] Satellite has invalid orbit: "ISS (NAUKA)" "49044"
+[     7.548][WARN] Satellite has invalid orbit: "ISS (ZARYA)" "25544"
+[     7.548][WARN] Satellite has invalid orbit: "ITASAT" "43786"
+[     7.548][WARN] Satellite has invalid orbit: "IXPE" "49954"
+[     7.551][WARN] Satellite has invalid orbit: "JILIN-1 06" "43024"
+[     7.551][WARN] Satellite has invalid orbit: "JILIN-1 07" "43159"
+[     7.551][WARN] Satellite has invalid orbit: "JILIN-1 08" "43160"
+[     7.551][WARN] Satellite has invalid orbit: "JILIN-1 09" "43943"
+[     7.551][WARN] Satellite has invalid orbit: "JILIN-1 10" "43946"
+[     7.551][WARN] Satellite has invalid orbit: "JILIN-1 GAOFEN 2B" "44836"
+[     7.555][WARN] Satellite has invalid orbit: "KOSEN-1" "49402"
+[     7.555][WARN] Satellite has invalid orbit: "KSM1-A" "46912"
+[     7.555][WARN] Satellite has invalid orbit: "KSM1-B" "46914"
+[     7.555][WARN] Satellite has invalid orbit: "KSM1-C" "46906"
+[     7.555][WARN] Satellite has invalid orbit: "KSM1-D" "46907"
+[     7.557][WARN] Satellite has invalid orbit: "LEMUR-2-SQUIRRELCOMM" "60578"
+[     7.567][WARN] Satellite has invalid orbit: "MONITOR-2 (RS39S)" "57184"
+[     7.567][WARN] Satellite has invalid orbit: "MONITOR-3 (RS58S)" "57180"
+[     7.580][WARN] Satellite has invalid orbit: "ONEWEB-0024" "45137"
+[     7.580][WARN] Satellite has invalid orbit: "ONEWEB-0043" "45149"
+[     7.580][WARN] Satellite has invalid orbit: "ONEWEB-0292" "49186"
+[     7.580][WARN] Satellite has invalid orbit: "ONEWEB-0659" "54678"
+[     7.580][WARN] Satellite has invalid orbit: "OPS 5712 (P/L 160)" "2826"
+[     7.582][WARN] Satellite has invalid orbit: "Optsat 3000" "42900"
+[     7.585][WARN] Satellite has invalid orbit: "POISK" "36086"
+[     7.585][WARN] Satellite has invalid orbit: "POLYTECH-UNIVERSE 3 (RS46S)" "57191"
+[     7.585][WARN] Satellite has invalid orbit: "POPACS 3" "39270"
+[     7.585][WARN] Satellite has invalid orbit: "PROGRESS-MS 33" "68319"
+[     7.585][WARN] Satellite has invalid orbit: "PROGRESS-MS 34" "68837"
+[     7.586][WARN] Satellite has invalid orbit: "QB50P1" "40025"
+[     7.586][WARN] Satellite has invalid orbit: "QB50P2" "40032"
+[     7.586][WARN] Satellite has invalid orbit: "QPS-SAR-8 (AMATERU-IV)" "60542"
+[     7.589][WARN] Satellite has invalid orbit: "R2" "46913"
+[     7.589][WARN] Satellite has invalid orbit: "RADFXSAT (FOX-1B)" "43017"
+[     7.591][WARN] Satellite has invalid orbit: "S-NET B" "43187"
+[     7.591][WARN] Satellite has invalid orbit: "S-NET C" "43189"
+[     7.591][WARN] Satellite has invalid orbit: "SALSAT" "46495"
+[     7.591][WARN] Satellite has invalid orbit: "SAUDISAT 5A" "43831"
+[     7.591][WARN] Satellite has invalid orbit: "SAUDISAT 5B" "43833"
+[     7.598][WARN] Satellite has invalid orbit: "SEAHAWK-1" "43820"
+[     7.609][WARN] Satellite has invalid orbit: "SHERPA-AC1" "52763"
+[     7.611][WARN] Satellite has invalid orbit: "SHIJIAN-6 03A (SJ-6 03A)" "33408"
+[     7.613][WARN] Satellite has invalid orbit: "SITRO-AIS 6 (CHIRKIN)" "57192"
+[     7.613][WARN] Satellite has invalid orbit: "SITRO-AIS 7 (FARTUSHNIY)" "57194"
+[     7.613][WARN] Satellite has invalid orbit: "SJ-7" "28737"
+[     7.615][WARN] Satellite has invalid orbit: "SL-4 R/B" "39679"
+[     7.615][WARN] Satellite has invalid orbit: "SMDC ONE 2.4" "39469"
+[     7.615][WARN] Satellite has invalid orbit: "SNAP-3 JIMI" "40975"
+[     7.615][WARN] Satellite has invalid orbit: "SNUSAT-2" "43782"
+[     7.615][WARN] Satellite has invalid orbit: "SOYUZ-MS 28" "66664"
+[     7.618][WARN] Satellite has invalid orbit: "STARLINK-37777" "69349"
+[     7.618][WARN] Satellite has invalid orbit: "STARLINK-37779" "69350"
+[     7.620][WARN] Satellite has invalid orbit: "SVYATOBOR 1 (RS60S)" "57187"
+[     7.636][WARN] Satellite has invalid orbit: "TIANMU-1 08" "57400"
+[     7.636][WARN] Satellite has invalid orbit: "TIANMU-1 09" "57401"
+[     7.636][WARN] Satellite has invalid orbit: "TIANMU-1 10" "57402"
+[     7.636][WARN] Satellite has invalid orbit: "TIANMU-1 11" "58645"
+[     7.636][WARN] Satellite has invalid orbit: "TIANMU-1 12" "58646"
+[     7.636][WARN] Satellite has invalid orbit: "TIANMU-1 13" "58647"
+[     7.636][WARN] Satellite has invalid orbit: "TIANMU-1 14" "58648"
+[     7.636][WARN] Satellite has invalid orbit: "TIANMU-1 15" "58700"
+[     7.636][WARN] Satellite has invalid orbit: "TIANMU-1 16" "58701"
+[     7.636][WARN] Satellite has invalid orbit: "TIANMU-1 17" "58702"
+[     7.638][WARN] Satellite has invalid orbit: "TIANYAN 02" "44882"
+[     7.650][WARN] Satellite has invalid orbit: "TYVAK-0130" "48606"
+[     7.650][WARN] Satellite has invalid orbit: "TYVAK-182A" "48271"
+[     7.658][WARN] Satellite has invalid orbit: "UMKA 1 (RS40S)" "57172"
+[     7.658][WARN] Satellite has invalid orbit: "UNKNOWN" "81323"
+[     7.658][WARN] Satellite has invalid orbit: "UNKNOWN" "82180"
+[     7.658][WARN] Satellite has invalid orbit: "UNKNOWN" "82961"
+[     7.662][WARN] Satellite has invalid orbit: "UNKNOWN" "87239"
+[     7.662][WARN] Satellite has invalid orbit: "UNKNOWN" "87334"
+[     7.662][WARN] Satellite has invalid orbit: "UNKNOWN" "87335"
+[     7.662][WARN] Satellite has invalid orbit: "UNKNOWN" "89029"
+[     7.681][WARN] Satellite has invalid orbit: "USA 290" "43941"
+[     7.681][WARN] Satellite has invalid orbit: "USA 316" "48846"
+[     7.681][WARN] Satellite has invalid orbit: "USA 318" "48848"
+[     7.683][WARN] Satellite has invalid orbit: "USA 352" "59288"
+[     7.688][WARN] Satellite has invalid orbit: "VIGORIDE-3" "52760"
+[     7.700][WARN] Satellite has invalid orbit: "YAOGAN-12" "37875"
+[     7.700][WARN] Satellite has invalid orbit: "YAOGAN-21" "40143"
+[     7.700][WARN] Satellite has invalid orbit: "YAOGAN-28" "41026"
+[     7.701][WARN] Satellite has invalid orbit: "ZHANGHENG 1-01 (CSES-1)" "43194"
+[     7.711][WARN] Satellite has invalid orbit: "ZHUHAI-1 OHS-02" "43441"
+[     7.711][WARN] Satellite has invalid orbit: "ZIYUAN 3-02 (ZY 3-02)" "41556"
+[     7.711][WARN] Satellite has invalid orbit: "ZORKIY-2M 1" "57177"
+[     7.711][INFO] OpenGL viewport size: 1024 x 768
+[     7.711][INFO] Creating scene FBO with size 1024x768
+[     8.099][WARN] Satellite has invalid orbit: "UNKNOWN" "81111"
+[     8.275][WARN] Dubious result: Landscape  "Guereins"  not calibrated. Opacity test represents mathematical horizon only.
+[     9.808][WARN] Satellite has invalid orbit: "UNKNOWN" "87271"
+[    10.025][WARN] Satellite has invalid orbit: "AFR-1" "56964"
+[    10.082][WARN] Satellite has invalid orbit: "WEILAI 1R" "44884"
+[    10.382][WARN] Satellite has invalid orbit: "UNKNOWN" "84006"
+[    10.776][WARN] Satellite has invalid orbit: "PHASE 3B (AO-10)" "14129"
+[    12.957][WARN] Satellite has invalid orbit: "ISON 64800" "90103"
+[    15.594][WARN] Satellite has invalid orbit: "ISON 37600" "90097"
+[    17.824][DBG ] [Exoplanets] Updating exoplanets catalog ...
+[    17.859][DBG ] [Novae] Updating novae catalog...
+[    18.307][DBG ] [Novae] Updating novae catalog is complete...
+[    18.383][DBG ] [Satellites] starting Internet update...
+[    20.099][DBG ] [Exoplanets] Updating exoplanets catalog is complete...
+[    20.752][WARN] [Satellites] FAILED to download "https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=CSV". Error QNetworkReply::ContentAccessDenied: "Error transferring https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=CSV - server replied: Forbidden"
+[    23.236][WARN] [Satellites] FAILED to download "https://celestrak.org/NORAD/elements/gp.php?GROUP=starlink&FORMAT=CSV". Error QNetworkReply::ContentAccessDenied: "Error transferring https://celestrak.org/NORAD/elements/gp.php?GROUP=starlink&FORMAT=CSV - server replied: Forbidden"
+[    31.326][WARN] [Satellites] unprocessed line 0 in file "C:\\Users\\admin\\OneDrive\\Documentos\\00-juan\\tychos-research\\TSN\\scripts\\stellarium\\profile_2000_2026_3h\\modules\\Satellites\\tle20.txt": "Invalid query: \"GROUP=gpz-plus&FORMAT=CSV\" (GROUP=gpz-plus not found)"
+[    31.376][WARN] [Satellites] "54687" "2022-167F" has invalid orbit and will be removed.
+[    31.383][WARN] [Satellites] "41853" "AEROCUBE 8C" has invalid orbit and will be removed.
+[    31.383][WARN] [Satellites] "56964" "AFR-1" has invalid orbit and will be removed.
+[    31.409][WARN] [Satellites] "40298" "ASNARO" has invalid orbit and will be removed.
+[    31.409][WARN] [Satellites] "61781" "ASRTU-1 (AO-123)" has invalid orbit and will be removed.
+[    31.417][WARN] [Satellites] "57195" "AVION KALUGA 650" has invalid orbit and will be removed.
+[    31.436][WARN] [Satellites] "53807" "BLUEWALKER-3" has invalid orbit and will be removed.
+[    31.437][WARN] [Satellites] "56185" "BRO-9" has invalid orbit and will be removed.
+[    31.440][WARN] [Satellites] "40014" "BUGSAT-1 (TITA)" has invalid orbit and will be removed.
+[    31.441][WARN] [Satellites] "43809" "CENTAURI-1" has invalid orbit and will be removed.
+[    31.445][WARN] [Satellites] "67684" "CORAL" has invalid orbit and will be removed.
+[    31.445][WARN] [Satellites] "14699" "COSMOS 1536" has invalid orbit and will be removed.
+[    31.445][WARN] [Satellites] "19210" "COSMOS 1953" has invalid orbit and will be removed.
+[    31.445][WARN] [Satellites] "19573" "COSMOS 1975" has invalid orbit and will be removed.
+[    31.449][WARN] [Satellites] "48865" "COSMOS 2550" has invalid orbit and will be removed.
+[    31.449][WARN] [Satellites] "67796" "CREW DRAGON 12" has invalid orbit and will be removed.
+[    31.450][WARN] [Satellites] "49263" "CUTE" has invalid orbit and will be removed.
+[    31.450][WARN] [Satellites] "32785" "CUTE-1.7+APD II (CO-65)" has invalid orbit and will be removed.
+[    31.450][WARN] [Satellites] "68689" "CYGNUS NG-24" has invalid orbit and will be removed.
+[    31.450][WARN] [Satellites] "28415" "CZ-4B R/B" has invalid orbit and will be removed.
+[    31.450][WARN] [Satellites] "60242" "Curium One" has invalid orbit and will be removed.
+[    31.450][WARN] [Satellites] "43881" "D-STAR ONE (SPARROW)" has invalid orbit and will be removed.
+[    31.455][WARN] [Satellites] "54686" "DONGPO 08" has invalid orbit and will be removed.
+[    31.455][WARN] [Satellites] "40030" "DTUSAT-2" has invalid orbit and will be removed.
+[    31.491][WARN] [Satellites] "48924" "FARADAY_PHOENIX" has invalid orbit and will be removed.
+[    31.494][WARN] [Satellites] "44885" "FLORIPASAT-1" has invalid orbit and will be removed.
+[    31.496][WARN] [Satellites] "43770" "FOX-1CLIFF (AO-95)" has invalid orbit and will be removed.
+[    31.497][WARN] [Satellites] "39444" "FUNCUBE-1 (AO-73)" has invalid orbit and will be removed.
+[    31.510][WARN] [Satellites] "64890" "GEOSCAN 2 (RS92S2)" has invalid orbit and will be removed.
+[    31.510][WARN] [Satellites] "64879" "GEOSCAN 6 (RS92S6)" has invalid orbit and will be removed.
+[    31.529][WARN] [Satellites] "47505" "HAWK-2A" has invalid orbit and will be removed.
+[    31.529][WARN] [Satellites] "47508" "HAWK-2B" has invalid orbit and will be removed.
+[    31.529][WARN] [Satellites] "47502" "HAWK-2C" has invalid orbit and will be removed.
+[    31.529][WARN] [Satellites] "55327" "HAWK-6A" has invalid orbit and will be removed.
+[    31.529][WARN] [Satellites] "55324" "HAWK-6B" has invalid orbit and will be removed.
+[    31.529][WARN] [Satellites] "56191" "HAWK-7A" has invalid orbit and will be removed.
+[    31.529][WARN] [Satellites] "43765" "HAWK-A" has invalid orbit and will be removed.
+[    31.529][WARN] [Satellites] "43794" "HAWK-B" has invalid orbit and will be removed.
+[    31.529][WARN] [Satellites] "43799" "HAWK-C" has invalid orbit and will be removed.
+[    31.535][WARN] [Satellites] "54035" "HJ-2E" has invalid orbit and will be removed.
+[    31.535][WARN] [Satellites] "57519" "HJ-2F" has invalid orbit and will be removed.
+[    31.536][WARN] [Satellites] "57188" "HORS 1" has invalid orbit and will be removed.
+[    31.536][WARN] [Satellites] "20580" "HST" has invalid orbit and will be removed.
+[    31.537][WARN] [Satellites] "55093" "HUYGENS" has invalid orbit and will be removed.
+[    31.540][WARN] [Satellites] "37813" "IGS 6" has invalid orbit and will be removed.
+[    31.549][WARN] [Satellites] "64878" "INNOSAT 16 (RS92S7)" has invalid orbit and will be removed.
+[    31.568][WARN] [Satellites] "50993" "ION SCV-004" has invalid orbit and will be removed.
+[    31.568][WARN] [Satellites] "55051" "ION SCV-008" has invalid orbit and will be removed.
+[    31.568][WARN] [Satellites] "56192" "ION SCV-010" has invalid orbit and will be removed.
+[    31.568][WARN] [Satellites] "56957" "ION SCV-011" has invalid orbit and will be removed.
+[    31.574][WARN] [Satellites] "90097" "ISON 37600" has invalid orbit and will be removed.
+[    31.574][WARN] [Satellites] "90103" "ISON 64800" has invalid orbit and will be removed.
+[    31.574][WARN] [Satellites] "49044" "ISS (NAUKA)" has invalid orbit and will be removed.
+[    31.575][WARN] [Satellites] "25544" "ISS (ZARYA)" has invalid orbit and will be removed.
+[    31.575][WARN] [Satellites] "43786" "ITASAT" has invalid orbit and will be removed.
+[    31.575][WARN] [Satellites] "49954" "IXPE" has invalid orbit and will be removed.
+[    31.580][WARN] [Satellites] "43024" "JILIN-1 06" has invalid orbit and will be removed.
+[    31.580][WARN] [Satellites] "43159" "JILIN-1 07" has invalid orbit and will be removed.
+[    31.580][WARN] [Satellites] "43160" "JILIN-1 08" has invalid orbit and will be removed.
+[    31.580][WARN] [Satellites] "43943" "JILIN-1 09" has invalid orbit and will be removed.
+[    31.580][WARN] [Satellites] "43946" "JILIN-1 10" has invalid orbit and will be removed.
+[    31.580][WARN] [Satellites] "44836" "JILIN-1 GAOFEN 2B" has invalid orbit and will be removed.
+[    31.580][WARN] [Satellites] "52445" "JILIN-1 GAOFEN 3D28" has invalid orbit and will be removed.
+[    31.586][WARN] [Satellites] "49402" "KOSEN-1" has invalid orbit and will be removed.
+[    31.586][WARN] [Satellites] "46912" "KSM1-A" has invalid orbit and will be removed.
+[    31.586][WARN] [Satellites] "46914" "KSM1-B" has invalid orbit and will be removed.
+[    31.586][WARN] [Satellites] "46906" "KSM1-C" has invalid orbit and will be removed.
+[    31.586][WARN] [Satellites] "46907" "KSM1-D" has invalid orbit and will be removed.
+[    31.588][WARN] [Satellites] "60578" "LEMUR-2-SQUIRRELCOMM" has invalid orbit and will be removed.
+[    31.601][WARN] [Satellites] "57184" "MONITOR-2 (RS39S)" has invalid orbit and will be removed.
+[    31.601][WARN] [Satellites] "57180" "MONITOR-3 (RS58S)" has invalid orbit and will be removed.
+[    31.617][WARN] [Satellites] "26702" "ODIN" has invalid orbit and will be removed.
+[    31.617][WARN] [Satellites] "45137" "ONEWEB-0024" has invalid orbit and will be removed.
+[    31.617][WARN] [Satellites] "45149" "ONEWEB-0043" has invalid orbit and will be removed.
+[    31.621][WARN] [Satellites] "49186" "ONEWEB-0292" has invalid orbit and will be removed.
+[    31.627][WARN] [Satellites] "54678" "ONEWEB-0659" has invalid orbit and will be removed.
+[    31.628][WARN] [Satellites] "2826" "OPS 5712 (P/L 160)" has invalid orbit and will be removed.
+[    31.632][WARN] [Satellites] "42900" "Optsat 3000" has invalid orbit and will be removed.
+[    31.635][WARN] [Satellites] "14129" "PHASE 3B (AO-10)" has invalid orbit and will be removed.
+[    31.635][WARN] [Satellites] "36086" "POISK" has invalid orbit and will be removed.
+[    31.635][WARN] [Satellites] "57191" "POLYTECH-UNIVERSE 3 (RS46S)" has invalid orbit and will be removed.
+[    31.635][WARN] [Satellites] "39270" "POPACS 3" has invalid orbit and will be removed.
+[    31.635][WARN] [Satellites] "68319" "PROGRESS-MS 33" has invalid orbit and will be removed.
+[    31.635][WARN] [Satellites] "68837" "PROGRESS-MS 34" has invalid orbit and will be removed.
+[    31.636][WARN] [Satellites] "40025" "QB50P1" has invalid orbit and will be removed.
+[    31.636][WARN] [Satellites] "40032" "QB50P2" has invalid orbit and will be removed.
+[    31.636][WARN] [Satellites] "60542" "QPS-SAR-8 (AMATERU-IV)" has invalid orbit and will be removed.
+[    31.640][WARN] [Satellites] "46913" "R2" has invalid orbit and will be removed.
+[    31.640][WARN] [Satellites] "43017" "RADFXSAT (FOX-1B)" has invalid orbit and will be removed.
+[    31.642][WARN] [Satellites] "43187" "S-NET B" has invalid orbit and will be removed.
+[    31.642][WARN] [Satellites] "43189" "S-NET C" has invalid orbit and will be removed.
+[    31.642][WARN] [Satellites] "46495" "SALSAT" has invalid orbit and will be removed.
+[    31.642][WARN] [Satellites] "33244" "SAR Lupe 5" has invalid orbit and will be removed.
+[    31.642][WARN] [Satellites] "43831" "SAUDISAT 5A" has invalid orbit and will be removed.
+[    31.642][WARN] [Satellites] "43833" "SAUDISAT 5B" has invalid orbit and will be removed.
+[    31.647][WARN] [Satellites] "43820" "SEAHAWK-1" has invalid orbit and will be removed.
+[    31.661][WARN] [Satellites] "52763" "SHERPA-AC1" has invalid orbit and will be removed.
+[    31.664][WARN] [Satellites] "33408" "SHIJIAN-6 03A (SJ-6 03A)" has invalid orbit and will be removed.
+[    31.665][WARN] [Satellites] "57192" "SITRO-AIS 6 (CHIRKIN)" has invalid orbit and will be removed.
+[    31.665][WARN] [Satellites] "57194" "SITRO-AIS 7 (FARTUSHNIY)" has invalid orbit and will be removed.
+[    31.665][WARN] [Satellites] "28737" "SJ-7" has invalid orbit and will be removed.
+[    31.672][WARN] [Satellites] "39679" "SL-4 R/B" has invalid orbit and will be removed.
+[    31.672][WARN] [Satellites] "39469" "SMDC ONE 2.4" has invalid orbit and will be removed.
+[    31.672][WARN] [Satellites] "40975" "SNAP-3 JIMI" has invalid orbit and will be removed.
+[    31.672][WARN] [Satellites] "43782" "SNUSAT-2" has invalid orbit and will be removed.
+[    31.672][WARN] [Satellites] "66664" "SOYUZ-MS 28" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "47883" "STARLINK-2342" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69510" "STARLINK-36536" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69362" "STARLINK-37040" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69515" "STARLINK-37232" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69517" "STARLINK-37357" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69255" "STARLINK-37378" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69256" "STARLINK-37396" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69249" "STARLINK-37398" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69534" "STARLINK-37407" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69380" "STARLINK-37411" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69248" "STARLINK-37412" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69381" "STARLINK-37427" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69265" "STARLINK-37435" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69365" "STARLINK-37436" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69377" "STARLINK-37439" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69375" "STARLINK-37454" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69525" "STARLINK-37490" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69254" "STARLINK-37517" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69463" "STARLINK-37526" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69420" "STARLINK-37537" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69431" "STARLINK-37555" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69239" "STARLINK-37558" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69454" "STARLINK-37575" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69452" "STARLINK-37577" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69466" "STARLINK-37583" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69421" "STARLINK-37585" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69355" "STARLINK-37593" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69356" "STARLINK-37597" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69357" "STARLINK-37598" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69360" "STARLINK-37599" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69443" "STARLINK-37629" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69369" "STARLINK-37631" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69374" "STARLINK-37632" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69447" "STARLINK-37640" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69445" "STARLINK-37641" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69353" "STARLINK-37651" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69354" "STARLINK-37652" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69370" "STARLINK-37673" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69240" "STARLINK-37680" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69373" "STARLINK-37685" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69205" "STARLINK-37691" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69242" "STARLINK-37718" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69243" "STARLINK-37735" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69241" "STARLINK-37742" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69439" "STARLINK-37771" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69349" "STARLINK-37777" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69350" "STARLINK-37779" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69438" "STARLINK-37783" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69434" "STARLINK-37815" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69423" "STARLINK-37820" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69424" "STARLINK-37822" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69425" "STARLINK-37836" has invalid orbit and will be removed.
+[    31.677][WARN] [Satellites] "69432" "STARLINK-37870" has invalid orbit and will be removed.
+[    31.679][WARN] [Satellites] "57187" "SVYATOBOR 1 (RS60S)" has invalid orbit and will be removed.
+[    31.704][WARN] [Satellites] "57400" "TIANMU-1 08" has invalid orbit and will be removed.
+[    31.704][WARN] [Satellites] "57401" "TIANMU-1 09" has invalid orbit and will be removed.
+[    31.704][WARN] [Satellites] "57402" "TIANMU-1 10" has invalid orbit and will be removed.
+[    31.704][WARN] [Satellites] "58645" "TIANMU-1 11" has invalid orbit and will be removed.
+[    31.704][WARN] [Satellites] "58646" "TIANMU-1 12" has invalid orbit and will be removed.
+[    31.704][WARN] [Satellites] "58647" "TIANMU-1 13" has invalid orbit and will be removed.
+[    31.704][WARN] [Satellites] "58648" "TIANMU-1 14" has invalid orbit and will be removed.
+[    31.704][WARN] [Satellites] "58700" "TIANMU-1 15" has invalid orbit and will be removed.
+[    31.704][WARN] [Satellites] "58701" "TIANMU-1 16" has invalid orbit and will be removed.
+[    31.704][WARN] [Satellites] "58702" "TIANMU-1 17" has invalid orbit and will be removed.
+[    31.706][WARN] [Satellites] "44882" "TIANYAN 02" has invalid orbit and will be removed.
+[    31.714][WARN] [Satellites] "56962" "TOMORROW-R2" has invalid orbit and will be removed.
+[    31.714][WARN] [Satellites] "60521" "TRANSPORTER-11 OBJECT BF" has invalid orbit and will be removed.
+[    31.719][WARN] [Satellites] "48606" "TYVAK-0130" has invalid orbit and will be removed.
+[    31.719][WARN] [Satellites] "48271" "TYVAK-182A" has invalid orbit and will be removed.
+[    31.722][WARN] [Satellites] "57172" "UMKA 1 (RS40S)" has invalid orbit and will be removed.
+[    31.722][WARN] [Satellites] "81111" "UNKNOWN" has invalid orbit and will be removed.
+[    31.722][WARN] [Satellites] "81323" "UNKNOWN" has invalid orbit and will be removed.
+[    31.723][WARN] [Satellites] "82180" "UNKNOWN" has invalid orbit and will be removed.
+[    31.723][WARN] [Satellites] "82961" "UNKNOWN" has invalid orbit and will be removed.
+[    31.725][WARN] [Satellites] "84006" "UNKNOWN" has invalid orbit and will be removed.
+[    31.725][WARN] [Satellites] "84188" "UNKNOWN" has invalid orbit and will be removed.
+[    31.728][WARN] [Satellites] "87239" "UNKNOWN" has invalid orbit and will be removed.
+[    31.728][WARN] [Satellites] "87271" "UNKNOWN" has invalid orbit and will be removed.
+[    31.728][WARN] [Satellites] "87334" "UNKNOWN" has invalid orbit and will be removed.
+[    31.728][WARN] [Satellites] "87335" "UNKNOWN" has invalid orbit and will be removed.
+[    31.728][WARN] [Satellites] "89029" "UNKNOWN" has invalid orbit and will be removed.
+[    31.736][WARN] [Satellites] "43941" "USA 290" has invalid orbit and will be removed.
+[    31.736][WARN] [Satellites] "48846" "USA 316" has invalid orbit and will be removed.
+[    31.736][WARN] [Satellites] "48848" "USA 318" has invalid orbit and will be removed.
+[    31.736][WARN] [Satellites] "59288" "USA 352" has invalid orbit and will be removed.
+[    31.739][WARN] [Satellites] "52760" "VIGORIDE-3" has invalid orbit and will be removed.
+[    31.740][WARN] [Satellites] "44884" "WEILAI 1R" has invalid orbit and will be removed.
+[    31.754][WARN] [Satellites] "37875" "YAOGAN-12" has invalid orbit and will be removed.
+[    31.754][WARN] [Satellites] "40143" "YAOGAN-21" has invalid orbit and will be removed.
+[    31.754][WARN] [Satellites] "41026" "YAOGAN-28" has invalid orbit and will be removed.
+[    31.755][WARN] [Satellites] "43194" "ZHANGHENG 1-01 (CSES-1)" has invalid orbit and will be removed.
+[    31.765][WARN] [Satellites] "43441" "ZHUHAI-1 OHS-02" has invalid orbit and will be removed.
+[    31.765][WARN] [Satellites] "41556" "ZIYUAN 3-02 (ZY 3-02)" has invalid orbit and will be removed.
+[    31.765][WARN] [Satellites] "57177" "ZORKIY-2M 1" has invalid orbit and will be removed.
+[    31.766][WARN] Satellite has invalid orbit: "CREW DRAGON 13" "100882"
+[    31.766][DBG ] [Satellites] satellite added: "100882" "CREW DRAGON 13"
+[    31.766][DBG ] [Satellites] satellite added: "67232" "SPACEMOBILE-006"
+[    31.766][DBG ] [Satellites] satellite added: "61048" "SPACEMOBILE-002"
+[    31.766][WARN] Satellite has invalid orbit: "SOYUZ-MS 29" "100057"
+[    31.766][DBG ] [Satellites] satellite added: "100057" "SOYUZ-MS 29"
+[    31.766][DBG ] [Satellites] satellite added: "100460" "COSMOS 2619 (713K)"
+[    31.767][DBG ] [Satellites] satellite added: "100744" "COSMOS 2620"
+[    31.767][DBG ] [Satellites] satellite added: "61047" "SPACEMOBILE-001"
+[    31.767][DBG ] [Satellites] satellite added: "69590" "SPACEMOBILE-009"
+[    31.767][DBG ] [Satellites] satellite added: "69920" "MARINA"
+[    31.767][DBG ] [Satellites] satellite added: "62394" "CROCUBE"
+[    31.767][WARN] Satellite has invalid orbit: "SPACEMOBILE-004" "61049"
+[    31.767][DBG ] [Satellites] satellite added: "61049" "SPACEMOBILE-004"
+[    31.767][DBG ] [Satellites] satellite added: "100465" "JAMX01 (JING'AN DREAM STAR)"
+[    31.767][WARN] Satellite has invalid orbit: "OTP-2" "63235"
+[    31.767][DBG ] [Satellites] satellite added: "63235" "OTP-2"
+[    31.768][DBG ] [Satellites] satellite added: "44709" "BEIDOU-3 IGSO-3 (C40)"
+[    31.768][WARN] Satellite has invalid orbit: "PROGRESS-MS 35" "100712"
+[    31.768][DBG ] [Satellites] satellite added: "100712" "PROGRESS-MS 35"
+[    31.768][DBG ] [Satellites] satellite added: "69589" "SPACEMOBILE-008"
+[    31.769][DBG ] [Satellites] satellite added: "61045" "SPACEMOBILE-003"
+[    31.769][WARN] Satellite has invalid orbit: "SPACEMOBILE-005" "61046"
+[    31.769][DBG ] [Satellites] satellite added: "61046" "SPACEMOBILE-005"
+[    31.769][DBG ] [Satellites] satellite added: "69591" "SPACEMOBILE-010"
+[    31.769][DBG ] [Satellites] satellite added: "62391" "LASARSAT"
+[    31.769][WARN] [Satellites] purging objects that were not updated...
+[    31.769][DBG ] Satellite removed: "54687" "2022-167F"
+[    31.769][DBG ] Satellite removed: "38767" "AEROCUBE 4.5A"
+[    31.770][DBG ] Satellite removed: "41853" "AEROCUBE 8C"
+[    31.770][DBG ] Satellite removed: "56964" "AFR-1"
+[    31.770][DBG ] Satellite removed: "58584" "ARKTIKA-M 2"
+[    31.770][DBG ] Satellite removed: "40298" "ASNARO"
+[    31.770][DBG ] Satellite removed: "61781" "ASRTU-1 (AO-123)"
+[    31.770][DBG ] Satellite removed: "57195" "AVION KALUGA 650"
+[    31.770][DBG ] Satellite removed: "53807" "BLUEWALKER-3"
+[    31.770][DBG ] Satellite removed: "56185" "BRO-9"
+[    31.770][DBG ] Satellite removed: "40014" "BUGSAT-1 (TITA)"
+[    31.770][DBG ] Satellite removed: "43809" "CENTAURI-1"
+[    31.770][DBG ] Satellite removed: "26410" "CLUSTER II-FM7 (SAMBA)"
+[    31.770][DBG ] Satellite removed: "26464" "CLUSTER II-FM8 (TANGO)"
+[    31.770][DBG ] Satellite removed: "36744" "COMS 1"
+[    31.770][DBG ] Satellite removed: "67684" "CORAL"
+[    31.770][DBG ] Satellite removed: "14699" "COSMOS 1536"
+[    31.770][DBG ] Satellite removed: "19210" "COSMOS 1953"
+[    31.770][DBG ] Satellite removed: "19573" "COSMOS 1975"
+[    31.770][DBG ] Satellite removed: "32276" "COSMOS 2432 (719)"
+[    31.770][DBG ] Satellite removed: "48865" "COSMOS 2550"
+[    31.770][DBG ] Satellite removed: "53323" "COSMOS 2558"
+[    31.770][DBG ] Satellite removed: "67796" "CREW DRAGON 12"
+[    31.770][DBG ] Satellite removed: "49263" "CUTE"
+[    31.770][DBG ] Satellite removed: "32785" "CUTE-1.7+APD II (CO-65)"
+[    31.770][DBG ] Satellite removed: "68689" "CYGNUS NG-24"
+[    31.770][DBG ] Satellite removed: "28222" "CZ-2C R/B"
+[    31.770][DBG ] Satellite removed: "28415" "CZ-4B R/B"
+[    31.770][DBG ] Satellite removed: "60242" "Curium One"
+[    31.770][DBG ] Satellite removed: "43881" "D-STAR ONE (SPARROW)"
+[    31.771][DBG ] Satellite removed: "53453" "DONGPO 01"
+[    31.771][DBG ] Satellite removed: "53452" "DONGPO 02"
+[    31.771][DBG ] Satellite removed: "54686" "DONGPO 08"
+[    31.771][DBG ] Satellite removed: "40030" "DTUSAT-2"
+[    31.771][DBG ] Satellite removed: "40021" "DUCHIFAT-1"
+[    31.771][DBG ] Satellite removed: "60508" "EAGLEEYE"
+[    31.771][DBG ] Satellite removed: "48924" "FARADAY_PHOENIX"
+[    31.771][DBG ] Satellite removed: "60484" "FLOCK 4BE-26"
+[    31.771][DBG ] Satellite removed: "60499" "FLOCK 4BE-30"
+[    31.771][DBG ] Satellite removed: "58273" "FLOCK 4Q-11"
+[    31.771][DBG ] Satellite removed: "58282" "FLOCK 4Q-27"
+[    31.771][DBG ] Satellite removed: "58280" "FLOCK 4Q-28"
+[    31.771][DBG ] Satellite removed: "58304" "FLOCK 4Q-29"
+[    31.771][DBG ] Satellite removed: "58309" "FLOCK 4Q-35"
+[    31.771][DBG ] Satellite removed: "58318" "FLOCK 4Q-7"
+[    31.771][DBG ] Satellite removed: "44885" "FLORIPASAT-1"
+[    31.771][DBG ] Satellite removed: "43770" "FOX-1CLIFF (AO-95)"
+[    31.771][DBG ] Satellite removed: "39444" "FUNCUBE-1 (AO-73)"
+[    31.771][DBG ] Satellite removed: "64890" "GEOSCAN 2 (RS92S2)"
+[    31.771][DBG ] Satellite removed: "64879" "GEOSCAN 6 (RS92S6)"
+[    31.772][DBG ] Satellite removed: "47505" "HAWK-2A"
+[    31.772][DBG ] Satellite removed: "47508" "HAWK-2B"
+[    31.772][DBG ] Satellite removed: "47502" "HAWK-2C"
+[    31.772][DBG ] Satellite removed: "55327" "HAWK-6A"
+[    31.772][DBG ] Satellite removed: "55324" "HAWK-6B"
+[    31.772][DBG ] Satellite removed: "56191" "HAWK-7A"
+[    31.772][DBG ] Satellite removed: "43765" "HAWK-A"
+[    31.772][DBG ] Satellite removed: "43794" "HAWK-B"
+[    31.772][DBG ] Satellite removed: "43799" "HAWK-C"
+[    31.772][DBG ] Satellite removed: "54035" "HJ-2E"
+[    31.772][DBG ] Satellite removed: "57519" "HJ-2F"
+[    31.772][DBG ] Satellite removed: "57188" "HORS 1"
+[    31.772][DBG ] Satellite removed: "41340" "HORYU-4"
+[    31.772][DBG ] Satellite removed: "20580" "HST"
+[    31.772][DBG ] Satellite removed: "55093" "HUYGENS"
+[    31.772][DBG ] Satellite removed: "61772" "HYPERVIEW 1G (RS66S)"
+[    31.772][DBG ] Satellite removed: "37813" "IGS 6"
+[    31.772][DBG ] Satellite removed: "64878" "INNOSAT 16 (RS92S7)"
+[    31.772][DBG ] Satellite removed: "50993" "ION SCV-004"
+[    31.772][DBG ] Satellite removed: "55051" "ION SCV-008"
+[    31.772][DBG ] Satellite removed: "56192" "ION SCV-010"
+[    31.772][DBG ] Satellite removed: "56957" "ION SCV-011"
+[    31.772][DBG ] Satellite removed: "90097" "ISON 37600"
+[    31.772][DBG ] Satellite removed: "90103" "ISON 64800"
+[    31.772][DBG ] Satellite removed: "49044" "ISS (NAUKA)"
+[    31.772][DBG ] Satellite removed: "25544" "ISS (ZARYA)"
+[    31.772][DBG ] Satellite removed: "66912" "ISS OBJECT XY"
+[    31.772][DBG ] Satellite removed: "43786" "ITASAT"
+[    31.772][DBG ] Satellite removed: "49954" "IXPE"
+[    31.772][DBG ] Satellite removed: "43024" "JILIN-1 06"
+[    31.772][DBG ] Satellite removed: "43159" "JILIN-1 07"
+[    31.772][DBG ] Satellite removed: "43160" "JILIN-1 08"
+[    31.772][DBG ] Satellite removed: "43943" "JILIN-1 09"
+[    31.772][DBG ] Satellite removed: "43946" "JILIN-1 10"
+[    31.772][DBG ] Satellite removed: "54254" "JILIN-1 GAOFEN 03D54"
+[    31.772][DBG ] Satellite removed: "44836" "JILIN-1 GAOFEN 2B"
+[    31.772][DBG ] Satellite removed: "52444" "JILIN-1 GAOFEN 3D27"
+[    31.772][DBG ] Satellite removed: "52445" "JILIN-1 GAOFEN 3D28"
+[    31.772][DBG ] Satellite removed: "46459" "JILIN-1 GAOFEN 3G"
+[    31.772][DBG ] Satellite removed: "49402" "KOSEN-1"
+[    31.772][DBG ] Satellite removed: "46912" "KSM1-A"
+[    31.772][DBG ] Satellite removed: "46914" "KSM1-B"
+[    31.772][DBG ] Satellite removed: "46906" "KSM1-C"
+[    31.772][DBG ] Satellite removed: "46907" "KSM1-D"
+[    31.772][DBG ] Satellite removed: "55264" "LDPE-3A"
+[    31.773][DBG ] Satellite removed: "48273" "LEMUR-2-SPECIAL-K"
+[    31.773][DBG ] Satellite removed: "60578" "LEMUR-2-SQUIRRELCOMM"
+[    31.773][DBG ] Satellite removed: "57184" "MONITOR-2 (RS39S)"
+[    31.773][DBG ] Satellite removed: "57180" "MONITOR-3 (RS58S)"
+[    31.773][DBG ] Satellite removed: "48963" "NAPA-2"
+[    31.773][DBG ] Satellite removed: "26702" "ODIN"
+[    31.773][DBG ] Satellite removed: "45137" "ONEWEB-0024"
+[    31.773][DBG ] Satellite removed: "45149" "ONEWEB-0043"
+[    31.774][DBG ] Satellite removed: "49186" "ONEWEB-0292"
+[    31.774][DBG ] Satellite removed: "54678" "ONEWEB-0659"
+[    31.775][DBG ] Satellite removed: "2826" "OPS 5712 (P/L 160)"
+[    31.775][DBG ] Satellite removed: "42900" "Optsat 3000"
+[    31.775][DBG ] Satellite removed: "48909" "PACE-1"
+[    31.775][DBG ] Satellite removed: "37779" "PAKSAT-1R"
+[    31.775][DBG ] Satellite removed: "14129" "PHASE 3B (AO-10)"
+[    31.775][DBG ] Satellite removed: "36086" "POISK"
+[    31.775][DBG ] Satellite removed: "57191" "POLYTECH-UNIVERSE 3 (RS46S)"
+[    31.775][DBG ] Satellite removed: "39270" "POPACS 3"
+[    31.775][DBG ] Satellite removed: "68319" "PROGRESS-MS 33"
+[    31.775][DBG ] Satellite removed: "68837" "PROGRESS-MS 34"
+[    31.775][DBG ] Satellite removed: "40025" "QB50P1"
+[    31.775][DBG ] Satellite removed: "40032" "QB50P2"
+[    31.775][DBG ] Satellite removed: "60542" "QPS-SAR-8 (AMATERU-IV)"
+[    31.775][DBG ] Satellite removed: "46913" "R2"
+[    31.775][DBG ] Satellite removed: "43017" "RADFXSAT (FOX-1B)"
+[    31.775][DBG ] Satellite removed: "43187" "S-NET B"
+[    31.775][DBG ] Satellite removed: "43189" "S-NET C"
+[    31.775][DBG ] Satellite removed: "46495" "SALSAT"
+[    31.775][DBG ] Satellite removed: "33244" "SAR Lupe 5"
+[    31.775][DBG ] Satellite removed: "43831" "SAUDISAT 5A"
+[    31.775][DBG ] Satellite removed: "43833" "SAUDISAT 5B"
+[    31.775][DBG ] Satellite removed: "43820" "SEAHAWK-1"
+[    31.775][DBG ] Satellite removed: "52763" "SHERPA-AC1"
+[    31.775][DBG ] Satellite removed: "33408" "SHIJIAN-6 03A (SJ-6 03A)"
+[    31.775][DBG ] Satellite removed: "57192" "SITRO-AIS 6 (CHIRKIN)"
+[    31.775][DBG ] Satellite removed: "57194" "SITRO-AIS 7 (FARTUSHNIY)"
+[    31.775][DBG ] Satellite removed: "28737" "SJ-7"
+[    31.775][DBG ] Satellite removed: "20776" "SKYNET 4C"
+[    31.775][DBG ] Satellite removed: "39679" "SL-4 R/B"
+[    31.775][DBG ] Satellite removed: "39469" "SMDC ONE 2.4"
+[    31.775][DBG ] Satellite removed: "40970" "SNAP-3 ALICE"
+[    31.776][DBG ] Satellite removed: "40972" "SNAP-3 EDDIE"
+[    31.776][DBG ] Satellite removed: "40975" "SNAP-3 JIMI"
+[    31.776][DBG ] Satellite removed: "43782" "SNUSAT-2"
+[    31.776][DBG ] Satellite removed: "66664" "SOYUZ-MS 28"
+[    31.776][DBG ] Satellite removed: "47883" "STARLINK-2342"
+[    31.776][DBG ] Satellite removed: "69246" "STARLINK-35759"
+[    31.776][DBG ] Satellite removed: "69510" "STARLINK-36536"
+[    31.776][DBG ] Satellite removed: "69193" "STARLINK-36666"
+[    31.776][DBG ] Satellite removed: "69196" "STARLINK-36933"
+[    31.776][DBG ] Satellite removed: "69361" "STARLINK-37039"
+[    31.776][DBG ] Satellite removed: "69362" "STARLINK-37040"
+[    31.776][DBG ] Satellite removed: "69183" "STARLINK-37089"
+[    31.776][DBG ] Satellite removed: "69195" "STARLINK-37166"
+[    31.776][DBG ] Satellite removed: "69220" "STARLINK-37201"
+[    31.776][DBG ] Satellite removed: "69187" "STARLINK-37209"
+[    31.776][DBG ] Satellite removed: "69515" "STARLINK-37232"
+[    31.776][DBG ] Satellite removed: "69185" "STARLINK-37237"
+[    31.776][DBG ] Satellite removed: "69247" "STARLINK-37238"
+[    31.776][DBG ] Satellite removed: "69258" "STARLINK-37276"
+[    31.776][DBG ] Satellite removed: "69190" "STARLINK-37282"
+[    31.776][DBG ] Satellite removed: "69364" "STARLINK-37309"
+[    31.776][DBG ] Satellite removed: "69198" "STARLINK-37321"
+[    31.776][DBG ] Satellite removed: "69516" "STARLINK-37323"
+[    31.776][DBG ] Satellite removed: "69509" "STARLINK-37341"
+[    31.776][DBG ] Satellite removed: "69524" "STARLINK-37352"
+[    31.776][DBG ] Satellite removed: "69194" "STARLINK-37355"
+[    31.776][DBG ] Satellite removed: "69517" "STARLINK-37357"
+[    31.776][DBG ] Satellite removed: "69188" "STARLINK-37359"
+[    31.776][DBG ] Satellite removed: "69186" "STARLINK-37365"
+[    31.776][DBG ] Satellite removed: "69253" "STARLINK-37368"
+[    31.776][DBG ] Satellite removed: "69529" "STARLINK-37369"
+[    31.776][DBG ] Satellite removed: "69378" "STARLINK-37376"
+[    31.776][DBG ] Satellite removed: "69255" "STARLINK-37378"
+[    31.776][DBG ] Satellite removed: "69522" "STARLINK-37379"
+[    31.776][DBG ] Satellite removed: "69182" "STARLINK-37380"
+[    31.776][DBG ] Satellite removed: "69379" "STARLINK-37383"
+[    31.776][DBG ] Satellite removed: "69460" "STARLINK-37384"
+[    31.776][DBG ] Satellite removed: "69256" "STARLINK-37396"
+[    31.776][DBG ] Satellite removed: "69249" "STARLINK-37398"
+[    31.776][DBG ] Satellite removed: "69210" "STARLINK-37402"
+[    31.776][DBG ] Satellite removed: "69199" "STARLINK-37406"
+[    31.776][DBG ] Satellite removed: "69534" "STARLINK-37407"
+[    31.776][DBG ] Satellite removed: "69518" "STARLINK-37408"
+[    31.776][DBG ] Satellite removed: "69380" "STARLINK-37411"
+[    31.776][DBG ] Satellite removed: "69248" "STARLINK-37412"
+[    31.776][DBG ] Satellite removed: "69197" "STARLINK-37419"
+[    31.776][DBG ] Satellite removed: "69511" "STARLINK-37420"
+[    31.776][DBG ] Satellite removed: "69191" "STARLINK-37422"
+[    31.776][DBG ] Satellite removed: "69192" "STARLINK-37424"
+[    31.776][DBG ] Satellite removed: "69381" "STARLINK-37427"
+[    31.776][DBG ] Satellite removed: "69184" "STARLINK-37428"
+[    31.776][DBG ] Satellite removed: "69523" "STARLINK-37429"
+[    31.776][DBG ] Satellite removed: "69252" "STARLINK-37434"
+[    31.776][DBG ] Satellite removed: "69265" "STARLINK-37435"
+[    31.776][DBG ] Satellite removed: "69365" "STARLINK-37436"
+[    31.776][DBG ] Satellite removed: "69526" "STARLINK-37438"
+[    31.776][DBG ] Satellite removed: "69377" "STARLINK-37439"
+[    31.776][DBG ] Satellite removed: "69189" "STARLINK-37440"
+[    31.776][DBG ] Satellite removed: "69488" "STARLINK-37449"
+[    31.776][DBG ] Satellite removed: "69471" "STARLINK-37451"
+[    31.776][DBG ] Satellite removed: "69375" "STARLINK-37454"
+[    31.776][DBG ] Satellite removed: "69299" "STARLINK-37455"
+[    31.776][DBG ] Satellite removed: "69300" "STARLINK-37456"
+[    31.776][DBG ] Satellite removed: "69266" "STARLINK-37464"
+[    31.776][DBG ] Satellite removed: "69260" "STARLINK-37478"
+[    31.776][DBG ] Satellite removed: "69527" "STARLINK-37484"
+[    31.776][DBG ] Satellite removed: "69376" "STARLINK-37485"
+[    31.776][DBG ] Satellite removed: "69264" "STARLINK-37486"
+[    31.776][DBG ] Satellite removed: "69251" "STARLINK-37489"
+[    31.776][DBG ] Satellite removed: "69525" "STARLINK-37490"
+[    31.776][DBG ] Satellite removed: "69297" "STARLINK-37496"
+[    31.776][DBG ] Satellite removed: "69459" "STARLINK-37498"
+[    31.776][DBG ] Satellite removed: "69250" "STARLINK-37499"
+[    31.776][DBG ] Satellite removed: "69453" "STARLINK-37500"
+[    31.776][DBG ] Satellite removed: "69296" "STARLINK-37501"
+[    31.776][DBG ] Satellite removed: "69263" "STARLINK-37502"
+[    31.777][DBG ] Satellite removed: "69262" "STARLINK-37503"
+[    31.777][DBG ] Satellite removed: "69261" "STARLINK-37506"
+[    31.777][DBG ] Satellite removed: "69257" "STARLINK-37508"
+[    31.777][DBG ] Satellite removed: "69444" "STARLINK-37509"
+[    31.777][DBG ] Satellite removed: "69520" "STARLINK-37510"
+[    31.777][DBG ] Satellite removed: "69512" "STARLINK-37511"
+[    31.777][DBG ] Satellite removed: "69456" "STARLINK-37513"
+[    31.777][DBG ] Satellite removed: "69254" "STARLINK-37517"
+[    31.777][DBG ] Satellite removed: "69259" "STARLINK-37518"
+[    31.777][DBG ] Satellite removed: "69298" "STARLINK-37519"
+[    31.777][DBG ] Satellite removed: "69446" "STARLINK-37522"
+[    31.777][DBG ] Satellite removed: "69528" "STARLINK-37523"
+[    31.777][DBG ] Satellite removed: "69462" "STARLINK-37525"
+[    31.777][DBG ] Satellite removed: "69463" "STARLINK-37526"
+[    31.777][DBG ] Satellite removed: "69468" "STARLINK-37532"
+[    31.777][DBG ] Satellite removed: "69465" "STARLINK-37535"
+[    31.777][DBG ] Satellite removed: "69508" "STARLINK-37536"
+[    31.777][DBG ] Satellite removed: "69420" "STARLINK-37537"
+[    31.777][DBG ] Satellite removed: "69467" "STARLINK-37546"
+[    31.777][DBG ] Satellite removed: "69351" "STARLINK-37549"
+[    31.777][DBG ] Satellite removed: "69513" "STARLINK-37552"
+[    31.777][DBG ] Satellite removed: "69431" "STARLINK-37555"
+[    31.777][DBG ] Satellite removed: "69231" "STARLINK-37557"
+[    31.777][DBG ] Satellite removed: "69239" "STARLINK-37558"
+[    31.777][DBG ] Satellite removed: "69208" "STARLINK-37562"
+[    31.777][DBG ] Satellite removed: "69457" "STARLINK-37563"
+[    31.777][DBG ] Satellite removed: "69458" "STARLINK-37565"
+[    31.777][DBG ] Satellite removed: "69492" "STARLINK-37568"
+[    31.777][DBG ] Satellite removed: "69519" "STARLINK-37570"
+[    31.777][DBG ] Satellite removed: "69448" "STARLINK-37572"
+[    31.777][DBG ] Satellite removed: "69422" "STARLINK-37573"
+[    31.777][DBG ] Satellite removed: "69464" "STARLINK-37574"
+[    31.777][DBG ] Satellite removed: "69454" "STARLINK-37575"
+[    31.777][DBG ] Satellite removed: "69452" "STARLINK-37577"
+[    31.777][DBG ] Satellite removed: "69451" "STARLINK-37578"
+[    31.777][DBG ] Satellite removed: "69366" "STARLINK-37581"
+[    31.777][DBG ] Satellite removed: "69363" "STARLINK-37582"
+[    31.777][DBG ] Satellite removed: "69466" "STARLINK-37583"
+[    31.777][DBG ] Satellite removed: "69421" "STARLINK-37585"
+[    31.777][DBG ] Satellite removed: "69521" "STARLINK-37586"
+[    31.777][DBG ] Satellite removed: "69355" "STARLINK-37593"
+[    31.777][DBG ] Satellite removed: "69356" "STARLINK-37597"
+[    31.777][DBG ] Satellite removed: "69357" "STARLINK-37598"
+[    31.777][DBG ] Satellite removed: "69360" "STARLINK-37599"
+[    31.777][DBG ] Satellite removed: "69359" "STARLINK-37600"
+[    31.777][DBG ] Satellite removed: "69450" "STARLINK-37601"
+[    31.777][DBG ] Satellite removed: "69358" "STARLINK-37602"
+[    31.777][DBG ] Satellite removed: "69203" "STARLINK-37604"
+[    31.777][DBG ] Satellite removed: "69514" "STARLINK-37607"
+[    31.777][DBG ] Satellite removed: "69211" "STARLINK-37613"
+[    31.777][DBG ] Satellite removed: "69314" "STARLINK-37617"
+[    31.777][DBG ] Satellite removed: "69228" "STARLINK-37618"
+[    31.777][DBG ] Satellite removed: "69309" "STARLINK-37619"
+[    31.777][DBG ] Satellite removed: "69214" "STARLINK-37620"
+[    31.777][DBG ] Satellite removed: "69315" "STARLINK-37627"
+[    31.777][DBG ] Satellite removed: "69443" "STARLINK-37629"
+[    31.777][DBG ] Satellite removed: "69301" "STARLINK-37630"
+[    31.777][DBG ] Satellite removed: "69369" "STARLINK-37631"
+[    31.777][DBG ] Satellite removed: "69374" "STARLINK-37632"
+[    31.777][DBG ] Satellite removed: "69447" "STARLINK-37640"
+[    31.777][DBG ] Satellite removed: "69445" "STARLINK-37641"
+[    31.777][DBG ] Satellite removed: "69455" "STARLINK-37642"
+[    31.777][DBG ] Satellite removed: "69449" "STARLINK-37643"
+[    31.777][DBG ] Satellite removed: "69371" "STARLINK-37645"
+[    31.777][DBG ] Satellite removed: "69207" "STARLINK-37647"
+[    31.777][DBG ] Satellite removed: "69202" "STARLINK-37649"
+[    31.777][DBG ] Satellite removed: "69353" "STARLINK-37651"
+[    31.777][DBG ] Satellite removed: "69354" "STARLINK-37652"
+[    31.777][DBG ] Satellite removed: "69238" "STARLINK-37665"
+[    31.777][DBG ] Satellite removed: "69204" "STARLINK-37669"
+[    31.777][DBG ] Satellite removed: "69530" "STARLINK-37670"
+[    31.777][DBG ] Satellite removed: "69206" "STARLINK-37671"
+[    31.777][DBG ] Satellite removed: "69370" "STARLINK-37673"
+[    31.777][DBG ] Satellite removed: "69313" "STARLINK-37676"
+[    31.777][DBG ] Satellite removed: "69229" "STARLINK-37679"
+[    31.777][DBG ] Satellite removed: "69240" "STARLINK-37680"
+[    31.777][DBG ] Satellite removed: "69209" "STARLINK-37682"
+[    31.777][DBG ] Satellite removed: "69367" "STARLINK-37683"
+[    31.777][DBG ] Satellite removed: "69373" "STARLINK-37685"
+[    31.777][DBG ] Satellite removed: "69470" "STARLINK-37686"
+[    31.777][DBG ] Satellite removed: "69368" "STARLINK-37687"
+[    31.777][DBG ] Satellite removed: "69372" "STARLINK-37688"
+[    31.777][DBG ] Satellite removed: "69308" "STARLINK-37689"
+[    31.777][DBG ] Satellite removed: "69205" "STARLINK-37691"
+[    31.777][DBG ] Satellite removed: "69215" "STARLINK-37700"
+[    31.777][DBG ] Satellite removed: "69306" "STARLINK-37701"
+[    31.777][DBG ] Satellite removed: "69461" "STARLINK-37707"
+[    31.777][DBG ] Satellite removed: "69469" "STARLINK-37708"
+[    31.777][DBG ] Satellite removed: "69212" "STARLINK-37713"
+[    31.777][DBG ] Satellite removed: "69213" "STARLINK-37716"
+[    31.777][DBG ] Satellite removed: "69242" "STARLINK-37718"
+[    31.777][DBG ] Satellite removed: "69218" "STARLINK-37724"
+[    31.777][DBG ] Satellite removed: "69224" "STARLINK-37725"
+[    31.777][DBG ] Satellite removed: "69481" "STARLINK-37727"
+[    31.778][DBG ] Satellite removed: "69221" "STARLINK-37728"
+[    31.778][DBG ] Satellite removed: "69303" "STARLINK-37730"
+[    31.778][DBG ] Satellite removed: "69304" "STARLINK-37731"
+[    31.778][DBG ] Satellite removed: "69307" "STARLINK-37732"
+[    31.778][DBG ] Satellite removed: "69329" "STARLINK-37733"
+[    31.778][DBG ] Satellite removed: "69305" "STARLINK-37734"
+[    31.778][DBG ] Satellite removed: "69243" "STARLINK-37735"
+[    31.778][DBG ] Satellite removed: "69226" "STARLINK-37736"
+[    31.778][DBG ] Satellite removed: "69227" "STARLINK-37737"
+[    31.778][DBG ] Satellite removed: "69316" "STARLINK-37738"
+[    31.778][DBG ] Satellite removed: "69233" "STARLINK-37739"
+[    31.778][DBG ] Satellite removed: "69241" "STARLINK-37742"
+[    31.778][DBG ] Satellite removed: "69339" "STARLINK-37743"
+[    31.778][DBG ] Satellite removed: "69347" "STARLINK-37744"
+[    31.778][DBG ] Satellite removed: "69232" "STARLINK-37745"
+[    31.778][DBG ] Satellite removed: "69230" "STARLINK-37746"
+[    31.778][DBG ] Satellite removed: "69440" "STARLINK-37747"
+[    31.778][DBG ] Satellite removed: "69201" "STARLINK-37754"
+[    31.778][DBG ] Satellite removed: "69234" "STARLINK-37755"
+[    31.778][DBG ] Satellite removed: "69244" "STARLINK-37757"
+[    31.778][DBG ] Satellite removed: "69219" "STARLINK-37758"
+[    31.778][DBG ] Satellite removed: "69223" "STARLINK-37759"
+[    31.778][DBG ] Satellite removed: "69222" "STARLINK-37760"
+[    31.778][DBG ] Satellite removed: "69200" "STARLINK-37761"
+[    31.778][DBG ] Satellite removed: "69217" "STARLINK-37763"
+[    31.778][DBG ] Satellite removed: "69337" "STARLINK-37765"
+[    31.778][DBG ] Satellite removed: "69216" "STARLINK-37766"
+[    31.778][DBG ] Satellite removed: "69245" "STARLINK-37767"
+[    31.778][DBG ] Satellite removed: "69331" "STARLINK-37768"
+[    31.778][DBG ] Satellite removed: "69225" "STARLINK-37770"
+[    31.778][DBG ] Satellite removed: "69439" "STARLINK-37771"
+[    31.778][DBG ] Satellite removed: "69330" "STARLINK-37772"
+[    31.778][DBG ] Satellite removed: "69346" "STARLINK-37773"
+[    31.778][DBG ] Satellite removed: "69348" "STARLINK-37775"
+[    31.778][DBG ] Satellite removed: "69343" "STARLINK-37776"
+[    31.778][DBG ] Satellite removed: "69349" "STARLINK-37777"
+[    31.778][DBG ] Satellite removed: "69352" "STARLINK-37778"
+[    31.778][DBG ] Satellite removed: "69350" "STARLINK-37779"
+[    31.778][DBG ] Satellite removed: "69340" "STARLINK-37780"
+[    31.778][DBG ] Satellite removed: "69341" "STARLINK-37781"
+[    31.778][DBG ] Satellite removed: "69342" "STARLINK-37782"
+[    31.778][DBG ] Satellite removed: "69438" "STARLINK-37783"
+[    31.778][DBG ] Satellite removed: "69345" "STARLINK-37785"
+[    31.778][DBG ] Satellite removed: "69344" "STARLINK-37786"
+[    31.778][DBG ] Satellite removed: "69338" "STARLINK-37788"
+[    31.778][DBG ] Satellite removed: "69495" "STARLINK-37789"
+[    31.778][DBG ] Satellite removed: "69312" "STARLINK-37790"
+[    31.778][DBG ] Satellite removed: "69336" "STARLINK-37791"
+[    31.778][DBG ] Satellite removed: "69437" "STARLINK-37792"
+[    31.778][DBG ] Satellite removed: "69310" "STARLINK-37794"
+[    31.778][DBG ] Satellite removed: "69311" "STARLINK-37795"
+[    31.778][DBG ] Satellite removed: "69497" "STARLINK-37798"
+[    31.778][DBG ] Satellite removed: "69317" "STARLINK-37799"
+[    31.778][DBG ] Satellite removed: "69436" "STARLINK-37800"
+[    31.778][DBG ] Satellite removed: "69435" "STARLINK-37801"
+[    31.778][DBG ] Satellite removed: "69318" "STARLINK-37802"
+[    31.778][DBG ] Satellite removed: "69319" "STARLINK-37803"
+[    31.778][DBG ] Satellite removed: "69302" "STARLINK-37804"
+[    31.778][DBG ] Satellite removed: "69482" "STARLINK-37814"
+[    31.778][DBG ] Satellite removed: "69434" "STARLINK-37815"
+[    31.778][DBG ] Satellite removed: "69478" "STARLINK-37816"
+[    31.778][DBG ] Satellite removed: "69480" "STARLINK-37817"
+[    31.778][DBG ] Satellite removed: "69333" "STARLINK-37818"
+[    31.778][DBG ] Satellite removed: "69423" "STARLINK-37820"
+[    31.778][DBG ] Satellite removed: "69424" "STARLINK-37822"
+[    31.778][DBG ] Satellite removed: "69427" "STARLINK-37823"
+[    31.778][DBG ] Satellite removed: "69489" "STARLINK-37831"
+[    31.778][DBG ] Satellite removed: "69332" "STARLINK-37833"
+[    31.778][DBG ] Satellite removed: "69428" "STARLINK-37834"
+[    31.778][DBG ] Satellite removed: "69500" "STARLINK-37835"
+[    31.778][DBG ] Satellite removed: "69425" "STARLINK-37836"
+[    31.778][DBG ] Satellite removed: "69496" "STARLINK-37839"
+[    31.778][DBG ] Satellite removed: "69487" "STARLINK-37842"
+[    31.778][DBG ] Satellite removed: "69501" "STARLINK-37843"
+[    31.778][DBG ] Satellite removed: "69499" "STARLINK-37849"
+[    31.778][DBG ] Satellite removed: "69426" "STARLINK-37850"
+[    31.778][DBG ] Satellite removed: "69498" "STARLINK-37853"
+[    31.778][DBG ] Satellite removed: "69494" "STARLINK-37854"
+[    31.778][DBG ] Satellite removed: "69493" "STARLINK-37855"
+[    31.778][DBG ] Satellite removed: "69491" "STARLINK-37856"
+[    31.778][DBG ] Satellite removed: "69429" "STARLINK-37857"
+[    31.778][DBG ] Satellite removed: "69430" "STARLINK-37866"
+[    31.778][DBG ] Satellite removed: "69334" "STARLINK-37868"
+[    31.778][DBG ] Satellite removed: "69483" "STARLINK-37869"
+[    31.778][DBG ] Satellite removed: "69432" "STARLINK-37870"
+[    31.778][DBG ] Satellite removed: "69433" "STARLINK-37872"
+[    31.778][DBG ] Satellite removed: "69484" "STARLINK-37873"
+[    31.778][DBG ] Satellite removed: "69335" "STARLINK-37877"
+[    31.778][DBG ] Satellite removed: "69479" "STARLINK-37878"
+[    31.778][DBG ] Satellite removed: "69490" "STARLINK-37879"
+[    31.778][DBG ] Satellite removed: "69535" "STARLINK-37888"
+[    31.778][DBG ] Satellite removed: "69536" "STARLINK-37889"
+[    31.778][DBG ] Satellite removed: "69533" "STARLINK-37890"
+[    31.778][DBG ] Satellite removed: "69485" "STARLINK-37892"
+[    31.778][DBG ] Satellite removed: "69486" "STARLINK-37893"
+[    31.778][DBG ] Satellite removed: "69531" "STARLINK-37897"
+[    31.778][DBG ] Satellite removed: "69532" "STARLINK-37933"
+[    31.779][DBG ] Satellite removed: "57187" "SVYATOBOR 1 (RS60S)"
+[    31.779][DBG ] Satellite removed: "37602" "TELSTAR 14R"
+[    31.779][DBG ] Satellite removed: "57400" "TIANMU-1 08"
+[    31.779][DBG ] Satellite removed: "57401" "TIANMU-1 09"
+[    31.779][DBG ] Satellite removed: "57402" "TIANMU-1 10"
+[    31.779][DBG ] Satellite removed: "58645" "TIANMU-1 11"
+[    31.779][DBG ] Satellite removed: "58646" "TIANMU-1 12"
+[    31.779][DBG ] Satellite removed: "58647" "TIANMU-1 13"
+[    31.779][DBG ] Satellite removed: "58648" "TIANMU-1 14"
+[    31.779][DBG ] Satellite removed: "58700" "TIANMU-1 15"
+[    31.779][DBG ] Satellite removed: "58701" "TIANMU-1 16"
+[    31.779][DBG ] Satellite removed: "58702" "TIANMU-1 17"
+[    31.779][DBG ] Satellite removed: "44882" "TIANYAN 02"
+[    31.779][DBG ] Satellite removed: "56962" "TOMORROW-R2"
+[    31.779][DBG ] Satellite removed: "60521" "TRANSPORTER-11 OBJECT BF"
+[    31.779][DBG ] Satellite removed: "48606" "TYVAK-0130"
+[    31.779][DBG ] Satellite removed: "48271" "TYVAK-182A"
+[    31.779][DBG ] Satellite removed: "57172" "UMKA 1 (RS40S)"
+[    31.779][DBG ] Satellite removed: "81111" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "81134" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "81323" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "81833" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "82180" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "82783" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "82961" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "84006" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "84188" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "87239" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "87271" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "87334" "UNKNOWN"
+[    31.779][DBG ] Satellite removed: "87335" "UNKNOWN"
+[    31.780][DBG ] Satellite removed: "87725" "UNKNOWN"
+[    31.780][DBG ] Satellite removed: "89029" "UNKNOWN"
+[    31.780][DBG ] Satellite removed: "89349" "UNKNOWN"
+[    31.780][DBG ] Satellite removed: "89484" "UNKNOWN"
+[    31.780][DBG ] Satellite removed: "43941" "USA 290"
+[    31.780][DBG ] Satellite removed: "48846" "USA 316"
+[    31.780][DBG ] Satellite removed: "48848" "USA 318"
+[    31.780][DBG ] Satellite removed: "59288" "USA 352"
+[    31.780][DBG ] Satellite removed: "22988" "USA 99 (MILSTAR-1 1)"
+[    31.780][DBG ] Satellite removed: "52760" "VIGORIDE-3"
+[    31.780][DBG ] Satellite removed: "44884" "WEILAI 1R"
+[    31.780][DBG ] Satellite removed: "37875" "YAOGAN-12"
+[    31.780][DBG ] Satellite removed: "40143" "YAOGAN-21"
+[    31.780][DBG ] Satellite removed: "41026" "YAOGAN-28"
+[    31.780][DBG ] Satellite removed: "43194" "ZHANGHENG 1-01 (CSES-1)"
+[    31.780][DBG ] Satellite removed: "43441" "ZHUHAI-1 OHS-02"
+[    31.780][DBG ] Satellite removed: "41556" "ZIYUAN 3-02 (ZY 3-02)"
+[    31.780][DBG ] Satellite removed: "57177" "ZORKIY-2M 1"
+[    31.780][DBG ] [Satellites]  519 satellites proposed for removal,  452  removed,  2702  remain.
+[    31.832][DBG ] [Satellites] update finished. 2744 / 3134 updated, 20 added, 519 missing or removed. 4853 source entries parsed.
+[    31.873][WARN] Satellite has invalid orbit: "2023-091H" "57173"
+[    31.876][WARN] Satellite has invalid orbit: "AEROCUBE 8D" "41852"
+[    31.877][WARN] Satellite has invalid orbit: "ALTAIR (RS65S)" "61779"
+[    31.886][WARN] Satellite has invalid orbit: "BIRKELAND" "55015"
+[    31.886][WARN] Satellite has invalid orbit: "CAS500-1" "47932"
+[    31.898][WARN] Satellite has invalid orbit: "FREGAT DEB" "49271"
+[    31.901][WARN] Satellite has invalid orbit: "GPM-CORE" "39574"
+[    31.907][WARN] Satellite has invalid orbit: "HIBARI" "49400"
+[    31.919][WARN] Satellite has invalid orbit: "JILIN-1 GAOFEN 03D48" "54695"
+[    31.920][WARN] Satellite has invalid orbit: "MONITOR-4 (RS57S)" "57182"
+[    31.925][WARN] Satellite has invalid orbit: "NORSAT 2" "42828"
+[    31.927][WARN] Satellite has invalid orbit: "PROX-1" "44339"
+[    31.927][WARN] Satellite has invalid orbit: "ROBUSTA-3A (MEDITERRANEE)" "60243"
+[    31.935][WARN] Satellite has invalid orbit: "SUOMI-100" "43804"
+[    31.937][WARN] Satellite has invalid orbit: "TECHDEMOSAT-1 (TDS-1)" "40076"
+[    31.941][WARN] Satellite has invalid orbit: "TIANMU-1 07" "57399"
+[    31.941][WARN] Satellite has invalid orbit: "TIANMU-1 18" "58703"
+[    31.952][WARN] Satellite has invalid orbit: "UKUBE-1" "40074"
+[    31.952][WARN] Satellite has invalid orbit: "UNKNOWN" "82303"
+[    31.955][WARN] Satellite has invalid orbit: "UNKNOWN" "87293"
+[    31.955][WARN] Satellite has invalid orbit: "UNKNOWN" "87456"
+[    31.966][WARN] Satellite has invalid orbit: "USA 326" "51445"
+[    31.970][WARN] Satellite has invalid orbit: "WORLDVIEW-1 (WV-1)" "32060"
+[    31.973][WARN] Satellite has invalid orbit: "ZIYUAN 3-03 (ZY 3-03)" "45939"
+[    32.947][WARN] Satellite has invalid orbit: "AEROCUBE 7" "40966"
+[    33.005][WARN] Satellite has invalid orbit: "SHERPA-LTC2" "53754"
+[    34.471][WARN] Satellite has invalid orbit: "THEMIS D" "30797"
+[    36.889][WARN] Satellite has invalid orbit: "Unknown 110623" "90087"
+[    48.970][WARN] Satellite has invalid orbit: "USA 89 r" "22519"
+[    62.729][WARN] Satellite has invalid orbit: "THEMIS E" "30798"
+[    74.348][WARN] Satellite has invalid orbit: "UNKNOWN" "84932"
+[   273.291][WARN] Satellite has invalid orbit: "GLOBAL-19" "55982"
+[   304.839][DBG ] [MeteorShowersMgr] Updating meteor showers catalog...
+[   305.578][DBG ] [MeteorShowersMgr] Updating Meteor Showers catalog is complete...
+[  4444.173][INFO] OpenGL viewport size: 1920 x 1009
+[  4444.173][INFO] Creating scene FBO with size 1920x1009
+[  4722.224][WARN] Satellite has invalid orbit: "LEMUR-2-SIERRINI" "60579"
+[  4760.555][WARN] Satellite has invalid orbit: "ZHUHAI-1 OVS-02" "43440"
+[  4994.917][WARN] Satellite has invalid orbit: "SITRO-AIS 5 (KATYS)" "57176"
+[  5023.907][WARN] Satellite has invalid orbit: "LEMUR-2-LLOYD" "60577"
+[  5111.335][WARN] Satellite has invalid orbit: "GEOSCAN 1 (RS92S1)" "64880"
+[  5127.909][WARN] Satellite has invalid orbit: "DSN 2 r" "41941"
+[  5371.719][WARN] Satellite has invalid orbit: "KUZGTU 1 (RS47S)" "57217"
+[  5399.481][WARN] Satellite has invalid orbit: "SHIJIAN-6 02A (SJ-6 02A)" "29505"
+[  5512.332][WARN] Satellite has invalid orbit: "BISONSAT" "40974"
+[  5613.974][DBG ] Initializing planets GL shaders... 
+[  5827.669][WARN] Satellite has invalid orbit: "CONNECTA IOT-2" "60522"
+[  5850.524][WARN] Satellite has invalid orbit: "CUBEBEL 2 (EU11S)" "57175"
+[  6209.128][WARN] Satellite has invalid orbit: "JILIN-1 GAOFEN 3A" "44312"
+[  6216.762][WARN] Satellite has invalid orbit: "UNKNOWN" "82494"
+[  6244.680][WARN] Satellite has invalid orbit: "NUSAT-50 (NANCY ROMAN)" "60493"
+[  6332.391][WARN] Satellite has invalid orbit: "UNKNOWN" "81969"
+[  6443.766][WARN] Satellite has invalid orbit: "PARS 1" "59065"
+[  6693.103][WARN] Satellite has invalid orbit: "TIANMU-1 20" "58661"
+[  6720.752][WARN] Satellite has invalid orbit: "ION SCV-006" "52761"
+[  6812.091][WARN] Satellite has invalid orbit: "SKYSAT-C7" "42991"
+[  6817.288][WARN] Satellite has invalid orbit: "UTMN 2 (RS27S)" "57203"
+[  6920.270][WARN] Satellite has invalid orbit: "ONEWEB-0534" "55797"
+[  7227.531][WARN] Satellite has invalid orbit: "HORS 2" "57196"
+[  7333.233][WARN] Satellite has invalid orbit: "USA 179" "28384"
+[  7347.038][WARN] Satellite has invalid orbit: "DEKART" "46493"
+[  7478.667][WARN] Satellite has invalid orbit: "ONEWEB-0681" "56717"
+[  7589.208][WARN] Satellite has invalid orbit: "CUBESX-HSE 3 (RS42S)" "57178"
+[  7717.428][WARN] Satellite has invalid orbit: "DONGPO 10" "54689"
+[  7837.414][WARN] Satellite has invalid orbit: "GEISAT PRECURSOR" "56934"
+[  7887.866][WARN] Satellite has invalid orbit: "THEMIS A" "30580"
+[  7925.430][WARN] Satellite has invalid orbit: "TEVEL2-8" "63239"
+[  8137.827][WARN] Satellite has invalid orbit: "SITRO-AIS 8 (ANOKHIN)" "57193"
+[  8390.876][WARN] Satellite has invalid orbit: "JILIN-1 03" "41914"
+[  8535.731][WARN] Satellite has invalid orbit: "LEMUR-2-EMBRIONOVIS" "56970"
+[  8571.498][WARN] Satellite has invalid orbit: "USA 184" "29249"
+[  8593.402][WARN] Satellite has invalid orbit: "KORONAS-FOTON" "33504"
+[  8813.432][WARN] Satellite has invalid orbit: "SKYSAT-C9" "42989"
+[  8995.758][WARN] Satellite has invalid orbit: "TRANSPORTER-11 OBJECT A" "60468"
+[  9095.080][WARN] Satellite has invalid orbit: "TIANMU-1 21" "58662"
+[  9124.819][WARN] Satellite has invalid orbit: "TEVEL2-7" "63238"
+[  9155.796][WARN] Satellite has invalid orbit: "UNISAT-7" "47945"
+[  9303.060][WARN] Satellite has invalid orbit: "COSMOS 2561" "54109"
+[  9336.655][WARN] Satellite has invalid orbit: "239ALFEROV (RS61S)" "64881"
+[  9370.162][WARN] Satellite has invalid orbit: "TEVEL2-9" "63237"
+[  9419.737][WARN] Satellite has invalid orbit: "LEMUR-2-VALHALLA" "58900"
+[  9556.394][WARN] Satellite has invalid orbit: "JILIN-1 05" "43023"
+[  9653.857][WARN] Satellite has invalid orbit: "GEOSCAN 4 (RS92S4)" "64892"
+[  9674.177][WARN] Satellite has invalid orbit: "POLYITAN-1" "40042"
+[  9850.111][WARN] Satellite has invalid orbit: "LEMUR-2-GREENBERG" "42837"
+[  9890.256][WARN] Satellite has invalid orbit: "USA 338" "53883"
+[  9920.517][WARN] Satellite has invalid orbit: "SPACEMOBILE-002" "61048"
+[  9954.434][WARN] Satellite has invalid orbit: "GEOSCAN 5 (RS92S5)" "64891"
+[ 10028.809][WARN] Satellite has invalid orbit: "LEMUR-2-MONSON" "42839"
+[ 10067.426][WARN] Satellite has invalid orbit: "LEMUR-2-MARHISYAM" "60536"
+[ 10360.073][WARN] Satellite has invalid orbit: "LEMUR-2-FURIAUS" "42840"
+[ 10894.176][WARN] Satellite has invalid orbit: "LEMUR-2-CAEL" "58903"
+[ 11580.299][WARN] Satellite has invalid orbit: "TIANMU-1 19" "58660"
+[ 11957.521][WARN] Satellite has invalid orbit: "IGS 9" "40381"
+[ 12241.000][WARN] Satellite has invalid orbit: "SHIYAN-1 (SY-1)" "28220"
+[ 12628.394][WARN] Satellite has invalid orbit: "SUPERVIEW-1 03" "43099"
+[ 12772.918][WARN] Satellite has invalid orbit: "CUAVA-2" "60527"
+[ 12834.343][WARN] Satellite has invalid orbit: "STAR VIBE" "55009"
+[ 12835.871][WARN] Satellite has invalid orbit: "MAKERSAT 0" "43016"
+[ 12839.154][WARN] Satellite has invalid orbit: "JILIN-1 GAOFEN 2A" "44777"
+[ 12874.258][WARN] Satellite has invalid orbit: "VIZARD-METEO (RS38S)" "57189"
+[ 12975.722][WARN] Satellite has invalid orbit: "2022-023F" "51951"
+[ 12976.239][WARN] Satellite has invalid orbit: "GEOSCAN 3 (RS92S3)" "64893"
+[ 13002.055][WARN] Satellite has invalid orbit: "LEMUR-2-BASS" "58259"
+[ 13134.321][WARN] Satellite has invalid orbit: "LEMUR-2-DEMBITZ" "42842"
+[ 13173.030][WARN] Satellite has invalid orbit: "CUBEL" "47448"
+[ 13291.137][WARN] Satellite has invalid orbit: "LEMUR-2-NIMBUS2000" "58899"
+[ 13504.726][WARN] Satellite has invalid orbit: "FENGYUN 3G" "56232"
+[ 13512.480][WARN] Satellite has invalid orbit: "UNKNOWN" "82381"
+[ 13541.397][WARN] Satellite has invalid orbit: "IMAGE" "26113"
+[ 13611.418][WARN] Satellite has invalid orbit: "GLOBAL-18" "52196"
+[ 13784.066][WARN] Satellite has invalid orbit: "USA 245" "39232"
+[ 14078.071][WARN] Satellite has invalid orbit: "ERNST" "60528"
+[ 14194.863][WARN] Satellite has invalid orbit: "A-SEANSAT-PG1" "57197"
+[ 14359.621][WARN] Satellite has invalid orbit: "CSS (MENGTIAN)" "54216"
+[ 14359.621][WARN] Satellite has invalid orbit: "CSS (TIANHE)" "48274"
+[ 14359.621][WARN] Satellite has invalid orbit: "CSS (WENTIAN)" "53239"
+[ 14359.633][WARN] Satellite has invalid orbit: "SHENZHOU-23 (SZ-23)" "69180"
+[ 14359.634][WARN] Satellite has invalid orbit: "TIANZHOU-10" "69049"
+[ 14393.739][WARN] Satellite has invalid orbit: "GAOFEN-8" "40701"
+[ 14396.263][WARN] Satellite has invalid orbit: "NANOSATC-BR1" "40024"
+[ 14433.728][WARN] Satellite has invalid orbit: "SKYSAT-C2" "41773"
+[ 14468.459][WARN] Satellite has invalid orbit: "LEMUR-2-ANDIS" "42838"
+[ 14501.421][WARN] Satellite has invalid orbit: "USA 317" "48847"
+[ 14540.619][WARN] Satellite has invalid orbit: "DONGPO 09" "54685"
+[ 14576.264][WARN] Satellite has invalid orbit: "POPACS 2" "39269"
+[ 14604.582][WARN] Satellite has invalid orbit: "YAM-3" "48915"
+[ 14828.370][WARN] Satellite has invalid orbit: "MMS 4" "40485"
+[ 14857.687][WARN] Satellite has invalid orbit: "NETSAT-1" "46506"
+[ 14880.729][WARN] Satellite has invalid orbit: "MMS 3" "40484"
+[ 14881.531][WARN] Satellite has invalid orbit: "MMS 1" "40482"
+[ 14993.835][WARN] Satellite has invalid orbit: "GLOBAL-9" "47971"
+[ 15023.241][WARN] Satellite has invalid orbit: "SKYSAT-C12" "43797"
+[ 15109.992][WARN] Satellite has invalid orbit: "H-2A R/B" "43682"
+[ 15122.901][WARN] Satellite has invalid orbit: "GLOBAL-13" "49773"
+[ 15272.994][WARN] Satellite has invalid orbit: "MMS 2" "40483"
+[ 15426.325][WARN] Satellite has invalid orbit: "ETV-A1" "51060"
+[ 15502.289][WARN] Satellite has invalid orbit: "UNKNOWN" "89304"
+[ 15509.668][WARN] Satellite has invalid orbit: "THEA" "43796"
+[ 15866.177][WARN] Satellite has invalid orbit: "BRO-5" "51061"
+[ 15869.490][WARN] Satellite has invalid orbit: "SITRO-AIS 9 (SHCHUKIN)" "57201"
+[ 15960.767][WARN] Satellite has invalid orbit: "LEMUR-2-MJR092620" "58340"
+[ 16005.905][WARN] Satellite has invalid orbit: "CYGFM05" "41884"
+[ 16094.981][WARN] Satellite has invalid orbit: "TEVEL2-2" "63219"
+[ 16140.430][WARN] Satellite has invalid orbit: "TEVEL2-1" "63217"
+[ 16169.283][WARN] Satellite has invalid orbit: "ARCSAT-1" "52161"
+[ 16184.813][WARN] Satellite has invalid orbit: "JILIN-1 04" "43022"
+[ 16333.899][WARN] Satellite has invalid orbit: "CYGFM01" "41887"
+[ 16375.357][WARN] Satellite has invalid orbit: "JY1SAT (JO-97)" "43803"
+[ 16430.035][WARN] Satellite has invalid orbit: "TEVEL2-6" "63215"
+[ 16449.001][WARN] Satellite has invalid orbit: "TEVEL2-5" "63214"
+[ 16469.100][WARN] Satellite has invalid orbit: "LILACSAT-2" "40908"
+[ 16546.762][WARN] Satellite has invalid orbit: "GHOST-3" "56958"
+[ 16555.598][WARN] Satellite has invalid orbit: "SITRO-AIS 12 (SMIRENNIY)" "57204"
+[ 16589.101][WARN] Satellite has invalid orbit: "SITRO-AIS 10 (BURDAEV)" "57199"
+[ 16592.655][WARN] Satellite has invalid orbit: "TEVEL2-3" "63218"
+[ 16659.011][WARN] Satellite has invalid orbit: "UNKNOWN" "89184"
+[ 16744.295][WARN] Satellite has invalid orbit: "FLOCK 4Q-16" "58271"
+[ 16871.566][WARN] Satellite has invalid orbit: "SITRO-AIS 11 (SHEFFER)" "57208"
+[ 16946.997][WARN] Satellite has invalid orbit: "ONEWEB-0195" "48240"
+[ 17079.269][WARN] Satellite has invalid orbit: "GLOBAL-16" "49950"
+[ 17087.090][WARN] Satellite has invalid orbit: "ZHUHAI-1 03E" "44539"
+[ 17149.311][WARN] Satellite has invalid orbit: "KOMPSAT-3A" "40536"
+[ 17191.612][WARN] Satellite has invalid orbit: "TEVEL2-4" "63213"
+[ 17306.001][WARN] Satellite has invalid orbit: "TIANMU-1 04" "55974"
+[ 17569.885][WARN] Satellite has invalid orbit: "GLOBAL-17" "49949"
+[ 17610.755][WARN] Satellite has invalid orbit: "HAWK-5B" "52756"
+[ 17680.715][WARN] Satellite has invalid orbit: "HAWK-5A" "52757"
+[ 17699.787][WARN] Satellite has invalid orbit: "TIANMU-1 03" "55973"
+[ 17702.203][WARN] Satellite has invalid orbit: "ONEWEB-0384" "49310"
+[ 17808.918][WARN] Satellite has invalid orbit: "GLOBAL-14" "49469"
+[ 17912.427][WARN] Satellite has invalid orbit: "CYGFM07" "41890"
+[ 17991.358][WARN] Satellite has invalid orbit: "DEIMOS" "60526"
+[ 17995.865][WARN] Satellite has invalid orbit: "TIANMU-1 05" "55975"
+[ 18021.770][WARN] Satellite has invalid orbit: "FLOCK 4Q-13" "58328"
+[ 18117.460][WARN] Satellite has invalid orbit: "FLOCK 4Q-2" "58320"
+[ 18123.366][WARN] Satellite has invalid orbit: "CYGFM08" "41888"
+[ 18205.820][WARN] Satellite has invalid orbit: "HAWK-5C" "52754"
+[ 18293.420][WARN] Satellite has invalid orbit: "CASSIOPE" "39265"
+[ 18302.243][WARN] Satellite has invalid orbit: "SHARJAHSAT-1" "55104"
+[ 18314.791][WARN] Satellite has invalid orbit: "CYGFM03" "41891"
+[ 18327.156][WARN] Satellite has invalid orbit: "COLIBRI-S (RS67S)" "61746"
+[ 18402.437][WARN] Satellite has invalid orbit: "DELTA 2 R/B(1)" "20453"
+[ 18436.802][WARN] Satellite has invalid orbit: "DEMO8 (TENZING)" "48951"
+[ 18449.056][WARN] Satellite has invalid orbit: "FLOCK 4Q-9" "58322"
+[ 18520.800][WARN] Satellite has invalid orbit: "TIANMU-1 06" "55976"
+[ 18544.381][WARN] Satellite has invalid orbit: "LASARSAT" "62391"
+[ 18560.145][WARN] Satellite has invalid orbit: "CYGFM04" "41885"
+[ 18669.599][WARN] Satellite has invalid orbit: "LEMUR-2-DEVERILL-M-T" "57391"
+[ 18734.321][WARN] Satellite has invalid orbit: "ORESAT0.5" "60525"
+[ 18846.911][WARN] Satellite has invalid orbit: "NETSAT-3" "46505"
+[ 18903.633][WARN] Satellite has invalid orbit: "NORBI" "46494"
+[ 18919.797][WARN] Satellite has invalid orbit: "GLOBAL-12" "49772"
+[ 18955.194][WARN] Satellite has invalid orbit: "UNKNOWN" "85023"
+[ 18966.231][WARN] Satellite has invalid orbit: "FLOCK 4BE-13" "60512"
+[ 19029.712][WARN] Satellite has invalid orbit: "TISAT 1" "36799"
+[ 19055.749][WARN] Satellite has invalid orbit: "FLOCK 4Q-4" "58327"
+[ 19105.371][WARN] Satellite has invalid orbit: "FLOCK 4BE-23" "60490"
+[ 19213.929][WARN] Satellite has invalid orbit: "NETSAT-4" "46504"
+[ 19218.100][WARN] Satellite has invalid orbit: "YAOGAN-26" "40362"
+[ 19251.442][WARN] Satellite has invalid orbit: "FLOCK 4BE-18" "60480"
+[ 19310.010][WARN] Satellite has invalid orbit: "CROCUBE" "62394"
+[ 19311.232][WARN] Satellite has invalid orbit: "WREN-1" "60478"
+[ 19429.830][WARN] Satellite has invalid orbit: "ZHUHAI-1 03B" "44536"
+[ 19569.056][WARN] Satellite has invalid orbit: "FLOCK 4BE-17" "60492"
+[ 19605.996][WARN] Satellite has invalid orbit: "FLOCK 4BE-5" "60559"
+[ 19609.051][WARN] Satellite has invalid orbit: "FLOCK 4BE-14" "60517"
+[ 19682.453][WARN] Satellite has invalid orbit: "SNIPE 4" "56744"
+[ 19715.857][WARN] Satellite has invalid orbit: "FLOCK 4BE-32" "60497"
+[ 19800.913][WARN] Satellite has invalid orbit: "FLOCK 4BE-3" "60561"
+[ 19837.679][WARN] Satellite has invalid orbit: "INNOSAT 3 (RS92S0)" "64894"
+[ 19911.520][WARN] Satellite has invalid orbit: "FLOCK 4BE-22" "60494"
+[ 19929.023][WARN] Satellite has invalid orbit: "CONNECTA IOT-4" "60524"
+[ 19943.376][WARN] Satellite has invalid orbit: "CYGFM02" "41886"
+[ 20002.804][WARN] Satellite has invalid orbit: "FLOCK 4BE-7" "60481"
+[ 20094.388][WARN] Satellite has invalid orbit: "MANDRAKE 2 ABLE" "48907"
+[ 20098.846][WARN] Satellite has invalid orbit: "FLOCK 4BE-11" "60501"
+[ 20142.077][WARN] Satellite has invalid orbit: "FLOCK 4BE-1" "60518"
+[ 20204.597][WARN] Satellite has invalid orbit: "FLOCK 4BE-19" "60563"
+[ 20212.512][WARN] Satellite has invalid orbit: "FLOCK 4BE-28" "60519"
+[ 20218.344][WARN] Satellite has invalid orbit: "ZHUHAI-1 03D" "44538"
+[ 20235.095][WARN] Satellite has invalid orbit: "FLOCK 4BE-31" "60488"
+[ 20264.360][WARN] Satellite has invalid orbit: "FLOCK 4BE-34" "60495"
+[ 20308.089][WARN] Satellite has invalid orbit: "CZ-2C R/B" "52794"
+[ 20358.094][WARN] Satellite has invalid orbit: "CXO" "25867"
+[ 20370.505][WARN] Satellite has invalid orbit: "BRO-8" "55011"
+[ 20379.876][WARN] Satellite has invalid orbit: "FLOCK 4BE-24" "60505"
+[ 20498.174][WARN] Satellite has invalid orbit: "LEMUR-2-JK0903EM1407" "58336"
+[ 20510.962][WARN] Satellite has invalid orbit: "MINXSS-2" "43758"
+[ 20575.624][WARN] Satellite has invalid orbit: "DUPLEX" "66906"
+[ 20858.297][WARN] Satellite has invalid orbit: "QUBE" "60476"
+[ 20938.965][WARN] Satellite has invalid orbit: "SNIPE 2" "56745"
+[ 20946.782][WARN] Satellite has invalid orbit: "LEMUR-2-AMANDA-SVANTE" "48269"
+[ 21000.611][WARN] Satellite has invalid orbit: "KNACKSAT-2" "67683"
+[ 21233.280][WARN] Satellite has invalid orbit: "SIT-2086" "61764"
+[ 21309.707][WARN] Satellite has invalid orbit: "ASTROCAST 0.1" "43798"
+[ 21435.832][WARN] Satellite has invalid orbit: "ISON 62200" "90112"
+[ 21464.496][WARN] Satellite has invalid orbit: "UWE-4" "43880"
+[ 21464.710][WARN] Satellite has invalid orbit: "FLOCK 4BE-36" "60486"
+[ 21527.385][WARN] Satellite has invalid orbit: "SZ-21 MODULE" "66515"
+[ 21533.775][WARN] Satellite has invalid orbit: "SMILE" "69123"
+[ 21535.995][WARN] Satellite has invalid orbit: "CONNECTA T1.2" "55012"
+[ 21563.345][WARN] Satellite has invalid orbit: "GLOBAL-4" "44499"
+[ 21566.395][WARN] Satellite has invalid orbit: "SONATE-2" "59112"
+[ 21603.631][WARN] Satellite has invalid orbit: "FLOCK 4BE-20" "60489"
+[ 21606.907][WARN] Satellite has invalid orbit: "BRO-6" "52422"
+[ 21705.493][WARN] Satellite has invalid orbit: "HORS 3 (RS81S)" "61753"
+[ 21715.876][WARN] Satellite has invalid orbit: "GXIBA-1" "67685"
+[ 21803.342][WARN] Satellite has invalid orbit: "JILIN-1 GAOFEN 3F" "46458"
+[ 21950.508][WARN] Satellite has invalid orbit: "LEMUR-2-JOHNNYTRUONG" "59146"
+[ 22043.607][WARN] Satellite has invalid orbit: "SAMSAT-IONOSPHERE (RS75S)" "61784"
+[ 22071.732][WARN] Satellite has invalid orbit: "SAR-LUPE 2" "31797"
+[ 22072.739][WARN] Satellite has invalid orbit: "STARLINK-4621" "53676"
+[ 22233.431][WARN] Satellite has invalid orbit: "MESAT1" "60209"
+[ 22287.593][WARN] Satellite has invalid orbit: "CatSat" "60246"
+[ 22389.515][WARN] Satellite has invalid orbit: "HORS 4 (RS82S)" "61754"
+[ 22436.923][WARN] Satellite has invalid orbit: "COSMOS 1743" "16719"
+[ 22469.868][WARN] Satellite has invalid orbit: "HMU-SAT2" "67688"
+[ 22484.388][WARN] Satellite has invalid orbit: "CZ-2C R/B" "54039"
+[ 22543.897][WARN] Satellite has invalid orbit: "JILIN-1 GAOFEN 3E" "46457"
+[ 22592.728][WARN] Satellite has invalid orbit: "RTU MIREA 1 (RS51S)" "61785"
+[ 22623.308][WARN] Satellite has invalid orbit: "LEOPARD" "67687"
+[ 22630.835][WARN] Satellite has invalid orbit: "FLOCK 4BE-2" "60511"
+[ 22634.393][WARN] Satellite has invalid orbit: "SWIFT" "28485"
+[ 22903.466][WARN] Satellite has invalid orbit: "UITMSAT-2" "67686"
+[ 22954.586][WARN] getPauseScript() is deprecated and will no longer be available in future versions of Stellarium.

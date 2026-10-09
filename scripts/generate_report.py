@@ -53,6 +53,8 @@ def main(argv=None):
     baseline = load_json(args.baseline_summary) if args.baseline_summary else None
     if s.get('reference_mode') != 'apparent-of-date' or (baseline and baseline.get('reference_mode') != 'apparent-of-date'):
         raise ValueError('Only apparent-of-date summaries are supported')
+    if baseline and s.get('reference_source', 'jpl') != baseline.get('reference_source', 'jpl'):
+        raise ValueError('Baseline and candidate must use the same reference source')
     annual = load_csv(args.annual)
 
     lines = []
@@ -121,7 +123,10 @@ def main(argv=None):
 
     lines.append("## Interpretation notes")
     lines.append("")
-    lines.append("- JPL apparent coordinates include light-time, light deflection, stellar aberration, precession and nutation.")
+    if s.get('reference_source', 'jpl') == 'stellarium':
+        lines.append('- Stellarium uses geocentric coordinates of date with light-time, aberration and nutation enabled, and atmosphere disabled. Its conventions are not guaranteed identical to Horizons.')
+    else:
+        lines.append('- JPL apparent coordinates include light-time, light deflection, stellar aberration, precession and nutation.')
     lines.append("- J2000 ecliptic residuals are intentionally omitted because fixed J2000 obliquity is not valid for true-of-date RA/Dec.")
     lines.append("- Compare RA, declination and angular separation using the same epochs and declared export settings.")
     lines.append("- A lower residual does not establish exact equivalence of the native TYCHOS and JPL coordinate conventions.")
