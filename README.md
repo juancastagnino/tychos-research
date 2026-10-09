@@ -62,7 +62,7 @@ Against JPL:
 
 ```powershell
 python.exe -B scripts/run_analysis.py --source jpl --all `
-  --tychos 00-backup/tychos_ephemerides.txt `
+  --tychos data/raw/tychos_ephemerides.txt `
   --jpl data/raw/jpl_ephemerides.txt `
   --reference apparent-of-date `
   --label "Current TYCHOS vs JPL"

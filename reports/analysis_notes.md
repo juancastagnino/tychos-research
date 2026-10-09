@@ -8,7 +8,7 @@ Read the [research README](../README.md) for the retained baselines and comparis
 
 Interval: 2000-06-21 00:00:00 to 2026-06-21 00:00:00; 75969 samples.
 
-Export configuration: Current TYCHOS vs JPL
+Export configuration: Current TYCHOS with updates vs JPL
 
 - RA: mean -0.240912 deg; RMS 1.061210 deg.
 - Declination: mean -0.000858 deg; RMS 0.364896 deg.
@@ -23,7 +23,7 @@ Export configuration: Current TYCHOS vs JPL
 
 Interval: 2000-06-21 00:00:00 to 2026-06-21 00:00:00; 75969 samples.
 
-Export configuration: Current TYCHOS vs JPL
+Export configuration: Current TYCHOS with updates vs JPL
 
 - RA: mean 0.009528 deg; RMS 0.054706 deg.
 - Declination: mean 0.003903 deg; RMS 0.014145 deg.
@@ -38,7 +38,7 @@ Export configuration: Current TYCHOS vs JPL
 
 Interval: 2000-06-21 00:00:00 to 2026-06-21 00:00:00; 75969 samples.
 
-Export configuration: Current TYCHOS vs JPL
+Export configuration: Current TYCHOS with updates vs JPL
 
 - RA: mean -0.014186 deg; RMS 2.567510 deg.
 - Declination: mean 0.204947 deg; RMS 1.005876 deg.
@@ -53,7 +53,7 @@ Export configuration: Current TYCHOS vs JPL
 
 Interval: 2000-06-21 00:00:00 to 2026-06-21 00:00:00; 75969 samples.
 
-Export configuration: Current TYCHOS vs JPL
+Export configuration: Current TYCHOS with updates vs JPL
 
 - RA: mean 0.023022 deg; RMS 0.428305 deg.
 - Declination: mean 0.042374 deg; RMS 0.221878 deg.
@@ -68,52 +68,52 @@ Export configuration: Current TYCHOS vs JPL
 
 Interval: 2000-06-21 00:00:00 to 2026-06-21 00:00:00; 75969 samples.
 
-Export configuration: Current TYCHOS vs JPL
+Export configuration: Current TYCHOS with updates vs JPL
 
-- RA: mean 0.221051 deg; RMS 0.552511 deg.
-- Declination: mean -0.261285 deg; RMS 0.343347 deg.
-- Angular separation: mean 0.526245 deg; RMS 0.621506 deg.
+- RA: mean 0.198756 deg; RMS 0.529312 deg.
+- Declination: mean -0.207551 deg; RMS 0.285196 deg.
+- Angular separation: mean 0.499407 deg; RMS 0.572524 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
-  - 365.236 days, approximately 0.2719 deg.
-  - 351.708 days, approximately 0.2564 deg.
-  - 249.898 days, approximately 0.2236 deg.
-  - 379.845 days, approximately 0.1878 deg.
+  - 365.236 days, approximately 0.2312 deg.
+  - 249.898 days, approximately 0.2195 deg.
+  - 351.708 days, approximately 0.2190 deg.
+  - 395.672 days, approximately 0.1840 deg.
 
 ## Jupiter — true-of-date apparent
 
 Interval: 2000-06-21 00:00:00 to 2026-06-21 00:00:00; 75969 samples.
 
-Export configuration: Current TYCHOS vs JPL
+Export configuration: Current TYCHOS with updates vs JPL
 
-- RA: mean -0.071695 deg; RMS 0.330077 deg.
-- Declination: mean -0.264183 deg; RMS 0.289047 deg.
-- Angular separation: mean 0.396866 deg; RMS 0.430288 deg.
+- RA: mean -0.140711 deg; RMS 0.356704 deg.
+- Declination: mean -0.250519 deg; RMS 0.311730 deg.
+- Angular separation: mean 0.419212 deg; RMS 0.465016 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
-  - 365.236 days, approximately 0.2586 deg.
+  - 365.236 days, approximately 0.2584 deg.
   - 431.642 days, approximately 0.1960 deg.
-  - 452.196 days, approximately 0.1701 deg.
-  - 379.845 days, approximately 0.1377 deg.
+  - 452.196 days, approximately 0.1715 deg.
+  - 379.845 days, approximately 0.1429 deg.
 
 ## Saturn — true-of-date apparent
 
 Interval: 2000-06-21 00:00:00 to 2026-06-21 00:00:00; 75969 samples.
 
-Export configuration: Current TYCHOS vs JPL
+Export configuration: Current TYCHOS with updates vs JPL
 
-- RA: mean -0.081173 deg; RMS 0.681177 deg.
-- Declination: mean -0.026352 deg; RMS 0.172020 deg.
-- Angular separation: mean 0.572329 deg; RMS 0.673577 deg.
+- RA: mean 0.062854 deg; RMS 0.579131 deg.
+- Declination: mean -0.175903 deg; RMS 0.228703 deg.
+- Angular separation: mean 0.486191 deg; RMS 0.599510 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
-  - 379.845 days, approximately 0.4992 deg.
-  - 365.236 days, approximately 0.3007 deg.
-  - 395.672 days, approximately 0.1404 deg.
-  - 412.875 days, approximately 0.0663 deg.
+  - 379.845 days, approximately 0.4960 deg.
+  - 365.236 days, approximately 0.2834 deg.
+  - 395.672 days, approximately 0.1999 deg.
+  - 412.875 days, approximately 0.0772 deg.
 
 ## Uranus — true-of-date apparent
 
 Interval: 2000-06-21 00:00:00 to 2026-06-21 00:00:00; 75969 samples.
 
-Export configuration: Current TYCHOS vs JPL
+Export configuration: Current TYCHOS with updates vs JPL
 
 - RA: mean 0.025783 deg; RMS 0.151998 deg.
 - Declination: mean 0.030291 deg; RMS 0.053997 deg.
@@ -128,7 +128,7 @@ Export configuration: Current TYCHOS vs JPL
 
 Interval: 2000-06-21 00:00:00 to 2026-06-21 00:00:00; 75969 samples.
 
-Export configuration: Current TYCHOS vs JPL
+Export configuration: Current TYCHOS with updates vs JPL
 
 - RA: mean 0.049033 deg; RMS 0.060077 deg.
 - Declination: mean 0.043428 deg; RMS 0.045518 deg.
@@ -143,16 +143,16 @@ Export configuration: Current TYCHOS vs JPL
 
 Interval: 2000-06-21 00:00:00 to 2026-06-21 00:00:00; 75969 samples.
 
-Export configuration: Current TYCHOS vs JPL
+Export configuration: Current TYCHOS with updates vs JPL
 
-- RA: mean -4.054771 deg; RMS 4.862810 deg.
-- Declination: mean 2.688729 deg; RMS 2.709348 deg.
-- Angular separation: mean 4.946189 deg; RMS 5.298340 deg.
+- RA: mean -4.977866 deg; RMS 5.876254 deg.
+- Declination: mean 1.207774 deg; RMS 2.553785 deg.
+- Angular separation: mean 5.508941 deg; RMS 6.048723 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
-  - 365.236 days, approximately 0.1424 deg.
-  - 351.708 days, approximately 0.0774 deg.
-  - 379.845 days, approximately 0.0768 deg.
-  - 182.618 days, approximately 0.0175 deg.
+  - 365.236 days, approximately 0.4989 deg.
+  - 351.708 days, approximately 0.3380 deg.
+  - 379.845 days, approximately 0.1414 deg.
+  - 395.672 days, approximately 0.0314 deg.
 
 ## Questions to investigate
 
