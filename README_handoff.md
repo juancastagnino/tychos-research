@@ -233,16 +233,33 @@ should be added.
 
 ## Moon refinement research
 
-The active Moon remains the accepted baseline: Moon Node and Moon Plane provide
-the nodal geometry, while Moon Deferent A and the Moon orbit retain their current
-phase and radius values. A modern validation covering `2000-06-21` through
-`2026-06-21` at six-hour cadence, compared with JPL apparent true-of-date, gave:
+The active Moon is now the author's preferred configuration. It retains the Moon
+Node and Moon Plane hierarchy, but differs from the quantitatively better archived
+Moon baseline as follows:
 
-| Metric | Current Moon baseline |
-|---|---:|
-| RA mean / RMS | `-0.240909° / 1.061210°` |
-| Declination mean / RMS | `-0.000854° / 0.364896°` |
-| Angular mean / RMS | `0.921208° / 1.073485°` |
+| Component / parameter | Previous baseline | Author-selected |
+|---|---:|---:|
+| Moon Plane `orbitCentera` | `0` | `0.001` |
+| Moon Plane `orbitCenterb` | `0` | `0.01` |
+| Moon Deferent A `startPos` | `167.51°` | `157.3°` |
+| Moon Deferent A `orbitRadius` | `0.02786` | `0.0215` |
+| Moon orbit `startPos` | `318°` | `328°` |
+
+A direct validation covering `2000-06-21` through `2026-06-21` at three-hour
+cadence, compared with the same JPL apparent true-of-date product, found:
+
+| Metric | Previous baseline | Author-selected | Result |
+|---|---:|---:|---:|
+| RA mean | `-0.240912°` | `-0.030819°` | smaller bias |
+| RA RMS | `1.061210°` | `2.220218°` | `109.2%` worse |
+| Declination mean | `-0.000858°` | `-0.071639°` | larger bias |
+| Declination RMS | `0.364896°` | `0.712547°` | `95.3%` worse |
+| Angular mean | `0.921211°` | `1.831483°` | `98.8%` worse |
+| Angular RMS | `1.073484°` | `2.229533°` | `107.7%` worse |
+
+The active values are therefore an explicit author-directed model choice, not a
+JPL-error optimization. The previous settings and reports should remain archived
+as the stronger empirical alternative and must not be described as disproven.
 
 The dominant RA residual periods were approximately `31.760 d` (`1.0900°`),
 `14.769 d` (`0.6563°`), one year (`0.1846°`) and `13.783 d` (`0.1219°`). These
@@ -262,8 +279,9 @@ Two geometric investigations were rejected:
   `0.016%` and angular RMS `0.025%`. The extra hierarchy and parameters were not
   justified, so the component was abandoned and is not present on this branch.
 
-This negative result indicates that the remaining Moon error is not well described
-by another Moon-only static eccentricity. Any future experiment should begin from
+The eccentric-stage negative result indicates that the remaining Moon error in
+the previous baseline is not well described by another Moon-only static
+eccentricity. Any future experiment should begin from
 a clear geometric hypothesis, most plausibly one involving the relative
 Sun–Earth–Moon configuration, and must remain a visible declarative motion rather
 than an empirical perturbation or output correction.
