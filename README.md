@@ -41,7 +41,7 @@ python.exe -B scripts/download_jpl.py
 # data/raw/tychos_ephemerides.txt, then run:
 python.exe -B scripts/run_analysis.py --all `
   --reference apparent-of-date `
-  --label "Description of the tested settings"
+  --label "all major bodies new tychos vs JPL"
 ```
 
 For the fixed-frame experiment, export TYCHOS with **J2000 / ICRF comparison**

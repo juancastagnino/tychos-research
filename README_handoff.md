@@ -181,6 +181,9 @@ Pluto values are being retained despite the long-baseline JPL comparison
 favouring that alternative. Jupiter's other geometry was retained. The active
 Saturn phase, speed and deferent C value are the later author refinement shown
 above. Mars's speeds, secondary deferent and
+
+Pluto speed was updated from ​​0.0253303 to --> 0.02545039
+
 `Mars deferent E orbitCenterb = -20` were retained. Fractional adjustment of
 that `orbitCenterb` was deliberately rejected in favour of the directly measured
 and conceptually established value.
