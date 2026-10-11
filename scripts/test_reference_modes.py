@@ -76,11 +76,29 @@ class ReferenceModeTests(unittest.TestCase):
             self.assertIn("true-equator/equinox-of-date", report_text)
             self.assertIn("J2000 ecliptic residuals are intentionally omitted", report_text)
 
-    def test_fixed_frame_modes_are_rejected(self):
-        with self.assertRaises(SystemExit):
-            analyze_ephemerides.main(['unused.csv', '--body', 'sun', '--reference', 'icrf'])
-        with self.assertRaises(SystemExit):
-            run_analysis.main(['--reference', 'both'])
+    def test_icrf_analysis_uses_fixed_frame_columns(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            comparison = root / "sun_comparison.csv"
+            self.write_comparison(comparison)
+            analyze_ephemerides.main([
+                str(comparison), "--body", "sun", "--prefix", "sun_icrf",
+                "--out-dir", str(root), "--reference", "icrf",
+            ])
+            summary = json.loads((root / "sun_icrf_summary.json").read_text(encoding="utf-8"))
+            self.assertEqual(summary["reference_mode"], "icrf")
+            self.assertAlmostEqual(summary["ra_residual"]["rms_deg"], 0.2)
+            self.assertAlmostEqual(summary["declination_residual"]["rms_deg"], 0.1)
+
+    def test_declared_tychos_frame_mismatch_is_rejected(self):
+        native = "Reference frame: TYCHOS native (moving PVP)\nPLANET: SUN\n"
+        j2000 = "Reference frame: J2000 / ICRF comparison\nPLANET: SUN\n"
+        run_analysis.validate_tychos_reference_frame(native, "apparent-of-date")
+        run_analysis.validate_tychos_reference_frame(j2000, "icrf")
+        with self.assertRaisesRegex(ValueError, "select/export"):
+            run_analysis.validate_tychos_reference_frame(native, "icrf")
+        with self.assertRaisesRegex(ValueError, "select/export"):
+            run_analysis.validate_tychos_reference_frame(j2000, "apparent-of-date")
 
     def test_new_horizons_format_and_legacy_bundle_have_same_apparent_values(self):
         header = ('Target body name: Sun (10)\nCenter body name: Earth (399)\n'
@@ -89,11 +107,13 @@ class ReferenceModeTests(unittest.TestCase):
         legacy = header + 'R.A._____(ICRF), DEC____(ICRF), R.A.____(a-app), DEC_____(a-app)\n$$SOE\n2000-Jan-01 00:00:00, , , 02 00 00, +20 00 00, 01 00 00, +10 00 00,\n$$EOE'
         validate_jpl_header(new)
         first = compare_ephemerides.parse_jpl(new, strict=True)
-        self.assertEqual(first, compare_ephemerides.parse_jpl(legacy, strict=True))
+        legacy_rows = compare_ephemerides.parse_jpl(legacy, strict=True)
+        self.assertEqual(first[next(iter(first))]['ra_app'], legacy_rows[next(iter(legacy_rows))]['ra_app'])
         self.assertEqual(set(next(iter(first.values()))), {'ra_app', 'dec_app'})
-        self.assertIn('QUANTITIES=%272%27', download_jpl.build_url('10', '2000-01-01', '2000-01-02', '3 h'))
+        self.assertIn('ra_icrf', next(iter(legacy_rows.values())))
+        self.assertIn('QUANTITIES=%271%2C2%27', download_jpl.build_url('10', '2000-01-01', '2000-01-02', '3 h'))
 
-    def test_run_analysis_publishes_only_apparent_report_set(self):
+    def test_run_analysis_can_publish_both_report_sets(self):
         with tempfile.TemporaryDirectory(dir=run_analysis.ROOT / "data") as temporary:
             root = Path(temporary)
             tychos = root / "tychos.txt"
@@ -124,20 +144,20 @@ class ReferenceModeTests(unittest.TestCase):
                 run_analysis.DERIVED = root / "derived"
                 run_analysis.main([
                     "sun", "--tychos", str(tychos), "--jpl", str(jpl),
-                    "--label", "apparent-only smoke test",
+                    "--reference", "both", "--label", "dual-frame smoke test",
                 ])
             finally:
                 run_analysis.REPORTS = original_reports
                 run_analysis.DERIVED = original_derived
 
-            self.assertFalse((root / "reports/sun_summary.json").exists())
+            self.assertTrue((root / "reports/sun_icrf_summary.json").exists())
             self.assertTrue((root / "reports/sun_apparent_of_date_summary.json").exists())
-            self.assertFalse((root / "reports/sun_ephemeris_report.md").exists())
+            self.assertTrue((root / "reports/sun_icrf_ephemeris_report.md").exists())
             self.assertTrue((root / "reports/sun_apparent_of_date_ephemeris_report.md").exists())
             overview = (root / "reports/ephemeris_overview.md").read_text(encoding="utf-8")
-            self.assertNotIn("JPL ICRF astrometric RA/Dec", overview)
+            self.assertIn("ICRF/J2000", overview)
             comparison = (root / 'derived/sun_comparison.csv').read_text(encoding='utf-8')
-            self.assertNotIn('icrf', comparison)
+            self.assertIn('icrf', comparison)
             self.assertIn("true-equator/equinox-of-date", overview)
 
 

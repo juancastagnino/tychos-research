@@ -44,6 +44,15 @@ python.exe -B scripts/run_analysis.py --all `
   --label "Description of the tested settings"
 ```
 
+For the fixed-frame experiment, export TYCHOS with **J2000 / ICRF comparison**
+selected, download a fresh JPL bundle, and run:
+
+```powershell
+python.exe -B scripts/run_analysis.py --all `
+  --reference icrf `
+  --label "TYCHOS J2000 vs JPL ICRF/J2000"
+```
+
 The downloader replaces the configured JPL bundle after validating the requested
 bodies. Analysis replaces matching generated outputs; preserve an experiment
 before rerunning it.
@@ -123,20 +132,28 @@ explicitly requested body must exist in both files.
 
 ## Reference products
 
-All active comparisons use `apparent-of-date`: airless apparent RA/Dec in
-Earth's true equator/equinox of date. This is the default and the only supported
-reference. `--reference apparent-of-date` remains accepted for explicit commands.
-New Horizons downloads request quantity 2 only. Existing bundles that also
-contain ICRF columns remain readable; only their apparent columns are used.
+The pipeline supports two deliberately separate matched comparisons:
+
+- `--reference apparent-of-date`: use a **TYCHOS native (moving PVP)** export
+  against JPL airless apparent RA/Dec in Earth's true equator/equinox of date.
+- `--reference icrf`: use a **TYCHOS J2000 / ICRF comparison** export against
+  JPL Earth-geocentric ICRF/J2000 astrometric RA/Dec.
+
+`apparent-of-date` remains the default. New Horizons downloads request quantities
+`1,2`, so one validated bundle contains both JPL products. An older quantity-2
+bundle remains usable for apparent mode but is rejected clearly by ICRF mode.
+`--reference both` is intended only for parser/report diagnostics: a single
+TYCHOS export cannot simultaneously represent both TYCHOS frames, so use two
+separate exports for the scientific experiment.
 
 Apparent true-of-date includes light-time, gravitational light deflection,
 stellar aberration, precession and nutation. It is used here because it gives the
 most useful numerical comparison with the native export; it is not assumed to be
 physically identical to the TYCHOS frame.
 
-True-of-date reports include RA, declination, angular separation, annual
-statistics and FFT peaks of the signed RA residual. They intentionally avoid a
-fixed-J2000 ecliptic rotation. No ICRF or fixed-J2000 ecliptic comparisons are generated.
+Both report modes include RA, declination, angular separation, annual statistics
+and FFT peaks of the signed RA residual. The pipeline does not silently rotate
+one product into another.
 
 ## Comparing with a saved baseline
 

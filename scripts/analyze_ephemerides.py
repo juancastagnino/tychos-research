@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""Analyze apparent-of-date TYCHOS-minus-JPL RA/Dec and angular residuals.
-No fixed-frame ecliptic rotation is performed."""
+"""Analyze TYCHOS-minus-JPL RA/Dec and angular residuals in a matched frame."""
 import argparse
 import csv
 import json
@@ -24,7 +23,10 @@ def percentile_abs(a, p):
 def stats(a):
     a = np.asarray(a, dtype=float)
     return {'mean_deg': float(np.mean(a)), 'rms_deg': rms(a), 'median_abs_deg': float(np.median(np.abs(a))), 'p95_abs_deg': percentile_abs(a, 95), 'max_abs_deg': float(np.max(np.abs(a)))}
-REFERENCE_COLUMNS = {'apparent-of-date': {'ra': 'jpl_ra_app_deg', 'dec': 'jpl_dec_app_deg', 'ddec': 'ddec_app_deg', 'sep': 'sep_app_deg', 'label': 'JPL Earth true-equator/equinox-of-date apparent RA/Dec (airless)'}}
+REFERENCE_COLUMNS = {
+    'icrf': {'ra': 'jpl_ra_icrf_deg', 'dec': 'jpl_dec_icrf_deg', 'ddec': 'ddec_icrf_deg', 'sep': 'sep_icrf_deg', 'label': 'JPL Earth-geocentric ICRF/J2000 astrometric RA/Dec'},
+    'apparent-of-date': {'ra': 'jpl_ra_app_deg', 'dec': 'jpl_dec_app_deg', 'ddec': 'ddec_app_deg', 'sep': 'sep_app_deg', 'label': 'JPL Earth true-equator/equinox-of-date apparent RA/Dec (airless)'},
+}
 
 def read_comparison(path, reference='apparent-of-date', source='jpl'):
     columns = REFERENCE_COLUMNS[reference]
@@ -86,7 +88,7 @@ def main(argv=None):
     parser.add_argument('--body', required=True)
     parser.add_argument('--profile', choices=('auto', 'none'), default='auto')
     parser.add_argument('--prefix', help='Output prefix; defaults to <body>_apparent_of_date')
-    parser.add_argument('--reference', choices=tuple(REFERENCE_COLUMNS), default='apparent-of-date', help='JPL coordinate product to analyze (apparent-of-date only)')
+    parser.add_argument('--reference', choices=tuple(REFERENCE_COLUMNS), default='apparent-of-date', help='Matched JPL coordinate product')
     parser.add_argument('--source', choices=('jpl', 'stellarium'), default='jpl')
     args = parser.parse_args(argv)
     if not re.fullmatch('[a-z][a-z0-9_]*', args.body):
@@ -116,7 +118,8 @@ def main(argv=None):
     cadence_hours = None
     if len(dates) > 1:
         cadence_hours = float(np.median(np.diff(t_days)) * 24.0)
-    summary = {'body': args.body, 'profile': 'none', 'input_file': str(args.comparison_csv), 'reference_mode': args.reference, 'reference': REFERENCE_COLUMNS[args.reference]['label'], 'ecliptic_rotation': 'Not computed: true-of-date RA/Dec must not be rotated with fixed J2000 obliquity', 'n_samples': len(rows), 'start': dates[0].strftime('%Y-%m-%d %H:%M:%S'), 'stop': dates[-1].strftime('%Y-%m-%d %H:%M:%S'), 'cadence_hours_median': cadence_hours, 'cadence_regular': bool(len(t_days) < 2 or np.allclose(np.diff(t_days), np.diff(t_days)[0], rtol=0, atol=1e-09)), 'fft_period_range_days': [1.0, 500.0], 'fft_observable': fft_observable, 'ra_residual': stats(dra), 'declination_residual': stats(ddec), 'angular_separation': stats(sep)}
+    ecliptic_note = ('Not computed: this audit reports matched-frame RA/Dec and angular separation only' if args.reference == 'icrf' else 'Not computed: true-of-date RA/Dec must not be rotated with fixed J2000 obliquity')
+    summary = {'body': args.body, 'profile': 'none', 'input_file': str(args.comparison_csv), 'reference_mode': args.reference, 'reference': REFERENCE_COLUMNS[args.reference]['label'], 'ecliptic_rotation': ecliptic_note, 'n_samples': len(rows), 'start': dates[0].strftime('%Y-%m-%d %H:%M:%S'), 'stop': dates[-1].strftime('%Y-%m-%d %H:%M:%S'), 'cadence_hours_median': cadence_hours, 'cadence_regular': bool(len(t_days) < 2 or np.allclose(np.diff(t_days), np.diff(t_days)[0], rtol=0, atol=1e-09)), 'fft_period_range_days': [1.0, 500.0], 'fft_observable': fft_observable, 'ra_residual': stats(dra), 'declination_residual': stats(ddec), 'angular_separation': stats(sep)}
     summary['reference_source'] = args.source
     if args.source == 'stellarium':
         summary['reference'] = 'Stellarium Earth geocentric apparent equinox-of-date RA/Dec (airless)'

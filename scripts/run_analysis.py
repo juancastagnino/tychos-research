@@ -23,6 +23,7 @@ REPORTS = ROOT / "reports"
 DERIVED = ROOT / "data/derived"
 
 REFERENCE_OUTPUTS = {
+    "icrf": {"suffix": "_icrf", "short_label": "J2000 / ICRF astrometric"},
     "apparent-of-date": {"suffix": "_apparent_of_date", "short_label": "True-of-date apparent"},
 }
 
@@ -60,12 +61,26 @@ def fingerprint(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def check_inputs(body, config, tychos_path, jpl_path, blocks=None):
+def validate_tychos_reference_frame(text, reference_mode):
+    """Reject a declared TYCHOS frame that does not match the requested JPL product."""
+    marker = next((line for line in text.splitlines() if line.startswith("Reference frame:")), None)
+    if not marker or reference_mode == "both":
+        return
+    declared = marker.split(":", 1)[1].strip().lower()
+    expected_j2000 = reference_mode == "icrf"
+    is_j2000 = "j2000" in declared or "icrf" in declared
+    if expected_j2000 != is_j2000:
+        expected = "J2000 / ICRF comparison" if expected_j2000 else "TYCHOS native (moving PVP)"
+        raise ValueError(f"TYCHOS export declares '{marker.split(':', 1)[1].strip()}'; select/export '{expected}' for this comparison")
+
+
+def check_inputs(body, config, tychos_path, jpl_path, blocks=None, reference_mode="apparent-of-date"):
     if blocks is None:
         blocks = (tychos_blocks(tychos_path.read_text(encoding="utf-8-sig")),
                   jpl_blocks(jpl_path.read_text(encoding="utf-8-sig")))
     ty_text = select_block(blocks[0], body, "TYCHOS")
     jp_text = select_block(blocks[1], config['target_id'], "JPL")
+    validate_tychos_reference_frame(tychos_path.read_text(encoding="utf-8-sig"), reference_mode)
     validate_jpl_header(jp_text)
     ty = compare_ephemerides.parse_tychos(ty_text, strict=True)
     jp = compare_ephemerides.parse_jpl(jp_text, strict=True)
@@ -123,7 +138,7 @@ def write_notes(summaries):
              "Read the [research README](../README.md) for the retained baselines and comparison conventions.", ""]
     for prefix, s in summaries.items():
         body = s["body"]
-        reference_label = "true-of-date apparent"
+        reference_label = "J2000 / ICRF" if s.get("reference_mode") == "icrf" else "true-of-date apparent"
         lines += [f"## {body.title()} — {reference_label}", "", f"Interval: {s['start']} to {s['stop']}; {s['n_samples']} samples.", "",
                   f"Export configuration: {s['provenance']['export_label']}", ""]
         for name, key in (("RA", "ra_residual"), ("Declination", "declination_residual"), ("Angular separation", "angular_separation")):
@@ -159,9 +174,9 @@ def main(argv=None):
     parser.add_argument("--export-settings", type=Path, help="Optional JSON settings known to have been used for these exports")
     parser.add_argument(
         "--reference",
-        choices=("apparent-of-date",),
+        choices=("icrf", "apparent-of-date", "both"),
         default="apparent-of-date",
-        help="Only apparent-of-date RA/Dec is supported",
+        help="JPL coordinate product; use icrf with a TYCHOS J2000 export and apparent-of-date with TYCHOS native",
     )
     parser.add_argument("--overview-only", action="store_true", help="Refresh input freshness statuses without rerunning analyses")
     args = parser.parse_args(argv)
@@ -198,9 +213,9 @@ def main(argv=None):
     if unknown:
         parser.error(f"Unknown bodies: {sorted(unknown)}")
     # Validate every requested body before replacing any output.
-    inputs = {body: check_inputs(body, configs[body], tychos_path, jpl_path, blocks) for body in bodies}
+    inputs = {body: check_inputs(body, configs[body], tychos_path, jpl_path, blocks, args.reference) for body in bodies}
     export_settings = json.loads(args.export_settings.read_text(encoding="utf-8")) if args.export_settings else None
-    reference_modes = (args.reference,)
+    reference_modes = tuple(REFERENCE_OUTPUTS) if args.reference == "both" else (args.reference,)
     publications = []
     summaries = {}
     with tempfile.TemporaryDirectory(prefix="tychos-analysis-") as temporary:
@@ -210,7 +225,10 @@ def main(argv=None):
             stage.mkdir()
             comparison = stage/f"{body}_comparison.csv"
             final_comparison = DERIVED/comparison.name
-            compare_ephemerides.main([str(tychos_path), str(jpl_path), '--body', body, '--target-id', config['target_id'], '-o', str(comparison), '--strict'])
+            compare_args = [str(tychos_path), str(jpl_path), '--body', body, '--target-id', config['target_id'], '-o', str(comparison), '--strict']
+            if 'icrf' in reference_modes:
+                compare_args.append('--require-icrf')
+            compare_ephemerides.main(compare_args)
             for reference_mode in reference_modes:
                 prefix = body + REFERENCE_OUTPUTS[reference_mode]["suffix"]
                 analyze_ephemerides.main([

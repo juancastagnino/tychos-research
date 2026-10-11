@@ -51,8 +51,10 @@ def main(argv=None):
 
     s = load_json(args.summary)
     baseline = load_json(args.baseline_summary) if args.baseline_summary else None
-    if s.get('reference_mode') != 'apparent-of-date' or (baseline and baseline.get('reference_mode') != 'apparent-of-date'):
-        raise ValueError('Only apparent-of-date summaries are supported')
+    if s.get('reference_mode') not in ('icrf', 'apparent-of-date'):
+        raise ValueError('Unsupported reference mode')
+    if baseline and baseline.get('reference_mode') != s.get('reference_mode'):
+        raise ValueError('Baseline and candidate must use the same reference mode')
     if baseline and s.get('reference_source', 'jpl') != baseline.get('reference_source', 'jpl'):
         raise ValueError('Baseline and candidate must use the same reference source')
     annual = load_csv(args.annual)
@@ -125,9 +127,12 @@ def main(argv=None):
     lines.append("")
     if s.get('reference_source', 'jpl') == 'stellarium':
         lines.append('- Stellarium uses geocentric coordinates of date with light-time, aberration and nutation enabled, and atmosphere disabled. Its conventions are not guaranteed identical to Horizons.')
-    else:
+    elif s.get('reference_mode') == 'apparent-of-date':
         lines.append('- JPL apparent coordinates include light-time, light deflection, stellar aberration, precession and nutation.')
-    lines.append("- J2000 ecliptic residuals are intentionally omitted because fixed J2000 obliquity is not valid for true-of-date RA/Dec.")
+    else:
+        lines.append('- JPL ICRF/J2000 coordinates are astrometric fixed-frame coordinates; compare them only with a TYCHOS J2000 export.')
+    if s.get('reference_mode') == 'apparent-of-date':
+        lines.append("- J2000 ecliptic residuals are intentionally omitted because fixed J2000 obliquity is not valid for true-of-date RA/Dec.")
     lines.append("- Compare RA, declination and angular separation using the same epochs and declared export settings.")
     lines.append("- A lower residual does not establish exact equivalence of the native TYCHOS and JPL coordinate conventions.")
     lines.append("")

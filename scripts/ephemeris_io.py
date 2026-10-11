@@ -31,12 +31,14 @@ def jpl_blocks(text):
     return result
 
 
-def validate_jpl_header(block):
+def validate_jpl_header(block, require_icrf=False):
     header = block.split('$$SOE', 1)[0]
     if not re.search(r"Center body name:.*?\(399\)", header) or not re.search(r"Center-site name:\s*GEOCENTRIC", header):
         raise ValueError("Expected Earth geocentric reference")
     if not all(token in header for token in ('Date__(UT)', '(a-app)')):
         raise ValueError("Expected UT CSV with apparent-of-date RA/Dec")
+    if require_icrf and '(ICRF)' not in header:
+        raise ValueError("Expected JPL ICRF/J2000 RA/Dec columns")
     return header
 
 
