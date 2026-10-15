@@ -20,11 +20,11 @@ import csv
 import io
 import math
 import re
-from datetime import datetime
 from pathlib import Path
 from statistics import median
 
 from ephemeris_io import tychos_blocks, jpl_blocks, select_block
+from astro_time import parse_horizons, parse_iso
 
 TY_RA_RE = re.compile(r"^\s*(\d+)h(\d+)m([\d.]+)s\s*$")
 TY_DEC_RE = re.compile(r"^\s*([+-]?)(\d+)°(\d+)'([\d.]+)\"\s*$")
@@ -107,7 +107,7 @@ def parse_tychos(text, strict=False):
                     raise ValueError("Incomplete TYCHOS data row")
                 continue
             try:
-                dt = datetime.strptime(parts[0] + " " + parts[1], "%Y-%m-%d %H:%M:%S")
+                dt = parse_iso(parts[0] + " " + parts[1])
                 ra = parse_ty_ra(parts[2])
                 dec = parse_ty_dec(parts[3])
                 if strict:
@@ -155,7 +155,7 @@ def parse_jpl(text, strict=False):
                     raise ValueError("Incomplete JPL data row")
                 continue
             try:
-                dt = datetime.strptime(cols[0], "%Y-%b-%d %H:%M:%S")
+                dt = parse_horizons(cols[0])
                 ra_icrf = parse_jpl_ra(cols[3]) if has_icrf else None
                 dec_icrf = parse_jpl_dec(cols[4]) if has_icrf else None
                 ra_app = parse_jpl_ra(cols[apparent_index])

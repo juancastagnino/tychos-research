@@ -4,26 +4,11 @@ Diagnostics from the bodies processed in this run; hypotheses are not physical c
 
 Read the [research README](../README.md) for the retained baselines and comparison conventions.
 
-## Moon — true-of-date apparent
-
-Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
-
-Export configuration: moon pluto new hierarchy vs JPL
-
-- RA: mean -0.208460 deg; RMS 0.295290 deg.
-- Declination: mean -0.001161 deg; RMS 0.203339 deg.
-- Angular separation: mean 0.312773 deg; RMS 0.348833 deg.
-- Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
-  - 365.248 days, approximately 0.1860 deg.
-  - 205.850 days, approximately 0.1575 deg.
-  - 31.810 days, approximately 0.0994 deg.
-  - 29.800 days, approximately 0.0393 deg.
-
 ## Sun — true-of-date apparent
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: moon pluto new hierarchy vs JPL
+Export configuration: venus mercury baseline vs JPL
 
 - RA: mean 0.038748 deg; RMS 0.053270 deg.
 - Declination: mean 0.000304 deg; RMS 0.014186 deg.
@@ -33,6 +18,36 @@ Export configuration: moon pluto new hierarchy vs JPL
   - 182.624 days, approximately 0.0098 deg.
   - 368.509 days, approximately 0.0036 deg.
   - 398.773 days, approximately 0.0020 deg.
+
+## Mercury — true-of-date apparent
+
+Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
+
+Export configuration: venus mercury baseline vs JPL
+
+- RA: mean 0.014390 deg; RMS 2.620184 deg.
+- Declination: mean 0.188732 deg; RMS 0.998030 deg.
+- Angular separation: mean 2.148367 deg; RMS 2.690188 deg.
+- Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
+  - 365.248 days, approximately 2.5620 deg.
+  - 49.998 days, approximately 1.9910 deg.
+  - 169.848 days, approximately 0.9133 deg.
+  - 34.933 days, approximately 0.7509 deg.
+
+## Venus — true-of-date apparent
+
+Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
+
+Export configuration: venus mercury baseline vs JPL
+
+- RA: mean 0.043248 deg; RMS 0.422059 deg.
+- Declination: mean 0.042494 deg; RMS 0.209577 deg.
+- Angular separation: mean 0.355078 deg; RMS 0.447191 deg.
+- Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
+  - 224.921 days, approximately 0.3283 deg.
+  - 365.248 days, approximately 0.2352 deg.
+  - 162.173 days, approximately 0.1370 deg.
+  - 416.899 days, approximately 0.1225 deg.
 
 ## Questions to investigate
 

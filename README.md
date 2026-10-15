@@ -7,6 +7,28 @@ evidence were extracted from the TSN research workspace. The TYCHOS simulator,
 its model settings, and its React/Electron application are maintained separately;
 produce new TYCHOS exports there and bring them into this repository.
 
+## Current model milestone
+
+The current simulator branch has completed a further simplification of the
+Mercury and Venus branches. Both bodies now inherit the Sun's world position
+directly and use only their own local sequence:
+
+```text
+Sun
+├─ Venus deferent -> Venus Plane -> Venus
+└─ Mercury deferent -> Mercury Plane -> Mercury
+```
+
+The former Mercury/Venus `parentRelativeCarrier` and `secondary` A/B stages and
+their special JSX adapters have been removed. The retained deferents contain the
+local counterrotation and body-specific geometry; they do not repeat the Sun's
+translation. Over the matched `1800-2026` daily apparent true-of-date comparison,
+the simplified model improved angular RMS by `11.7%` for Mercury and `9.5%` for
+Venus relative to the saved pre-simplification baseline. Full architectural and
+scientific details are in [README_handoff.md](README_handoff.md),
+[binary_tychos.md](binary_tychos.md) and
+[tychos_project_summary.md](tychos_project_summary.md).
+
 Run the commands below from the root of your local `tychos-research` checkout,
 using Python 3.11 or newer. The checkout directory may have a different name.
 
@@ -25,6 +47,7 @@ using Python 3.11 or newer. The checkout directory may have a different name.
 | [reports/](reports/) | Current analysis reports |
 | [00-old-tychos/](00-old-tychos/) | Preserved earlier TYCHOS comparison results |
 | [00-binary-baseline/](00-binary-baseline/) | Preserved binary-model exports and comparison results |
+| `00-new-tychos/` | Preserved baseline immediately preceding current controlled refinements |
 
 The baseline directories are historical evidence. Their embedded paths and
 provenance describe the original workspace and are not instructions for running

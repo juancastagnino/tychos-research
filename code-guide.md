@@ -188,6 +188,24 @@ This does not make JSON execute astronomy. The JSON selects an ordered transform
 tree and supplies parameters. The corresponding JavaScript components still
 perform the transforms.
 
+### Current Mercury/Venus implementation
+
+Mercury and Venus no longer require custom Sun-relative React components. The
+former `MercurySunRelativeOrbit.jsx` and `VenusSunRelativeOrbit.jsx` files and
+their special node kinds were removed. Both bodies are now built entirely from
+ordinary declarative motion stages:
+
+```text
+Sun
+├─ Venus deferent -> Venus Plane -> Venus
+└─ Mercury deferent -> Mercury Plane -> Mercury
+```
+
+Normal tree inheritance supplies the Sun's world position. The local deferent in
+each branch applies the required annual counterrotation and retains that body's
+own centre/radius/tilt. This is a real reduction in special code, not merely a
+display-name change.
+
 ## How a time sample is evaluated now
 
 ### Visible model
@@ -208,12 +226,13 @@ Special components register an `updateAfterMotion` callback in the same store.
 1. Apply every registered orbital rotation.
    - ordinary Pobj stages
    - the lunar nodal/plane rotations
+   - the ordinary Mercury and Venus deferent/plane/orbit stages
 2. Apply negative-priority special geometry.
    - currently the lunar equant
 3. Apply the remaining special transforms.
    - lunar solar-coupled centre
    - Pluto eccentric centre
-   - Sun-relative body frames
+   - remaining specialized Sun-relative body frames for Mars and Eros
 4. Read final Three.js world positions.
 ```
 
@@ -345,7 +364,8 @@ translation. Its pure `plutoEccentricOffset(...)` helper is tested separately.
 Mars, Mercury, Venus and Eros were formerly represented by Earth-level chains
 that included parent-sized motion. After moving them beneath the Sun, those
 absolute carriers could not simply remain active or the Sun's motion would be
-counted twice.
+counted twice. The utility was originally used for all four bodies; in the
+current implementation it remains active only for Mars and Eros.
 
 This utility evaluates the parent-relative carrier data:
 
@@ -353,29 +373,27 @@ This utility evaluates the parent-relative carrier data:
 - optional annual vector remainder; and
 - local orientation basis.
 
-Mars, Mercury and Venus currently have no annual remainder. Eros retains its
-distinct non-zero term.
+Mars has no annual remainder. Eros retains its distinct non-zero term. Mercury
+and Venus no longer pass through this evaluator.
 
 ### `*SunRelativeOrbit.jsx`
 
-The four active adapters are:
+The two active adapters are:
 
-- `SunMarsRelativeOrbit.jsx`;
-- `VenusSunRelativeOrbit.jsx`;
-- `MercurySunRelativeOrbit.jsx`; and
+- `SunMarsRelativeOrbit.jsx`; and
 - `ErosSunRelativeOrbit.jsx`.
 
-They place each local branch at the Sun and reconstruct the retained local
-deferent/plane stages in the correct matrix order. Phobos and Deimos then inherit
-the final Mars frame naturally.
+They place those local branches at the Sun and reconstruct their retained stages
+in the correct matrix order. Phobos and Deimos then inherit the final Mars frame
+naturally. Mercury and Venus now use ordinary declared `motion-stage` nodes.
 
 These files are not conventional perturbation models. They are coordinate
 adapters required because the hierarchy was changed from independent Earth-level
 chains to Sun-hosted branches while preserving the accepted local mathematics.
 
-They do, however, contain repeated scaffolding. A generic parent-relative branch
-evaluator with a data description for each sequence could replace much of this
-code. This is the clearest consolidation opportunity in the current branch.
+The two remaining adapters still share some scaffolding, but their sequences are
+less alike than the former set of four. Any consolidation should therefore be
+judged against readability rather than pursued only to reduce file count.
 
 ### `src/utils/celestialSettingsSchema.js`
 
@@ -499,6 +517,10 @@ check:
 The number of changed files therefore overstates the amount of production logic
 added to the simulator.
 
+After the Mercury/Venus reduction, the full source gate passes `72` tests across
+`14` suites. The production build also passes; its remaining warnings are the
+pre-existing third-party MediaPipe source-map warnings.
+
 ## What actually changes coordinates
 
 | Area | Can change body positions? | Purpose |
@@ -509,7 +531,8 @@ added to the simulator.
 | Lunar equant | Yes | Geometrical angular progression |
 | Solar-coupled lunar centre | Yes | `2D-M` and `2D` centre geometry |
 | Pluto eccentric frame | Yes | Moving Pluto orbital centre |
-| Sun-relative adapters | Yes | Parent-relative branch reconstruction |
+| Sun-relative adapters | Yes | Remaining Mars/Eros parent-relative branch reconstruction |
+| Mercury/Venus ordinary stages | Yes | Sun inheritance plus local counterrotation, plane and orbit |
 | Schema, Save/Load and Edit Settings | No | Data integrity and UI |
 | Sun-Mars trackers/CSV | No | Read-only diagnostics |
 | Dotted trace default | No | Presentation only |
@@ -550,11 +573,12 @@ src/model/evaluateParentRelativeBody.js
 
 The JSX components would then only apply returned matrices/vectors.
 
-### 2. The four Sun-relative components repeat a pattern
+### 2. Two specialized Sun-relative components remain
 
-Mars, Venus, Mercury and Eros have different local stage sequences, but much of
-their React plumbing is identical. A common component could receive a stage
-descriptor and a pure evaluator.
+The Mercury and Venus special adapters were eliminated. Mars and Eros still use
+different parent-relative sequences with some shared React plumbing. A common
+component remains possible, but the benefit is now smaller and should be weighed
+against making two distinct geometries harder to read.
 
 ### 3. Update ordering is implicit infrastructure
 
@@ -600,7 +624,8 @@ Keep the current geometry and declarative tree, but:
 
 1. remove confirmed unused components;
 2. move optional binary diagnostics into development tooling;
-3. consolidate the four Sun-relative adapters;
+3. review whether the two remaining Sun-relative adapters benefit from a shared
+   evaluator;
 4. extract Moon and Pluto pure mathematics from JSX; and
 5. retain the existing equivalence and ephemeris tests.
 
@@ -649,8 +674,8 @@ The original developer can review the branch efficiently in this order:
 3. Confirm that ordinary `Cobj`/`Pobj` behaviour remains familiar.
 4. Review the three lunar components and `PlutoEccentricFrame.jsx` as isolated
    special transformations.
-5. Review one Sun-relative adapter, then compare the other three for possible
-   consolidation.
+5. Review the Mars and Eros Sun-relative adapters and confirm that Mercury and
+   Venus now follow only ordinary declarative stages.
 6. Inspect `movePlotModel` to verify how live and plot updates correspond.
 7. Inspect `EphController` last; it remains a scheduler/reader rather than the
    owner of orbital geometry.

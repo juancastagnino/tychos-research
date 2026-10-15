@@ -12,6 +12,7 @@ from urllib.request import Request, urlopen
 
 from compare_ephemerides import parse_jpl
 from ephemeris_io import jpl_blocks, validate_jpl_header
+from astro_time import parse_iso, to_horizons
 
 ROOT = Path(__file__).resolve().parents[1]
 ENDPOINT = 'https://ssd.jpl.nasa.gov/api/horizons.api'
@@ -24,9 +25,11 @@ def load_defaults():
 def build_url(target, start, stop, step):
     params = {
         'format': 'text', 'COMMAND': target, 'OBJ_DATA': 'NO', 'MAKE_EPHEM': 'YES',
-        'EPHEM_TYPE': 'OBSERVER', 'CENTER': '500@399', 'START_TIME': start, 'STOP_TIME': stop,
+        'EPHEM_TYPE': 'OBSERVER', 'CENTER': '500@399',
+        'START_TIME': to_horizons(start), 'STOP_TIME': to_horizons(stop),
         'STEP_SIZE': step, 'QUANTITIES': '1,2,20', 'TIME_TYPE': 'UT', 'TIME_DIGITS': 'SECONDS',
         'REF_SYSTEM': 'ICRF', 'ANG_FORMAT': 'HMS', 'EXTRA_PREC': 'YES', 'CSV_FORMAT': 'YES',
+        'CAL_TYPE': 'GREGORIAN',
     }
     return ENDPOINT+'?'+urlencode({k: v if k == 'format' else f"'{v}'" for k, v in params.items()})
 
@@ -38,8 +41,8 @@ def fetch(url):
 
 
 def expected_dates(start, stop, step):
-    first, last = datetime.fromisoformat(start), datetime.fromisoformat(stop)
-    if first.tzinfo or last.tzinfo or first >= last:
+    first, last = parse_iso(start), parse_iso(stop)
+    if first >= last:
         raise ValueError('Use increasing UTC dates without timezone suffixes')
     match = re.fullmatch(r'([1-9][0-9]*)\s*([mhd])', step)
     if not match:

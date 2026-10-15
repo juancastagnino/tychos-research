@@ -6,15 +6,11 @@
 `native-binary-system` hierarchy. It makes the numerical settings parent-relative,
 not only the visible tree.
 
-The migration is intentionally equivalence preserving. It does not claim new
-astronomical accuracy and does not retune an orbit. Its purpose is to establish a
-clean native baseline from which later TYCHOS geometry can be investigated.
-
-The active model now takes one explicit refinement beyond that equivalence
-baseline: the common annual residual of Mars, Mercury and Venus is absent.
-This decision improves several mean biases but modestly worsens their aggregate
-RMS values. The exact equivalence-preserving values remain documented below and
-in `00-backup/full-binary-baseline`.
+The initial migration was intentionally equivalence preserving. It established a
+clean native baseline before later geometric refinements were tested. The active
+model now goes beyond that first baseline: the common Mars/Mercury/Venus annual
+residual is absent, and Mercury and Venus have since been simplified from special
+A/B carrier chains into ordinary Sun-hosted declarative branches.
 
 ## Hierarchy
 
@@ -25,8 +21,8 @@ SystemCenter                         (PVP geometric reference)
    └─ Sun-Mars Binary Frame
       └─ Sun Primary Branch -> Sun
          ├─ Mars Junior Companion -> Phobos / Deimos
-         ├─ Venus Senior Solar Companion
-         ├─ Mercury Junior Solar Companion
+         ├─ Venus Senior Solar Moon
+         ├─ Mercury Junior Solar Moon
          ├─ Jupiter / Saturn / Uranus / Neptune / Pluto
          ├─ Halley
          └─ Eros
@@ -36,6 +32,22 @@ This is an asymmetric primary/companion description. No conventional mass
 barycentre, forced opposition or equal binary radius is introduced. `SystemCenter`
 is an identity coordinate reference associated with Earth's PVP geometry, not a
 physical body or cause of motion.
+
+The current internal Mercury/Venus branches are:
+
+```text
+Sun
+├─ Venus deferent
+│  └─ Venus Plane
+│     └─ Venus
+└─ Mercury deferent
+   └─ Mercury Plane
+      └─ Mercury
+```
+
+Each body receives the Sun's translation through normal parent inheritance. Its
+single deferent supplies the local counterrotation and body-specific centre,
+radius or tilt that the descendant plane/orbit still needs.
 
 ## Why another migration was needed
 
@@ -71,10 +83,13 @@ body world position
 The child no longer repeats the Sun's radius-100 movement. It receives the Sun's
 world position from its parent and contributes only what is unique to its branch.
 
-## Direct carrier settings
+## Direct carrier settings: migration history and current scope
 
-The migrated carriers are `mars-deferent-e`, `mercury-deferent-a`,
-`venus-deferent-a` and `eros-deferent-a`. Their `orbitRadius` is now zero.
+The equivalence migration originally created `mars-deferent-e`,
+`mercury-deferent-a`, `venus-deferent-a` and `eros-deferent-a` as direct
+parent-relative carriers. That is historical derivation information, not the
+current Mercury/Venus structure. Today only Mars and Eros use the specialized
+parent-relative carrier evaluator.
 
 The direct annual residual uses:
 
@@ -100,6 +115,33 @@ The original residual was not an empirical correction fitted to JPL. It was the 
 algebraic remainder of the accepted predecessor. A later physical experiment may
 try to explain or simplify it, but it must not be silently discarded during the
 migration.
+
+### Current Mercury and Venus reduction
+
+The former Mercury/Venus A carriers, B/secondary records and special
+`MercurySunRelativeOrbit.jsx` / `VenusSunRelativeOrbit.jsx` components have been
+removed. Their active model records now own only:
+
+```text
+motion.deferent
+motion.plane
+motion.orbit
+```
+
+For Venus, the former A-carrier centre was transformed into the local basis and
+absorbed into the Venus plane centre. The resulting plane centre is
+`(-1.322868312130857, 0.846478306956517, 0.0028256060705597465)` in the JSON
+`a/b/c` fields. For Mercury, the former A vertical offset was transferred to the
+plane as `orbitCenterc = -0.5`.
+
+The retained deferents use an annual `-2π` speed to cancel the inherited annual
+orientation of the Sun without cancelling its inherited world position. Venus
+also retains its local radius `0.6` and tilt `0.03`; Mercury retains its local
+centre and `-0.3` tilt. These stages therefore encode real local geometry and are
+not redundant placeholder objects.
+
+No JPL fit was used to derive the transferred centres. JPL was used only after
+the refactor to measure its observational effect.
 
 ## Original common annual residual: historical restoration reference
 
@@ -204,17 +246,18 @@ residual comes from its own former carrier plane and is not the same common term
 
 ## Inheritance semantics
 
-The relative-frame adapter inherits the Sun's world **position** while retaining
-the binary frame's axes for the accepted local orbital orientation. Blindly
-inheriting every Sun rotation would rotate the child orbital planes again and is
-not equivalent to the established TYCHOS geometry.
+The remaining specialized relative-frame adapters inherit the Sun's world
+**position** while retaining the binary frame's axes for their accepted local
+orientation. Mercury and Venus no longer use those adapters: they inherit through
+the normal render tree, and their local deferents explicitly counterrotate the
+orientation that should not propagate into their orbital planes.
 
 The remaining local stages are still meaningful:
 
 - Mars deferent S and the Mars leaf define the companion path.
-- Mercury/Venus deferent B, fixed plane and leaf define their local paths.
+- Mercury/Venus single deferent, fixed plane and leaf define their local paths.
 - Eros deferent B and leaf define its local path.
-- Mercury deferent B has zero radius but a non-zero centre/orientation and is not
+- Mercury's current deferent has zero radius but a non-zero centre/orientation and is not
   an identity transform.
 
 ## Settings and import contract
@@ -235,8 +278,10 @@ action writes a complete reusable unified model.
 
 Mercury, Venus and Mars have no `relativeAnnual*` properties. Eros retains those
 fields because its distinct non-zero harmonic remains active and is exposed in
-Edit Settings. Imports that try to restore any former radius-100 absolute carrier
-are rejected. Stable component IDs and legacy-name imports remain supported.
+Edit Settings. Imports that try to restore former radius-100 Mars/Eros carriers
+are rejected. Retired Mercury/Venus A/B entries are filtered so they cannot
+silently recreate the deleted hierarchy. Other stable-ID and legacy-name imports
+remain supported.
 
 ## Verification
 
@@ -268,6 +313,20 @@ ephemeris file is its generation timestamp. This completes the structural
 migration without a scientific coordinate change. The active zero-residual
 settings are a subsequent, intentional ephemeris refinement and are not expected
 to pass this exact-equivalence gate.
+
+The later Mercury/Venus simplification passes `72` tests across `14` suites and
+the production build. Its matched `1800-2026` daily apparent true-of-date
+comparison produced the following changes against the immediately preceding
+hierarchy:
+
+| Body | RA RMS | Dec RMS | Angular mean | Angular RMS |
+|---|---:|---:|---:|---:|
+| Mercury | `14.5%` better | `1.1%` better | `10.3%` better | `11.7%` better |
+| Venus | `1.5%` better | `46.0%` better | `13.2%` better | `9.5%` better |
+
+Mercury's signed declination mean moved from `+0.188732°` to `+0.347652°` even
+though declination RMS improved slightly. The refactor is therefore accepted as a
+strong overall result with that explicit remaining tradeoff.
 
 ## Moon geometry refinement
 
@@ -328,7 +387,7 @@ methodology, distance audit, interpretation limits and rejected experiments.
 The clean hierarchy makes later questions easier to isolate:
 
 - whether Mercury and Venus should share a physically defined solar-equatorial
-  plane;
+  plane while preserving the now-simplified local branches;
 - whether any direct annual residual has a simpler TYCHOS geometric explanation;
 - whether a local deferent can be removed without losing accepted observables;
 - how transit-relative Mercury/Venus observables behave; and

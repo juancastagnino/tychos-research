@@ -138,6 +138,22 @@ The full migration converted Mars, Mercury, Venus and Eros into genuinely
 Sun-relative definitions. Their descendants inherit the Sun's world position
 and contribute only their local centre, orientation and motion.
 
+A later simplification completed this idea for Mercury and Venus. Their temporary
+parent-relative A carriers, separate B/secondary records and body-specific JSX
+adapters were removed. The active branches are now ordinary declarative chains:
+
+```text
+Sun
+├─ Venus deferent -> Venus Plane -> Venus
+└─ Mercury deferent -> Mercury Plane -> Mercury
+```
+
+The Sun supplies world position through parent inheritance. Each remaining local
+deferent counterrotates the inherited annual orientation and retains only the
+radius, centre or tilt required by that body. Mars and Eros continue to use the
+specialized parent-relative carrier mechanism because their established geometry
+has not undergone the same reduction.
+
 The change was performed in stages:
 
 1. Build the declarative hierarchy while preserving the old numerical paths.
@@ -179,9 +195,10 @@ The Save Settings and Load Settings paths were repaired so researchers can:
 - reload that model later; and
 - recover the same hierarchy and numerical state.
 
-Stable component IDs and selected legacy names remain for import compatibility,
-but obsolete absolute carrier files are rejected where silently mixing them with
-the parent-relative model would be unsafe.
+Stable component IDs and selected legacy names remain for import compatibility.
+Obsolete Mars/Eros absolute carriers are rejected where mixing them with the
+parent-relative model would be unsafe. Retired Mercury/Venus A/B records are
+filtered so old settings cannot silently reconstruct the removed hierarchy.
 
 ## Reference-frame investigation
 
@@ -303,8 +320,37 @@ geometrically viable and that Mercury and Venus should not be forced onto one
 identical numerical plane.
 
 Separate explicit plane objects were later introduced as an equivalence-preserving
-architectural expression. In the final native hierarchy they are solar moons
-under the Sun branch, with local motion stages preserving their accepted paths.
+architectural expression. An intermediate migration still used special A/B
+carrier stages and custom Sun-relative components. Those layers have now been
+reduced to one deferent, one plane and one orbit for each body.
+
+Venus's former A-carrier centre was algebraically expressed in the new local
+basis and absorbed into the Venus plane. Mercury's former A vertical offset was
+transferred into its plane. These transformations were derived from the prior
+model rather than fitted against JPL.
+
+In the final native hierarchy they are direct solar moons under the Sun branch:
+they inherit the Sun's translation normally, while their local deferents cancel
+only the unwanted inherited annual orientation. The deferents remain necessary
+because Venus still has its own small radius and tilt, and Mercury retains a
+non-zero centre and tilt.
+
+Long validation from `1800-06-21` through `2026-06-21` at one-day cadence found:
+
+| Body / metric | Previous hierarchy | Current hierarchy | Change |
+|---|---:|---:|---:|
+| Mercury RA RMS | `2.620184°` | `2.241029°` | `14.5%` better |
+| Mercury Dec RMS | `0.998030°` | `0.987340°` | `1.1%` better |
+| Mercury angular mean | `2.148367°` | `1.926522°` | `10.3%` better |
+| Mercury angular RMS | `2.690188°` | `2.375774°` | `11.7%` better |
+| Venus RA RMS | `0.422059°` | `0.415547°` | `1.5%` better |
+| Venus Dec RMS | `0.209577°` | `0.113124°` | `46.0%` better |
+| Venus angular mean | `0.355078°` | `0.308311°` | `13.2%` better |
+| Venus angular RMS | `0.447191°` | `0.404515°` | `9.5%` better |
+
+Mercury's signed mean declination bias worsened from `+0.188732°` to
+`+0.347652°`, despite the slight declination-RMS improvement. This is the main
+known tradeoff in an otherwise clearly better overall comparison.
 
 Mercury's longitude remains more difficult than its latitude. Transit-focused
 validation is more informative than assuming every moment of its geocentric JPL
@@ -495,6 +541,9 @@ interpretation remains a separate discussion with the TYCHOS authors.
 ## Current status and recommended next work
 
 The native binary hierarchy and single-file astronomical core are established.
+Mercury and Venus now use the accepted compact `deferent -> plane -> orbit`
+structure and the implementation passes `72` tests across `14` suites plus the
+production build.
 The current compact Moon should be preserved as the accepted modern experimental
 baseline. Both solar-coupled radii and the equant geometry are declared in the
 single model file and pass through the normal settings workflow.
@@ -505,7 +554,8 @@ Recommended future work includes:
    and completed `1800-2026` validation together.
 2. Complete dense independent validation for the retained Jupiter, Saturn and
    Mars refinements.
-3. Continue transit-focused Mercury validation.
+3. Validate the compact Mercury/Venus hierarchy on the dense modern interval and
+   continue transit-focused Mercury validation.
 4. Investigate remaining annual and approximately `202-206` day Moon residuals
    only after identifying an explicit internal geometric relationship.
 5. Continue separating reference-frame questions from orbital tuning.

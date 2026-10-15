@@ -6,9 +6,9 @@ import json
 import math
 import re
 from collections import defaultdict
-from datetime import datetime
 from pathlib import Path
 import numpy as np
+from astro_time import parse_iso
 
 def wrap_deg(x):
     return (x + 180.0) % 360.0 - 180.0
@@ -41,7 +41,7 @@ def read_comparison(path, reference='apparent-of-date', source='jpl'):
         if missing:
             raise ValueError(f'Missing required columns: {sorted(missing)}')
         for r in reader:
-            rows.append({'date': datetime.strptime(r['date'], '%Y-%m-%d %H:%M:%S'), 'ty_ra_deg': float(r['ty_ra_deg']), 'ty_dec_deg': float(r['ty_dec_deg']), 'jpl_ra_deg': float(r[columns['ra']]), 'jpl_dec_deg': float(r[columns['dec']]), 'ddec_deg': float(r[columns['ddec']]), 'sep_deg': float(r[columns['sep']])})
+            rows.append({'date': parse_iso(r['date']), 'ty_ra_deg': float(r['ty_ra_deg']), 'ty_dec_deg': float(r['ty_dec_deg']), 'jpl_ra_deg': float(r[columns['ra']]), 'jpl_dec_deg': float(r[columns['dec']]), 'ddec_deg': float(r[columns['ddec']]), 'sep_deg': float(r[columns['sep']])})
     if not rows:
         raise ValueError('No rows found in comparison CSV')
     return rows

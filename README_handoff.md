@@ -15,10 +15,10 @@ changing any accepted orbit:
 - Earth supplies the PVP motion.
 - The Sun inherits Earth and supplies the solar-system position.
 - Mars, Mercury, Venus and Eros inherit the Sun's world position.
-- Their former absolute radius-100 A/E carriers have been replaced by direct
-  parent-relative centres and local motion terms.
-- Their local S/B stages, fixed planes and body orbits retain the accepted values
-  and matrix order.
+- Mars and Eros retain the direct parent-relative carrier mechanism established
+  during the equivalence migration.
+- Mercury and Venus no longer use special parent-relative A carriers or separate
+  B/secondary records. Each now has one local deferent, one plane and its orbit.
 - Jupiter, Saturn, Uranus, Neptune, Pluto and Halley were already Sun-hosted.
 - The Moon remains Earth-hosted; Phobos and Deimos remain Mars-hosted.
 
@@ -36,8 +36,8 @@ SystemCenter
    └─ Sun-Mars Binary Frame
       └─ Sun Primary -> Sun
          ├─ Mars Junior Companion -> Phobos / Deimos
-         ├─ Venus Senior Solar Companion
-         ├─ Mercury Junior Solar Companion
+         ├─ Venus Senior Solar Moon
+         ├─ Mercury Junior Solar Moon
          ├─ Jupiter / Saturn / Uranus / Neptune / Pluto
          ├─ Halley
          └─ Eros
@@ -47,6 +47,36 @@ SystemCenter
 barycentre. The model remains Tychonic: Earth follows the PVP path, the Sun is
 positioned relative to Earth, and the solar subsystem is organized beneath the
 Sun.
+
+### Current Mercury/Venus simplification
+
+The accepted active branches are now:
+
+```text
+Sun Primary
+├─ Venus deferent
+│  └─ Venus Plane
+│     └─ Venus
+└─ Mercury deferent
+   └─ Mercury Plane
+      └─ Mercury
+```
+
+The single deferent in each branch counterrotates the annual orientation inherited
+from the Sun while retaining necessary local geometry. It is not a duplicated Sun
+orbit. Venus retains a small local radius and tilt; Mercury retains a non-zero
+centre and tilt. Consequently these stages cannot be deleted merely because both
+bodies are children of the Sun.
+
+The former Venus A-carrier centre was algebraically transformed into the Venus
+plane centre. Mercury's former A vertical offset was moved into the Mercury plane.
+These translations were derived from the prior geometry, not fitted to JPL. Old
+Mercury/Venus A/B component IDs are now treated as retired import data so an old
+settings file cannot silently reconstruct the removed hierarchy.
+
+The latest source verification passes `72` tests across `14` suites, and the
+production build passes with only the pre-existing third-party MediaPipe
+source-map warnings.
 
 ## What is genuinely different
 
@@ -61,9 +91,9 @@ their owning body's `motion` object, but they are no longer declared as celestia
 bodies. Stable component IDs are retained for runtime and legacy import
 compatibility.
 
-Previously the code evaluated each affected body from its old absolute chain and
-subtracted the current Sun chain at runtime. Now the settings themselves contain
-the already-derived parent-relative quantities:
+The first full-binary migration evaluated each affected body from its old absolute
+chain and expressed the result relative to the Sun. Mars and Eros still use the
+resulting parent-relative carrier quantities:
 
 ```text
 body world position
@@ -73,23 +103,21 @@ body world position
   + local deferent / plane / body orbit
 ```
 
-The migrated carrier IDs are:
+The active parent-relative carrier IDs are:
 
 - `mars-deferent-e`
-- `mercury-deferent-a`
-- `venus-deferent-a`
 - `eros-deferent-a`
 
-All four have `orbitRadius: 0`. Only Eros retains `relativeAnnualCos*` and
-`relativeAnnualSin*`, because its distinct non-zero harmonic was not part of the
-common-residual removal. The normal phase, speed and tilt fields retain the local
-orientation basis required by descendant stages.
+Both have `orbitRadius: 0`. Only Eros retains `relativeAnnualCos*` and
+`relativeAnnualSin*`. Mercury and Venus now use ordinary declarative
+`motion-stage` nodes and no longer pass through `nativeRelativeCarrier.js` or
+body-specific Sun-relative JSX adapters.
 
-Old absolute-carrier files are rejected for these four entries rather than being
-silently mixed with the new model. Other stable-ID and legacy-name imports remain
-supported.
+Old absolute-carrier files are rejected for Mars and Eros rather than being
+silently mixed with the new model. Retired Mercury/Venus A/B entries are ignored
+safely. Other stable-ID and legacy-name imports remain supported.
 
-## Verification completed
+## Original schema-v3 verification completed
 
 The schema-v3 single-file migration was re-exported over the complete baseline
 grid on 2026-10-06. It is numerically identical to the immediately preceding
@@ -137,10 +165,25 @@ scientific comparison is valid. Keep this reference product identical in future
 before/after comparisons; do not compare these values directly with an ICRF
 report set. Use `compare_summary_metrics.py` for current report baselines.
 
-The structural migration is complete. The active zero-residual refinement improves
-several mean biases but worsens angular RMS by `0.42%` for Mercury, `3.0%` for
-Venus and `3.9%` for Mars. The decision currently prioritizes the cleaner geometry
-and mean values; local refinement and independent-interval validation remain open.
+The structural migration is complete. The later Mercury/Venus simplification is
+also a scientific improvement on the matched long comparison:
+
+| Body / metric | Previous hierarchy | Current hierarchy | Change |
+|---|---:|---:|---:|
+| Mercury RA RMS | `2.620184°` | `2.241029°` | `14.5%` better |
+| Mercury Dec RMS | `0.998030°` | `0.987340°` | `1.1%` better |
+| Mercury angular mean | `2.148367°` | `1.926522°` | `10.3%` better |
+| Mercury angular RMS | `2.690188°` | `2.375774°` | `11.7%` better |
+| Venus RA RMS | `0.422059°` | `0.415547°` | `1.5%` better |
+| Venus Dec RMS | `0.209577°` | `0.113124°` | `46.0%` better |
+| Venus angular mean | `0.355078°` | `0.308311°` | `13.2%` better |
+| Venus angular RMS | `0.447191°` | `0.404515°` | `9.5%` better |
+
+These results cover `1800-06-21` through `2026-06-21`, one-day cadence,
+`82,546` matched samples, using JPL apparent true-of-date. Mercury's signed mean
+declination bias increased from `+0.188732°` to `+0.347652°`, although its
+declination RMS improved slightly. This tradeoff must remain visible in future
+evaluation.
 
 ## Retained Pluto, Jupiter, Saturn and Mars refinements
 
@@ -391,9 +434,9 @@ report sets as the accepted Moon research baseline.
 | File | Responsibility |
 |---|---|
 | `src/settings/celestial-model.json` | Single source: bodies, hierarchy, editor groups and all numerical motion parameters |
-| `src/utils/nativeRelativeCarrier.js` | Direct centre/residual/orientation evaluator |
+| `src/utils/nativeRelativeCarrier.js` | Direct centre/residual/orientation evaluator for the remaining Mars/Eros carrier branches |
 | `src/utils/celestialSettingsSchema.js` | Serialization and safe import rules |
-| `src/components/*SunRelativeOrbit.jsx` | Local branch stages beneath the Sun |
+| `src/components/SunMarsRelativeOrbit.jsx`, `ErosSunRelativeOrbit.jsx` | Remaining specialized parent-relative branches beneath the Sun |
 | `scripts/` | Maintained ephemeris workflow; see its local `README.md` |
 | `moon_model.md` | Complete Moon geometry, results and rejected experiments |
 
@@ -422,6 +465,11 @@ report sets as the accepted Moon research baseline.
   geometry.
 - Do not tune parameters until the fresh-export equivalence gate passes.
 - Do not restore radius-100 carriers beneath the Sun.
+- Do not restore the retired Mercury/Venus A/B hierarchy. Their accepted active
+  form is `deferent -> plane -> orbit` beneath the Sun.
+- Do not split Sun translation and orientation merely to hide all planetary
+  deferents. Several deferents retain body-specific radius, centre or tilt; moving
+  those values into a body record would rename the geometry rather than remove it.
 - Do not treat a zero-radius stage as redundant if it retains centre/orientation.
 - Keep reference-frame comparison separate from orbital tuning.
 - Preserve the baseline settings, exports, configuration and reports together.
