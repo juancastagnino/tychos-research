@@ -1,289 +1,283 @@
-# TYCHOS Moon geometry
+# TYCHOS Moon model
 
 ## Status
 
-The current Moon is a validated experimental TYCHOS geometry. It remains an
-Earth-hosted body and is generated entirely by the model hierarchy before right
-ascension, declination, distance or elongation are calculated. No fitted
-longitude term, lookup table, date-specific offset or post-export correction is
-used.
+This document describes the current experimental Moon implementation. It is the
+accepted baseline after successful dense modern and 226-year historical
+validation of the final pure-`2D` addition.
 
-The final configuration was developed on a dense `2000-2026` comparison and
-then independently validated from `1800-06-21` through `2026-06-21`. Its angular
-and distance performance remained stable across the full 226-year interval.
+The objective has never been to append a correction to the exported longitude.
+Every accepted change is part of the visible model geometry and is evaluated by
+the normal coordinate and ephemeris pipeline.
 
-## Hierarchy
+## Current functional hierarchy
 
 ```text
 Earth
-└─ Moon Node
-   └─ Moon Plane
-      └─ Moon Deferent A
-         └─ Solar-Coupled Lunar Geometry
-            ├─ 2D-M eccentric action
-            ├─ solar-variation action
-            ├─ anomalistic tangential action
-            └─ Moon Orbit
+└─ Lunar Nodal / Plane Frame
+   └─ Lunar Apsidal Frame / Geometry
+      ├─ Apsidal radial geometry
+      ├─ Lunar Apsidal Equant
+      └─ Solar-Coupled Lunar Frame
+         ├─ 2D-M eccentric contribution
+         ├─ 2D solar-variation contribution
+         └─ Moon Orbit
 ```
 
-These intermediate stages are geometric motions, not additional celestial
-bodies. The same hierarchy drives the rendered Moon, physical-scale coordinate
-Moon, plot/export model and Edit Settings data.
+The renderer may nest the equant and orbit objects in the exact order needed by
+Three.js transformations. The diagram above describes their astronomical roles,
+not merely their JSX nesting.
 
-## Plane and node
+## 1. Nodal and plane geometry
 
-The investigation began by correcting the original Moon declination problem.
-The Moon's inclination is no longer treated only as a static tilt on the final
-orbit. `Moon Plane` defines the inclined orbital plane, while `Moon Node`
-controls its changing orientation. This made the intended lunar geometry
-explicit and substantially improved declination without altering exported
-coordinates afterward.
+The original declination problem was addressed by making two different ideas
+explicit:
 
-## How residual analysis was used
+- the **plane inclination** sets how much the lunar orbital plane is tilted;
+- the **node** sets the direction of the line about which that plane is tilted
+  and lets that direction regress over time.
 
-Residual spectra exposed recurring structures near the anomalistic month,
-approximately `31.8` days, approximately `14.8` days and one year. These were
-used only as diagnostic fingerprints. Their measured periods were never inserted
-into the astronomical model.
+This is a genuine geometrical construction. The Moon remains Earth-hosted and
+travels in an explicitly oriented plane instead of receiving a final declination
+offset.
 
-An implementation such as the following is explicitly rejected:
-
-```text
-moon longitude += fittedAmplitude * sin(fittedPeriod * time + fittedPhase)
-```
-
-Instead, every retained cycle emerges from rotations and directions already
-present in the Sun-Earth-Moon geometry.
-
-## Coordinated anomalistic geometry
-
-`Moon Deferent A` and the final Moon orbit form a coordinated phase pair. The
-retained phases are:
-
-```text
-Moon Deferent A startPos: 167.51°
-Moon orbit startPos:      318°
-```
-
-Changing one without the other produced a large global orientation error. Their
-successful paired behavior confirmed that the deferent performs a necessary
-geometric role.
-
-A large deferent radius supplied useful angular action but nearly doubled the
-physical distance excursion. Reducing that radius corrected distance but
-removed the angular action. The final model therefore separates those two jobs.
-
-## Solar-coupled `2D-M` geometry
-
-The solar-coupled stage derives its direction from:
-
-- the actual Earth-to-Moon direction;
-- the actual Earth-to-Sun direction; and
-- the Moon's existing anomalistic phase.
-
-If `D` denotes lunar elongation and `M` anomalistic phase, the relationship has
-the form `2D-M`. It is not evaluated as a correction to longitude. Its geometric
-centre is oriented relative to the Moon direction:
-
-```text
-Moon direction + (2D-M)
-```
-
-Treating `2D-M` as an absolute direction was rejected because it introduced
-artificial cycles near `202-206` days. Using the Moon-relative orientation
-removed that reference-frame error.
-
-The retained amplitude is:
-
-```json
-"Moon Solar-Coupled Eccentric": {
-  "orbitRadius": "-0.0055"
-}
-```
-
-### Final radial reflection
-
-Point-by-point distance auditing revealed that this vector's tangential action
-was beneficial but its Earth-Moon radial action had the wrong orientation. The
-vector is now decomposed relative to the instantaneous Earth-Moon direction:
-
-- its tangential component is preserved;
-- its radial component is reflected across the instantaneous lunar tangent.
-
-This is performed on the model-space displacement before the Moon coordinates
-are derived. It is an explicit geometric reflection, not a distance correction.
-
-Three controlled states were tested:
-
-1. Original radial action.
-2. Radial-neutral projection.
-3. Reflected radial action.
-
-Radial suppression reduced distance RMS by about `43%` and improved every
-angular RMS metric. Full reflection retained those gains, further improved the
-angular metrics, and reduced the 2015 eclipse distance discrepancy from about
-`21,000 km` to about `5,400 km`. It was therefore retained.
-
-## Solar variation
-
-A second vector is derived from twice the actual lunar elongation:
-
-```text
-Moon direction + 2D
-```
-
-No half-synodic period is stored. The cycle emerges from the changing Sun and
-Moon directions. Its retained amplitude is:
-
-```json
-"Moon Solar Variation": {
-  "orbitRadius": "0.002"
-}
-```
-
-Reversing this complete vector improved some distance values but severely
-damaged angular accuracy. Suppressing only its radial component produced only a
-modest compromise. The accepted model therefore preserves this vector's
-original action and applies the radial reflection only to the `2D-M` stage.
-
-## Anomalistic tangential frame
-
-The physical `Moon Deferent A` radius was reduced to avoid excessive perigee and
-apogee excursion. A separate anomalistic tangential stage restores the required
-angular action:
-
-1. Read the apsidal direction generated by `Moon Deferent A`.
-2. Determine the instantaneous Earth-Moon radial direction.
-3. Remove the component parallel to that radius.
-4. Retain only the perpendicular displacement.
-
-The retained values are:
-
-```json
-"Moon Deferent A": {
-  "orbitRadius": "0.01131"
-},
-"Moon Anomalistic Tangential Frame": {
-  "orbitRadius": "0.01655"
-}
-```
-
-The tangential stage is equivalent to compound circular geometry whose radial
-components cancel while transverse components combine. It acts before export
-and does not modify RA or longitude directly.
-
-## Retained principal parameters
+Current principal values:
 
 | Component | Parameter | Value |
 |---|---|---:|
-| Moon Deferent A | `startPos` | `167.51°` |
-| Moon Deferent A | `speed` | `0.71015440177343` |
-| Moon Deferent A | `orbitRadius` | `0.01131` |
-| Moon orbit | `startPos` | `318°` |
-| Moon orbit | `speed` | `83.28521004` |
-| Solar-Coupled Eccentric | `orbitRadius` | `-0.0055` |
-| Solar Variation | `orbitRadius` | `0.002` |
-| Anomalistic Tangential Frame | `orbitRadius` | `0.01655` |
+| Lunar node | `startPos` | `-296°` |
+| Lunar node | `speed` | `-0.33780566` |
+| Lunar plane | `orbitTilta` | `0.1°` |
+| Lunar plane | `orbitTiltb` | `-5.2°` |
 
-The Moon speed was refined from `83.2851946` to `83.28521004` at the author's
-request. Over the dense modern interval this improved RA RMS by about `2.7%` and
-angular-separation RMS by about `1.5%`, with a small declination-RMS tradeoff.
+## 2. Apsidal geometry and the equant
 
-## Final long-interval validation
+The remaining large angular residual was dominated by the anomalistic lunar
+cycle, about `27.552` days. Static centre offsets could not solve it: they
+degraded right ascension, declination and angular separation together.
 
-```text
-Interval:  1800-06-21 through 2026-06-21
-Cadence:   1 day
-Samples:   82,546
-Reference: JPL apparent true-of-date
+The successful replacement is a classical **equant-like construction**. A ray
+advances uniformly as viewed from a small offset point and intersects the lunar
+orbit. The Moon still lies on a circular geometrical path, but its angular
+progress around the circle is non-uniform when viewed from Earth.
+
+This matters because the former experimental solution used a separate
+`moon-anomalistic-tangent` stage. That stage could improve angular position, but
+it split radial and tangential behaviour into separate pseudo-objects and made
+distance tuning difficult to interpret. The equant expresses both effects as
+one coherent circle-and-ray geometry.
+
+Current apsidal values:
+
+| Component | Parameter | Value |
+|---|---|---:|
+| Lunar apsidal deferent | `startPos` | `167.51°` |
+| Lunar apsidal deferent | `speed` | `0.71015440177343` |
+| Lunar apsidal deferent | `orbitRadius` | `0.01407` |
+| Lunar apsidal equant | `orbitRadius` | `0.01407` |
+
+The equant reduced the principal `27.552`-day residual amplitude from about
+`3.006°` to about `0.027°`, a reduction of roughly `99.1%`.
+
+## 3. One solar-coupled lunar frame
+
+After the anomalistic residual was removed, a stable signal associated with the
+Sun-Moon angular relationship became visible. Instead of restoring several
+independent hierarchy objects, the current model uses one solar-coupled frame
+with two small vector contributions:
+
+### `2D-M` eccentric contribution
+
+`D` is the Moon's elongation from the Sun and `M` is the Moon's anomalistic
+phase. The `2D-M` contribution moves the lunar orbital centre according to those
+already existing geometrical directions. It is not driven by a separately
+fitted calendar period.
+
+Current value:
+
+```json
+"orbitRadius": "-0.0055"
 ```
+
+### Pure `2D` variation contribution
+
+Once the equant and `2D-M` geometry were active, the remaining longitude error
+contained an exceptionally stable pure-`2D` term:
+
+- the internal synodic period of `D` was `29.530623` days;
+- therefore the internal `2D` period was `14.765312` days;
+- the observed residual FFT peak was `14.768468` days;
+- its amplitude was about `0.483°` and its phase was stable across the modern
+  interval;
+- it explained about `74%` of the remaining ecliptic-longitude residual
+  variance before implementation.
+
+The same phase was recovered from TYCHOS's own Sun and Moon directions. The
+runtime model therefore derives the vector from its internal geometry; it does
+not consult JPL and it does not store the FFT period.
+
+Current value:
+
+```json
+"solarVariationRadius": "0.002168"
+```
+
+After implementation, the exact pure-`2D` residual amplitude fell to about
+`0.0033°`, roughly a `99.3%` removal. A nearby `14.791`-day FFT peak remains at
+only about `0.034°`; it is a sideband or modulation, not evidence that the main
+`2D` vector should be retuned.
+
+## Relation to established lunar terminology
+
+The arguments themselves are not invented names. A NASA lunar-properties table
+lists the classical **variation** as a term proportional to `sin(2D)` and
+**evection** as a term proportional to `sin(2D-g)`, where `g` is the Moon's mean
+anomaly. In the notation used here, `g` plays the role of the anomalistic phase
+`M`.
+
+This is useful independent confirmation that `2D` and `2D-M` are meaningful
+solar-lunar geometrical relationships. It does **not** mean that NASA validates
+the TYCHOS physical interpretation: conventional lunar theory treats them as
+solar gravitational inequalities, whereas this experimental TYCHOS model
+expresses their observable geometry through moving frames and centre vectors.
+
+Reference: NASA Technical Reports Server, *Lunar Sourcebook precursor material*,
+document 19830003839:
+https://ntrs.nasa.gov/api/citations/19830003839/downloads/19830003839.pdf
+
+## 4. Moon orbit
+
+| Parameter | Value |
+|---|---:|
+| `startPos` | `318°` |
+| `speed` | `83.28521004` |
+| `orbitRadius` | `0.25695552897999907` |
+
+The small speed refinement was supplied by the TYCHOS author and retained
+because it improves long-cycle return behaviour.
+
+## Modern validation result
+
+The current model was compared with JPL apparent true-of-date ephemerides from
+`2000-06-21` to `2026-06-21`, at three-hour cadence (`75,969` samples).
+
+| Metric | Previous equant + `2D-M` baseline | Current model | RMS improvement |
+|---|---:|---:|---:|
+| Right ascension, mean (RMS) | `-0.230206° (0.461128°)` | `-0.230071° (0.309603°)` | `32.9%` |
+| Declination, mean (RMS) | `-0.001440° (0.240061°)` | `-0.001538° (0.205922°)` | `14.2%` |
+| Angular separation, mean (RMS) | `0.449581° (0.501149°)` | `0.326085° (0.361032°)` | `28.0%` |
+
+The mean angular separation improved by about `27.5%`. Full-year angular RMS
+values remain stable across the modern interval, approximately `0.321°` to
+`0.413°`.
+
+## Historical validation
+
+An independent daily comparison from `1800-06-21` to `2026-06-21` used `82,546`
+timestamps and the same JPL apparent true-of-date reference:
 
 | Coordinate | Mean difference | RMS |
 |---|---:|---:|
-| Right ascension | `-0.208457°` | `0.290102°` |
-| Declination | `-0.001203°` | `0.203615°` |
-| Angular separation | `0.309363°` | `0.345048°` |
+| Right ascension | `-0.208460°` | `0.295290°` |
+| Declination | `-0.001161°` | `0.203339°` |
+| Angular separation | `0.312773°` | `0.348833°` |
 
-The dominant remaining RA structure is annual at approximately `0.186°`. The
-formerly dominant solar-coupled and half-synodic structures were substantially
-reduced by separate geometric elements.
+The historical RMS values are slightly lower than the dense modern results:
+approximately `4.6%` lower for RA, `1.3%` lower for declination and `3.4%` lower
+for angular separation. The improvement therefore transfers across more than two
+centuries rather than being confined to the development window.
 
-## Distance validation
+The largest remaining historical RA signals are annual (`365.248` days, about
+`0.186°`), approximately `205.850` days (`0.158°`), and `31.810` days
+(`0.099°`). The former dominant anomalistic and pure-`2D` errors are no longer
+the leading residuals.
 
-Across the same 82,546 timestamps:
+## Distance audit
 
-| Statistic | Result |
+For the same modern interval, compared point by point with JPL:
+
+| Distance statistic | Current result |
 |---|---:|
-| Mean TYCHOS minus JPL | `+37.3 km` |
-| RMS distance error | `5,711.1 km` |
-| Mean absolute error | `4,787.6 km` |
-| 95th-percentile absolute error | `11,572.7 km` |
-| Maximum absolute error | `14,276.3 km` |
+| Mean error | `+313 km` |
+| RMS error | `3,049 km` |
+| Mean absolute error | `2,722 km` |
+| 95th percentile absolute error | `4,722 km` |
+| Maximum absolute error | `5,447 km` |
 
-Long-interval extremes were:
+At the `2015-03-20` eclipse sample, TYCHOS gives approximately `353,059 km`
+versus JPL's `357,886 km`, an error of about `-4,827 km`.
 
-| Extreme | TYCHOS | JPL reference in the interval | Difference |
-|---|---:|---:|---:|
-| Minimum / perigee-like | `362,246 km` | about `356,396 km` | about `+5,850 km` |
-| Maximum / apogee-like | `412,537 km` | about `406,708 km` | about `+5,829 km` |
+The current interval extrema are approximately:
 
-Those accumulated extremes alone do not describe point-by-point performance.
-The mean bias is only `+37 km`; the remaining error comes from phase and
-interference among radial cycles rather than a simple fixed radius offset.
+- TYCHOS minimum: `351,884 km`; JPL at that timestamp: `356,812 km`;
+- TYCHOS maximum: `410,432 km`; JPL at that timestamp: `406,515 km`.
 
-For the 2015-03-20 solar eclipse, the dense three-hour comparison gave:
+The accepted configuration therefore favours a strong simultaneous reduction of
+angular and point-by-point distance errors, rather than forcing the isolated
+minimum and maximum distances to match at the expense of sky position.
 
-| Source | Distance near greatest eclipse |
+The historical distance audit is effectively identical to the modern one:
+
+| Historical distance statistic | Result |
 |---|---:|
-| TYCHOS | `363,275 km` |
-| JPL | `357,886 km` |
-| Difference | `+5,389 km` |
+| Mean error | `+315.0 km` |
+| RMS error | `3,048.7 km` |
+| Mean absolute error | `2,721.2 km` |
+| 95th percentile absolute error | `4,719.2 km` |
+| Maximum absolute error | `5,435.3 km` |
 
-Before radial reflection, that event differed by approximately `21,094 km`.
-The reflected geometry therefore reduced this particular discrepancy by about
-`74.5%`.
+The difference between modern and historical distance RMS is only `0.4 km`.
+This close agreement is strong evidence that the distance improvement is a
+property of the geometry rather than a local fit to 2000-2026.
 
-The modern `2000-2026` distance RMS was `5,706.5 km`; the independent
-`1800-2026` value was `5,711.1 km`. This near-identical performance across more
-than two centuries is strong evidence that the result is transferable rather
-than fitted to the modern interval.
+## Why this is better than the previous experimental hierarchy
 
-## Why this is TYCHOS-framework compatible
+The earlier version contained three visibly separate devices:
 
-- The Moon remains a child of Earth.
-- The Sun is used as a directional reference, not as the Moon's parent.
-- Every motion is evaluated inside the astronomical hierarchy.
-- No correction is applied to exported RA, declination, longitude or distance.
-- No observed residual period is stored as a forcing frequency.
-- The cycles change automatically if the underlying Sun or Moon geometry changes.
-- Parameters are ordinary geometric quantities: phase, speed and displacement
-  radius.
-- JPL is used to assess candidate geometry, not by the running simulator.
+```text
+moon-solar-eccentric
+moon-solar-variation
+moon-anomalistic-tangent
+```
 
-The precise solar-coupled construction is not claimed as a verbatim mechanism
-from the TYCHOS book. It is an explicit geometrical extension consistent with
-the project's method and remains open to physical interpretation by the authors.
+The current version is both simpler and more interpretable:
 
-## Important rejected experiments
+- the anomalistic tangential device is replaced by one equant geometry;
+- `2D-M` and pure `2D` are two contributions inside one solar-coupled frame,
+  not two apparent celestial objects;
+- all driving angles come from the current Sun-Moon-Earth and apsidal geometry;
+- no empirical period or final-coordinate correction is stored;
+- radial and angular behaviour can be audited at the level where it is created;
+- the editor hierarchy now describes astronomical roles rather than the history
+  of individual experiments.
 
-- Static Moon-orbit and deferent centre offsets worsened all angular RMS values.
-- A Moon-only eccentric stage gave negligible or negative improvement.
-- Treating `2D-M` as an absolute direction created artificial long cycles.
-- Changing only one member of the coordinated deferent/orbit phase pair caused
-  a large global orientation error.
-- A large deferent radius improved angles but nearly doubled radial excursion.
-- Reducing that radius without a tangential replacement restored a large
-  anomalistic angular residual.
-- Reversing the complete solar-variation vector improved distance but more than
-  doubled angular-separation RMS.
+This does not prove a unique physical cause. It does show that the dominant
+residuals can be represented compactly by geometrical relations that are already
+meaningful in lunar astronomy and are generated internally by TYCHOS.
 
-## Recommended status
+## Rejected or superseded approaches
 
-Treat this configuration as the accepted experimental Moon baseline. Preserve
-its settings, raw export, JPL product, analysis configuration, angular reports
-and distance audit together before any further refinement.
+- fixed eccentric offsets at the Moon-orbit and apsidal-deferent levels;
+- a lunar-only eccentric mechanism with no solar relationship;
+- an independently rotating centre whose period was inferred directly from an
+  FFT peak;
+- the separate `moon-anomalistic-tangent` pseudo-stage;
+- a separate hierarchy object for pure solar variation;
+- forcing distance extrema while allowing angular accuracy to degrade.
 
-The radial-reflection multiplier should be exposed as a named declarative model
-parameter rather than left only as an implementation constant. That will make
-the accepted geometry visible, editable and serializable in the same manner as
-the other Moon components.
+These failures are scientifically useful: they constrain the successful
+mechanism to one that distinguishes apsidal timing from solar-lunar geometry.
+
+## Validation status
+
+The final pure-`2D` state has passed the dense modern comparison, the independent
+`1800-2026` comparison and the software tests. The new historical report
+supersedes older long-interval figures from the equant-plus-`2D-M` configuration.
+
+Future acceptance gates should preserve:
+
+- the modern angular improvement;
+- the point-by-point distance improvement;
+- the node and plane declination solution;
+- geometrical derivation from internal model directions;
+- no fitted calendar period and no post-export correction.

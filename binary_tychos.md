@@ -271,22 +271,54 @@ to pass this exact-equivalence gate.
 
 ## Moon geometry refinement
 
-The structural migration enabled a deeper Moon refinement without changing the
-model's no-perturbation rule. The active Moon now includes explicit node and
-plane stages, solar-coupled geometry derived from actual Sun-Earth-Moon
-directions, and a tangential anomalistic stage that separates angular action
-from excessive radial excursion.
+The Moon refinement now uses a smaller and more coherent geometry. The node and
+plane remain explicit. The former separate `moon-anomalistic-tangent` stage has
+been replaced by a classical equant-like circle-and-ray construction, and the
+former separate solar-variation object has been folded into the same
+solar-coupled frame as the `2D-M` eccentric contribution:
 
-The final `2D-M` refinement preserves the successful tangential displacement
-while reflecting only its Earth-Moon radial projection. This geometric change
-reduced modern distance RMS from about `9,862 km` to `5,707 km`, reduced the
-2015 eclipse distance discrepancy from about `21,094 km` to `5,389 km`, and
-also improved RA, declination and angular-separation RMS.
+```text
+Earth
+└─ Lunar Nodal / Plane Frame
+   └─ Lunar Apsidal Frame / Geometry
+      ├─ Apsidal radial geometry
+      ├─ Lunar Apsidal Equant
+      └─ Solar-Coupled Lunar Frame
+         ├─ 2D-M eccentric contribution
+         ├─ 2D solar-variation contribution
+         └─ Moon Orbit
+```
 
-An independent daily validation from `1800-2026` returned RA RMS `0.290102°`,
-declination RMS `0.203615°`, angular-separation RMS `0.345048°` and distance RMS
-`5,711.1 km`. The near-identical modern and long-interval distance results show
-that the geometry transfers rather than merely fitting the development window.
+The equant reduced the dominant `27.552`-day anomalistic residual from about
+`3.006°` to `0.027°`. A subsequent diagnostic found a stable pure-`2D` residual:
+its period and phase were reproduced from the model's own Sun-Moon elongation,
+and no fitted calendar period is stored. Adding that vector to the existing
+solar-coupled frame reduced its exact residual amplitude from about `0.483°` to
+`0.0033°`.
+
+On the dense `2000-2026` apparent true-of-date comparison, the current Moon has
+RA mean/RMS `-0.230071° / 0.309603°`, declination mean/RMS
+`-0.001538° / 0.205922°`, and angular-separation mean/RMS
+`0.326085° / 0.361032°`. Relative to the immediately preceding equant-plus-
+`2D-M` baseline, RMS improved by `32.9%`, `14.2%` and `28.0%`, respectively.
+
+The modern point-by-point distance audit gives mean error `+313 km`, RMS
+`3,049 km`, and maximum absolute error `5,447 km`. At the `2015-03-20` eclipse
+sample the error is about `-4,827 km`.
+
+The argument forms are independently meaningful in standard lunar astronomy:
+NASA material lists lunar variation with `2D` and evection with `2D-g`, where
+`g` is lunar mean anomaly. This supports the selected relationships, but not a
+claim that NASA endorses the TYCHOS mechanism; here they are expressed through
+internal moving geometry rather than conventional analytical perturbations.
+
+The final pure-`2D` state was then independently validated from `1800-2026` at
+daily cadence (`82,546` samples). It returned RA mean/RMS
+`-0.208460° / 0.295290°`, declination mean/RMS
+`-0.001161° / 0.203339°`, and angular-separation mean/RMS
+`0.312773° / 0.348833°`. Historical distance RMS is `3,048.7 km`, only `0.4 km`
+different from the dense modern result. The geometry therefore transfers across
+more than two centuries without degradation.
 
 See [moon_model.md](moon_model.md) for the complete hierarchy, parameters,
 methodology, distance audit, interpretation limits and rejected experiments.

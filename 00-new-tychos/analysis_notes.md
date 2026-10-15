@@ -8,22 +8,22 @@ Read the [research README](../README.md) for the retained baselines and comparis
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: Moon solar variation phase reversal
+Export configuration: moon pluto new hierarchy vs JPL
 
-- RA: mean -0.208457 deg; RMS 0.290102 deg.
-- Declination: mean -0.001203 deg; RMS 0.203615 deg.
-- Angular separation: mean 0.309363 deg; RMS 0.345048 deg.
+- RA: mean -0.208460 deg; RMS 0.295290 deg.
+- Declination: mean -0.001161 deg; RMS 0.203339 deg.
+- Angular separation: mean 0.312773 deg; RMS 0.348833 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
-  - 365.248 days, approximately 0.1859 deg.
-  - 205.850 days, approximately 0.1239 deg.
-  - 14.764 days, approximately 0.0810 deg.
-  - 27.552 days, approximately 0.0699 deg.
+  - 365.248 days, approximately 0.1860 deg.
+  - 205.850 days, approximately 0.1575 deg.
+  - 31.810 days, approximately 0.0994 deg.
+  - 29.800 days, approximately 0.0393 deg.
 
 ## Sun — true-of-date apparent
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: Moon solar variation phase reversal
+Export configuration: moon pluto new hierarchy vs JPL
 
 - RA: mean 0.038748 deg; RMS 0.053270 deg.
 - Declination: mean 0.000304 deg; RMS 0.014186 deg.

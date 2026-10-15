@@ -17,6 +17,9 @@ using Python 3.11 or newer. The checkout directory may have a different name.
 | [scripts/](scripts/README.md) | Horizons download, comparison, analysis and report tools |
 | [scripts/machine_learning/](scripts/machine_learning/README.md) | Temporal and multi-body residual regression |
 | [scripts/stellarium/](scripts/stellarium/README.md) | Separate Stellarium export and validation workflow |
+| [tychos_project_summary.md](tychos_project_summary.md) | Complete project history, hierarchy, refinements and findings |
+| [binary_tychos.md](binary_tychos.md) | Native binary hierarchy and migration rationale |
+| [moon_model.md](moon_model.md) | Detailed Moon geometry and final validation |
 | `data/raw/` | Combined TYCHOS and Horizons input exports |
 | [data/docs/](data/docs/) | TYCHOS source material |
 | [reports/](reports/) | Current analysis reports |

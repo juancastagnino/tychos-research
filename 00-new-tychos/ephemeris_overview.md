@@ -6,8 +6,8 @@ Input status compares file hashes only; it does not verify which simulator setti
 
 | Body | JPL reference | Input status | Samples | Interval | RMS RA | RMS Dec | RMS separation | Export configuration |
 |---|---|---|---:|---|---:|---:|---:|---|
-| [moon](moon_apparent_of_date_ephemeris_report.md) | JPL Earth true-equator/equinox-of-date apparent RA/Dec (airless) | Current | 82546 | 1800-06-21 00:00:00 to 2026-06-21 00:00:00 | 0.290102° | 0.203615° | 0.345048° | Moon solar variation phase reversal |
-| [sun](sun_apparent_of_date_ephemeris_report.md) | JPL Earth true-equator/equinox-of-date apparent RA/Dec (airless) | Current | 82546 | 1800-06-21 00:00:00 to 2026-06-21 00:00:00 | 0.053270° | 0.014186° | 0.052883° | Moon solar variation phase reversal |
+| [moon](moon_apparent_of_date_ephemeris_report.md) | JPL Earth true-equator/equinox-of-date apparent RA/Dec (airless) | Current | 82546 | 1800-06-21 00:00:00 to 2026-06-21 00:00:00 | 0.295290° | 0.203339° | 0.348833° | moon pluto new hierarchy vs JPL |
+| [sun](sun_apparent_of_date_ephemeris_report.md) | JPL Earth true-equator/equinox-of-date apparent RA/Dec (airless) | Current | 82546 | 1800-06-21 00:00:00 to 2026-06-21 00:00:00 | 0.053270° | 0.014186° | 0.052883° | moon pluto new hierarchy vs JPL |
 | mercury | — | No analysis | — | — | — | — | — | — |
 | venus | — | No analysis | — | — | — | — | — | — |
 | mars | — | No analysis | — | — | — | — | — | — |

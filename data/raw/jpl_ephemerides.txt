@@ -1,5 +1,5 @@
 # TSN Horizons bundle
-# Downloaded UTC: 2026-10-12T16:13:22.839570+00:00
+# Downloaded UTC: 2026-10-14T03:31:02.654302+00:00
 
 # REQUEST BODY: sun
 # REQUEST URL: https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%2710%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%271800-06-21+00%3A00%27&STOP_TIME=%272026-06-21+00%3A00%27&STEP_SIZE=%271+d%27&QUANTITIES=%271%2C2%2C20%27&TIME_TYPE=%27UT%27&TIME_DIGITS=%27SECONDS%27&REF_SYSTEM=%27ICRF%27&ANG_FORMAT=%27HMS%27&EXTRA_PREC=%27YES%27&CSV_FORMAT=%27YES%27
@@ -9,7 +9,7 @@ API SOURCE: NASA/JPL Horizons API
 
 
 *******************************************************************************
-Ephemeris / API_USER Mon Oct 12 09:13:23 2026 Pasadena, USA      / Horizons    
+Ephemeris / API_USER Tue Oct 13 20:31:02 2026 Pasadena, USA      / Horizons    
 *******************************************************************************
 Target body name: Sun (10)                        {source: DE441}
 Center body name: Earth (399)                     {source: DE441}
@@ -33,8 +33,8 @@ Atmos refraction: NO (AIRLESS)
 RA format       : HMS
 Time format     : CAL 
 Calendar mode   : Mixed Julian/Gregorian
-EOP file        : eop.261009.p270105                                           
-EOP coverage    : DATA-BASED 1962-JAN-20 TO 2026-OCT-09. PREDICTS-> 2027-JAN-04
+EOP file        : eop.261013.p270109                                           
+EOP coverage    : DATA-BASED 1962-JAN-20 TO 2026-OCT-13. PREDICTS-> 2027-JAN-08
 Units conversion: 1 au= 149597870.700 km, c= 299792.458 km/s, 1 day= 86400.0 s 
 Table cut-offs 1: Elevation (-90.0deg=NO ),Airmass (>38.000=NO), Daylight (NO )
 Table cut-offs 2: Solar elongation (  0.0,180.0=NO ),Local Hour Angle( 0.0=NO )
@@ -82681,7 +82681,7 @@ API SOURCE: NASA/JPL Horizons API
 
 
 *******************************************************************************
-Ephemeris / API_USER Mon Oct 12 09:13:29 2026 Pasadena, USA      / Horizons    
+Ephemeris / API_USER Tue Oct 13 20:31:08 2026 Pasadena, USA      / Horizons    
 *******************************************************************************
 Target body name: Moon (301)                      {source: DE441}
 Center body name: Earth (399)                     {source: DE441}
@@ -82705,8 +82705,8 @@ Atmos refraction: NO (AIRLESS)
 RA format       : HMS
 Time format     : CAL 
 Calendar mode   : Mixed Julian/Gregorian
-EOP file        : eop.261009.p270105                                           
-EOP coverage    : DATA-BASED 1962-JAN-20 TO 2026-OCT-09. PREDICTS-> 2027-JAN-04
+EOP file        : eop.261013.p270109                                           
+EOP coverage    : DATA-BASED 1962-JAN-20 TO 2026-OCT-13. PREDICTS-> 2027-JAN-08
 Units conversion: 1 au= 149597870.700 km, c= 299792.458 km/s, 1 day= 86400.0 s 
 Table cut-offs 1: Elevation (-90.0deg=NO ),Airmass (>38.000=NO), Daylight (NO )
 Table cut-offs 2: Solar elongation (  0.0,180.0=NO ),Local Hour Angle( 0.0=NO )
