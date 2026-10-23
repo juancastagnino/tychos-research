@@ -1,5 +1,11 @@
 # Developer / AI handoff
 
+> Latest branch: `paired-radial-3d`. The lunar equant and blend control are absent; paired radial vectors are constructed in the moving lunar plane in `MoonSolarCoupledEccentric.jsx`, together with the solar-coupled geometry. See `moon_model.md` for results. Older lunar descriptions and distance figures below are historical, not validation of the present version.
+
+Mercury transit-focused candidate: plane `orbitCenterb = 0.6` instead of 4, with no new hierarchy element. Four transit-date samples improve relative to the preceding compact baseline and show smaller centre separations than `mercury-test`; the global RMS worsens. Three-hour sampling cannot validate contact times or complete paths. Preserve `00-mercury-test`, `00-paired-radial-3d` and the latest `00-mercury-iteration` for comparison.
+
+Shared-motion hypotheses are exploratory: similar FFT peaks are not evidence of a shared physical force. Compare matched epochs and frames, phase and direction, and held-out intervals before adding geometry. A common translation of observer and target cancels from their relative vector.
+
 This handoff describes the experimental **`full-send-binary-tychos`** branch. See
 [README.md](README.md) for analysis commands and [binary_tychos.md](binary_tychos.md)
 for the design rationale.
@@ -99,8 +105,8 @@ resulting parent-relative carrier quantities:
 body world position
   = inherited Sun world position
   + direct relative centre
-  + optional parent-relative annual harmonic
-  + local deferent / plane / body orbit
+  + declared local geometric stages
+  + body orbit
 ```
 
 The active parent-relative carrier IDs are:
@@ -108,10 +114,12 @@ The active parent-relative carrier IDs are:
 - `mars-deferent-e`
 - `eros-deferent-a`
 
-Both have `orbitRadius: 0`. Only Eros retains `relativeAnnualCos*` and
-`relativeAnnualSin*`. Mercury and Venus now use ordinary declarative
-`motion-stage` nodes and no longer pass through `nativeRelativeCarrier.js` or
-body-specific Sun-relative JSX adapters.
+Both have `orbitRadius: 0`. Mars has no active annual residual. Eros's former
+six-coefficient annual residual was replaced by the declared
+`eros-annual-centre-oscillation` stage: a single annual centre displacement
+with an explicit amplitude, axis and phase. Mercury and Venus now use ordinary
+declarative `motion-stage` nodes and no longer pass through
+`nativeRelativeCarrier.js` or body-specific Sun-relative JSX adapters.
 
 Old absolute-carrier files are rejected for Mars and Eros rather than being
 silently mixed with the new model. Retired Mercury/Venus A/B entries are ignored
@@ -434,7 +442,7 @@ report sets as the accepted Moon research baseline.
 | File | Responsibility |
 |---|---|
 | `src/settings/celestial-model.json` | Single source: bodies, hierarchy, editor groups and all numerical motion parameters |
-| `src/utils/nativeRelativeCarrier.js` | Direct centre/residual/orientation evaluator for the remaining Mars/Eros carrier branches |
+| `src/utils/nativeRelativeCarrier.js` | Direct centre/orientation evaluator for the remaining Mars/Eros carrier branches |
 | `src/utils/celestialSettingsSchema.js` | Serialization and safe import rules |
 | `src/components/SunMarsRelativeOrbit.jsx`, `ErosSunRelativeOrbit.jsx` | Remaining specialized parent-relative branches beneath the Sun |
 | `scripts/` | Maintained ephemeris workflow; see its local `README.md` |
@@ -459,10 +467,9 @@ report sets as the accepted Moon research baseline.
   layer.
 - The analysis and export code must remain observers of the astronomical core;
   they must not silently modify body coordinates to improve comparison metrics.
-- The retained Eros annual harmonic is a documented compatibility term inherited
-  from the equivalence migration. It is not precedent for adding fitted harmonics
-  to other bodies and should eventually be replaced only by demonstrated core
-  geometry.
+- Eros's annual centre oscillation is an explicit, visible geometric stage that
+  compresses the former compatibility harmonic. It is not precedent for adding
+  fitted harmonics or hidden output corrections to other bodies.
 - Do not tune parameters until the fresh-export equivalence gate passes.
 - Do not restore radius-100 carriers beneath the Sun.
 - Do not restore the retired Mercury/Venus A/B hierarchy. Their accepted active

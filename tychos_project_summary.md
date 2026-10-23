@@ -1,5 +1,9 @@
 # TYCHOS research and model-development summary
 
+> Current branch update: `paired-radial-3d` removes the lunar equant and uses a pair of radial displacement vectors in the lunar plane, alongside the apsidal and solar-coupled geometry. The detailed Moon section below describes the earlier equant model and its historical results, not the present branch. See `moon_model.md` for the current comparison and limitations.
+
+The compact Mercury deferent → plane → orbit hierarchy is retained. A transit-focused trial changed Mercury plane `orbitCenterb` from `4` to `0.6`: at the nearest 3-hour samples for the four 2003–2019 transits, the Sun–Mercury separation is smaller than for `mercury-test`, although this does not establish matching trajectories or timings. Global angular RMS is worse (2.862° versus 2.385° for the compact baseline). Fine-cadence and independent validation are pending.
+
 ## Purpose of this document
 
 This document summarizes the principal work completed during the TYCHOS and
@@ -312,6 +316,42 @@ preserving its established binary-companion geometry. The long comparison gave:
 The established `Mars deferent E orbitCenterb = -20` was retained rather than
 fractionally optimized because it is a directly meaningful TYCHOS value.
 
+The Mars hierarchy was also made semantically explicit:
+
+```text
+Mars Binary Annual Frame
+└─ Mars Long-Period Deferent
+   └─ Mars Orbit
+```
+
+Tests of an added equant and alternative apsidal arrangements did not materially
+lower the remaining RMS values. They were therefore rejected rather than being
+retained as extra complexity.
+
+### Eros
+
+Eros retains a Sun-relative annual frame, local deferent and orbit. During the
+parent-relative migration it also inherited a six-coefficient annual vector
+remainder needed to reproduce its previous path. Analysis showed that 99.92% of
+that contribution is a single annual displacement along one axis, rather than a
+general three-dimensional harmonic.
+
+The active hierarchy replaces those opaque coefficients with a visible
+geometrical stage:
+
+```text
+Eros Sun-Relative Annual Frame
+└─ Eros Annual Centre Oscillation
+   └─ Eros Local Deferent
+      └─ Eros Orbit
+```
+
+It translates Eros's local centre annually without rotating its orbit. In a
+daily direct TYCHOS-to-TYCHOS comparison across `1800-2026`, its angular RMS
+difference from the previous residual-era export is `0.1283°`, versus `5.5306°`
+when the old contribution is simply removed. This is a compatibility result, not
+a JPL-accuracy claim. `scripts/eros_residuals_analysis.py` preserves the check.
+
 ### Mercury and Venus
 
 Early work tested Mercury and Venus as solar satellites using the existing
@@ -356,7 +396,7 @@ Mercury's longitude remains more difficult than its latitude. Transit-focused
 validation is more informative than assuming every moment of its geocentric JPL
 curve should receive equal interpretive weight.
 
-## The Moon: from declination repair to solar-coupled geometry
+## Historical Moon development: equant configuration (superseded)
 
 The Moon became the clearest example of the project's method: use residuals to
 identify missing geometry, but never paste a fitted correction onto the exported

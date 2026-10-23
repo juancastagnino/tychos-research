@@ -1,5 +1,9 @@
 # Tychosium code architecture guide
 
+> Branch update: this guide's equant implementation and update-order descriptions are historical. In `paired-radial-3d` the equant is removed; `MoonSolarCoupledEccentric.jsx` computes the paired displacement in the apsidal parent's lunar plane as well as the solar-coupled displacement. Both influence the model, including coordinate/export evaluation. The previous 2D branch uses world XZ. Consult the current source before applying earlier file-by-file details below.
+
+Mercury keeps its ordinary Sun-hosted deferent, plane and orbit; the current transit-focused parameter experiment changes plane `orbitCenterb` to `0.6`. This is an experimental parameter adjustment, not a new adapter or demonstrated physical mechanism. See `binary_tychos.md` for comparison limitations.
+
 ## A note to the original developer
 
 The original Tychosium code is the foundation of all this work. The research
@@ -314,7 +318,7 @@ It also handles the existing Tychosium distinction between the enlarged display
 Moon and the hidden physical-coordinate Moon. The same nodal and plane settings
 drive both.
 
-### `src/components/MoonApsidalEquant.jsx`
+### Historical `src/components/MoonApsidalEquant.jsx` (removed from current branch)
 
 This component implements a classical geometrical equant. A uniformly rotating
 ray is viewed from an offset equant point and intersected with the circular lunar
@@ -370,11 +374,14 @@ current implementation it remains active only for Mars and Eros.
 This utility evaluates the parent-relative carrier data:
 
 - direct local centre;
-- optional annual vector remainder; and
 - local orientation basis.
 
-Mars has no annual remainder. Eros retains its distinct non-zero term. Mercury
-and Venus no longer pass through this evaluator.
+Mars has no annual remainder. Eros formerly used a six-coefficient annual vector
+remainder, but the active model replaces it with the separate declared
+`Eros Annual Centre Oscillation` stage in `ErosSunRelativeOrbit.jsx`. That stage
+uses an amplitude, phase, annual speed and normalized axis to translate the
+centre without rotating the local Eros orbit. Mercury and Venus no longer pass
+through this evaluator.
 
 ### `*SunRelativeOrbit.jsx`
 
@@ -384,8 +391,11 @@ The two active adapters are:
 - `ErosSunRelativeOrbit.jsx`.
 
 They place those local branches at the Sun and reconstruct their retained stages
-in the correct matrix order. Phobos and Deimos then inherit the final Mars frame
-naturally. Mercury and Venus now use ordinary declared `motion-stage` nodes.
+in the correct matrix order. Mars uses an annual binary frame followed by its
+long-period deferent; Eros uses its annual frame, declared annual centre
+oscillation and local deferent. Phobos and Deimos then inherit the final Mars
+frame naturally. Mercury and Venus now use ordinary declared `motion-stage`
+nodes.
 
 These files are not conventional perturbation models. They are coordinate
 adapters required because the hierarchy was changed from independent Earth-level

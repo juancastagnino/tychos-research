@@ -1,6 +1,24 @@
 # TYCHOS Moon model
 
-## Status
+> Current implementation: `paired-radial-3d` replaces the lunar equant with paired radial geometry in the lunar plane. The older detailed sections below describe the superseded equant configuration, including its distance and historical validation; do not attribute those results to the current branch.
+
+## Current paired-radial 3D configuration
+
+Earth → lunar nodal / plane frame → apsidal geometry → paired-radial and solar-coupled geometry → Moon. The editor groups the paired and solar settings separately; the current implementation evaluates both in `MoonSolarCoupledEccentric.jsx`. The equant is absent. The apsidal radius is `0.028147459454447972`; paired radius is `-0.007055` per vector; solar coupling uses `-0.0055` and `0.002168`. The Moon's base rotation rate remains constant; this does not imply that its resulting geocentric trajectory or speed is uniform.
+
+The pair is calculated in the moving lunar plane, using the uncorrected Earth–Moon direction and apsidal frame before the displacement is applied. It alters the modeled position, not only the export. It is a geometric construction, not proof of a physical breathing orbit or an explanation for its cause. The earlier `paired-radial` branch uses world XZ; the `lunarPlaneBlend` experiment has been removed from the 3D branch.
+
+For 2000-06-21–2026-06-21, 3-hour samples, JPL apparent true-of-date comparison gives the following RMS in degrees:
+
+| Metric | 2D | 3D |
+|---|---:|---:|
+| RA | 0.325625 | 0.322465 |
+| Declination | 0.249383 | 0.207025 |
+| Angular separation | 0.399335 | 0.371747 |
+
+These are angular results from `00-paired-radial` and `00-paired-radial-3d`, not a distance audit. Check distances separately; earlier equant distance results are not evidence for this configuration. Native Tychosium versus JPL apparent-of-date conventions remain a comparison limitation.
+
+## Historical equant configuration — superseded
 
 This document describes the current experimental Moon implementation. It is the
 accepted baseline after successful dense modern and 226-year historical

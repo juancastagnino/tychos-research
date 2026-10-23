@@ -1,5 +1,9 @@
 # tychos-research
 
+## Latest model update
+
+The current `paired-radial-3d` branch replaces the lunar equant with paired radial geometry in the lunar plane. Its 2000–2026 comparison and limitations are documented in [moon_model.md](moon_model.md). Mercury's plane `orbitCenterb = 0.6` is a transit-focused candidate; its results and remaining checks are in [binary_tychos.md](binary_tychos.md). Older equant and Mercury summary figures below describe earlier configurations.
+
 Independent research repository for comparing exported TYCHOS ephemerides with
 JPL Horizons, investigating residuals with interpretable regression, and
 preparing a separate Stellarium coordinate dataset. The Python tools and saved
@@ -251,3 +255,4 @@ TYCHOS exports; see the [Stellarium workflow](scripts/stellarium/README.md).
   interactive export and validation.
 
 The specialized workflow READMEs retain their Spanish research notes.
+

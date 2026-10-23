@@ -19,11 +19,22 @@ The simulator and model settings are maintained in a separate project.
 | `generate_report.py` | Render a per-body Markdown report |
 | `ephemeris_io.py` | Shared strict parsers for TYCHOS and Horizons exports |
 | `compare_summary_metrics.py` | Compare generated summary JSON files with any preserved baseline directory |
+| `eros_residuals_analysis.py` | Direct TYCHOS-to-TYCHOS comparison for Eros hierarchy experiments |
 | `requirements.txt` | Python dependencies |
 
 `run_analysis.py` is the normal entry point. The lower-level scripts are kept
 separate so they remain testable and reusable, but ordinarily should not be run
 by hand.
+
+`eros_residuals_analysis.py` deliberately sits outside the JPL workflow. It
+measures whether an experimental Eros geometry reproduces an accepted TYCHOS
+export at identical timestamps. By default it compares the accepted
+residual-era export with `eros_new_hierarchy.txt` under `00-new-tychos/`.
+
+```powershell
+.venv/Scripts/python.exe -B scripts/eros_residuals_analysis.py
+.venv/Scripts/python.exe -B scripts/eros_residuals_analysis.py --include-zero-residual
+```
 
 ## Tests
 

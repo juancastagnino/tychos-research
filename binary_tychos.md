@@ -1,5 +1,9 @@
 # Full binary TYCHOS implementation
 
+> Current branch update: `paired-radial-3d` has no lunar equant. The Moon uses apsidal geometry, a paired radial action in the lunar plane and solar-coupled geometry; see `moon_model.md` for parameters and results. Older equant descriptions and validation figures in this document refer to the historical configuration.
+
+The compact Mercury hierarchy remains Sun → deferent → plane → orbit. Its plane `orbitCenterb` was changed from `4` to `0.6` as a transit-focused candidate. At 3-hour samples nearest the 2003, 2006, 2016 and 2019 transit maxima, Sun–Mercury separations are 24.1′, 17.6′, 7.3′ and 5.3′; the older `mercury-test` gives 28.7′, 26.2′, 11.5′ and 17.1′. These are not timing or contact comparisons, nor proof of a transit. Global Mercury angular RMS worsens from 2.385° to 2.862°. Fine-cadence transit trajectories, foreground distance and independent dates remain to be verified.
+
 ## Purpose and status
 
 `full-send-binary-tychos` is an experimental completion of the accepted
@@ -276,12 +280,51 @@ motion terms owned by a body rather than entries in the astronomical body list.
 The Edit Settings panel follows this same body/component structure, and its Save
 action writes a complete reusable unified model.
 
-Mercury, Venus and Mars have no `relativeAnnual*` properties. Eros retains those
-fields because its distinct non-zero harmonic remains active and is exposed in
-Edit Settings. Imports that try to restore former radius-100 Mars/Eros carriers
-are rejected. Retired Mercury/Venus A/B entries are filtered so they cannot
-silently recreate the deleted hierarchy. Other stable-ID and legacy-name imports
-remain supported.
+Mercury, Venus and Mars have no `relativeAnnual*` properties. Eros also no
+longer stores six annual residual coefficients. Its former compatibility term is
+now represented by the visible `Eros Annual Centre Oscillation` stage, with one
+annual speed, one phase, one amplitude and a normalized spatial axis. Imports
+that try to restore former radius-100 Mars/Eros carriers are rejected. Retired
+Mercury/Venus A/B entries are filtered so they cannot silently recreate the
+deleted hierarchy. Other stable-ID and legacy-name imports remain supported.
+
+## Current Mars and Eros geometry
+
+Mars is retained as a deliberately asymmetric binary companion rather than being
+forced into the same minimal branch as an outer planet:
+
+```text
+Sun
+└─ Mars Binary Annual Frame
+   └─ Mars Long-Period Deferent
+      └─ Mars Orbit
+```
+
+The semantic names replaced the opaque former E/S carrier labels. Direct phase,
+centre and tilt refinements improved the long `1800-2026` comparison by about
+9% in RA RMS, 16% in declination RMS and 11% in angular RMS. Experiments with
+an additional Mars equant and altered apsidal arrangements did not deliver a
+material further reduction and are not part of the accepted baseline.
+
+Eros keeps the analogous annual-frame/local-deferent/orbit structure, but its
+historical annual compatibility contribution was almost one-dimensional: 99.92%
+of its vector energy lay on one annual axis. It is now expressed as:
+
+```text
+Sun
+└─ Eros Sun-Relative Annual Frame
+   └─ Eros Annual Centre Oscillation
+      └─ Eros Local Deferent
+         └─ Eros Orbit
+```
+
+This stage moves Eros's centre annually along a fixed declared axis without
+rotating the local Eros orbit. It is not a JPL-fitted export correction. On the
+direct TYCHOS-to-TYCHOS comparison from `1800-06-21` to `2026-06-21` at daily
+cadence, it reduced the difference from the residual-era Eros export from
+`5.5306°` to `0.1283°` angular RMS. The comparison is preserved by
+`scripts/eros_residuals_analysis.py`; it establishes compatibility with the
+historical TYCHOS path, not independent observational accuracy.
 
 ## Verification
 
@@ -328,7 +371,7 @@ Mercury's signed declination mean moved from `+0.188732°` to `+0.347652°` even
 though declination RMS improved slightly. The refactor is therefore accepted as a
 strong overall result with that explicit remaining tradeoff.
 
-## Moon geometry refinement
+## Historical Moon equant refinement (superseded)
 
 The Moon refinement now uses a smaller and more coherent geometry. The node and
 plane remain explicit. The former separate `moon-anomalistic-tangent` stage has
