@@ -20,6 +20,7 @@ The simulator and model settings are maintained in a separate project.
 | `ephemeris_io.py` | Shared strict parsers for TYCHOS and Horizons exports |
 | `compare_summary_metrics.py` | Compare generated summary JSON files with any preserved baseline directory |
 | `eros_residuals_analysis.py` | Direct TYCHOS-to-TYCHOS comparison for Eros hierarchy experiments |
+| `diagnose_global_frame.py` | Read-only test of a Sun-derived common 3-D frame rotation |
 | `requirements.txt` | Python dependencies |
 
 `run_analysis.py` is the normal entry point. The lower-level scripts are kept
@@ -34,6 +35,18 @@ residual-era export with `eros_new_hierarchy.txt` under `00-new-tychos/`.
 ```powershell
 .venv/Scripts/python.exe -B scripts/eros_residuals_analysis.py
 .venv/Scripts/python.exe -B scripts/eros_residuals_analysis.py --include-zero-residual
+```
+
+## Global-frame diagnostic
+
+`diagnose_global_frame.py` is a read-only diagnostic for deciding whether a
+single rigid coordinate-frame rotation could explain residuals shared by the
+Sun and other bodies. It fits the rotation from the Sun residual CSV and
+applies the same rotation to each available body. It does not alter the model
+or an ephemeris export.
+
+```powershell
+.venv/Scripts/python.exe -B scripts/diagnose_global_frame.py 00-paired-radial-3d
 ```
 
 ## Tests

@@ -1,9 +1,5 @@
 # TYCHOS research and model-development summary
 
-> Current branch update: `paired-radial-3d` removes the lunar equant and uses a pair of radial displacement vectors in the lunar plane, alongside the apsidal and solar-coupled geometry. The detailed Moon section below describes the earlier equant model and its historical results, not the present branch. See `moon_model.md` for the current comparison and limitations.
-
-The compact Mercury deferent → plane → orbit hierarchy is retained. A transit-focused trial changed Mercury plane `orbitCenterb` from `4` to `0.6`: at the nearest 3-hour samples for the four 2003–2019 transits, the Sun–Mercury separation is smaller than for `mercury-test`, although this does not establish matching trajectories or timings. Global angular RMS is worse (2.862° versus 2.385° for the compact baseline). Fine-cadence and independent validation are pending.
-
 ## Purpose of this document
 
 This document summarizes the principal work completed during the TYCHOS and
@@ -267,6 +263,8 @@ frame or apparent-coordinate convention can change the resulting statistics.
 
 ## Planetary refinements
 
+> The percentages and individual trial results in this historical section are checkpoints from their respective baselines, not a single current scorecard. The retained source of present numerical values is the `paired-radial-3d` celestial model. Rejected added Saturn/Mars geometry is not part of that baseline.
+
 After the hierarchy migration, existing TYCHOS parameters were refined through
 repeated long-baseline tests. These changes adjust explicit centres, phases,
 tilts, radii and speeds; they do not introduce external perturbations.
@@ -397,6 +395,8 @@ validation is more informative than assuming every moment of its geocentric JPL
 curve should receive equal interpretive weight.
 
 ## Historical Moon development: equant configuration (superseded)
+
+> This section preserves the route by which the earlier equant model was investigated. It is not a description of the retained paired-radial-3d Moon, and its numerical results must not be quoted as results of the current configuration.
 
 The Moon became the clearest example of the project's method: use residuals to
 identify missing geometry, but never paste a fitted correction onto the exported
@@ -554,8 +554,7 @@ The work demonstrates that:
 - major structural changes can be made with exact equivalence before refinement;
 - the Moon's original declination problem has a natural plane-and-node solution;
 - solar-relative lunar geometry can improve both direction and distance;
-- an equant can represent anomalistic angular timing without a separate
-  tangential pseudo-object;
+- paired-radial lunar-centre geometry represents the retained distance action without an equant;
 - the established `2D` and `2D-M` argument patterns can be generated from
   internal TYCHOS directions rather than stored fitted periods;
 - meaningful planetary gains can be achieved by refining existing TYCHOS
@@ -584,9 +583,7 @@ The native binary hierarchy and single-file astronomical core are established.
 Mercury and Venus now use the accepted compact `deferent -> plane -> orbit`
 structure and the implementation passes `72` tests across `14` suites plus the
 production build.
-The current compact Moon should be preserved as the accepted modern experimental
-baseline. Both solar-coupled radii and the equant geometry are declared in the
-single model file and pass through the normal settings workflow.
+The current paired-radial-3d Moon should be preserved as the accepted working baseline. Its solar-coupled and paired-radial centre-displacement geometry is declared in the model and passes through the normal settings workflow; it contains no lunar equant.
 
 Recommended future work includes:
 

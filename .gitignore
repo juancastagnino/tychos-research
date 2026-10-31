@@ -4,3 +4,4 @@ __pycache__/
 00-backup/
 data/stellarium/**/*.jsonl
 data/raw/tychos_ephemerides.txt
+data/raw/jpl_ephemerides.txt

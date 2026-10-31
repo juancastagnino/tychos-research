@@ -8,22 +8,22 @@ Read the [research README](../README.md) for the retained baselines and comparis
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: paired radial 3D baseline vs JPL
+Export configuration: paired-radial-3d current vs JPL
 
-- RA: mean -0.208443 deg; RMS 0.308431 deg.
-- Declination: mean -0.001148 deg; RMS 0.204858 deg.
-- Angular separation: mean 0.322465 deg; RMS 0.359903 deg.
+- RA: mean -0.038435 deg; RMS 0.231640 deg.
+- Declination: mean -0.001152 deg; RMS 0.237740 deg.
+- Angular separation: mean 0.290813 deg; RMS 0.324743 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
   - 365.248 days, approximately 0.1860 deg.
   - 205.850 days, approximately 0.1605 deg.
   - 13.778 days, approximately 0.1132 deg.
-  - 31.810 days, approximately 0.0973 deg.
+  - 31.810 days, approximately 0.0972 deg.
 
 ## Sun — true-of-date apparent
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: paired radial 3D baseline vs JPL
+Export configuration: paired-radial-3d current vs JPL
 
 - RA: mean 0.038748 deg; RMS 0.053270 deg.
 - Declination: mean 0.000304 deg; RMS 0.014186 deg.
@@ -38,82 +38,82 @@ Export configuration: paired radial 3D baseline vs JPL
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: paired radial 3D baseline vs JPL
+Export configuration: paired-radial-3d current vs JPL
 
-- RA: mean 0.016907 deg; RMS 2.867257 deg.
-- Declination: mean 0.228982 deg; RMS 0.996835 deg.
-- Angular separation: mean 2.328042 deg; RMS 2.908667 deg.
+- RA: mean 0.016127 deg; RMS 2.153923 deg.
+- Declination: mean 0.043526 deg; RMS 0.862948 deg.
+- Angular separation: mean 1.811482 deg; RMS 2.229010 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
-  - 365.248 days, approximately 2.9759 deg.
-  - 49.998 days, approximately 1.9910 deg.
-  - 169.848 days, approximately 1.0598 deg.
-  - 34.933 days, approximately 0.7509 deg.
+  - 49.998 days, approximately 1.9901 deg.
+  - 365.248 days, approximately 1.6195 deg.
+  - 34.933 days, approximately 0.7506 deg.
+  - 115.935 days, approximately 0.6898 deg.
 
 ## Venus — true-of-date apparent
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: paired radial 3D baseline vs JPL
+Export configuration: paired-radial-3d current vs JPL
 
-- RA: mean 0.043297 deg; RMS 0.415547 deg.
-- Declination: mean 0.042387 deg; RMS 0.113124 deg.
-- Angular separation: mean 0.308311 deg; RMS 0.404515 deg.
+- RA: mean 0.042964 deg; RMS 0.407585 deg.
+- Declination: mean 0.012834 deg; RMS 0.224930 deg.
+- Angular separation: mean 0.357326 deg; RMS 0.442355 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
-  - 224.921 days, approximately 0.3283 deg.
-  - 365.248 days, approximately 0.2352 deg.
-  - 162.173 days, approximately 0.1372 deg.
-  - 416.899 days, approximately 0.1216 deg.
+  - 224.921 days, approximately 0.3323 deg.
+  - 365.248 days, approximately 0.3031 deg.
+  - 162.173 days, approximately 0.1370 deg.
+  - 126.994 days, approximately 0.1034 deg.
 
 ## Mars — true-of-date apparent
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: paired radial 3D baseline vs JPL
+Export configuration: paired-radial-3d current vs JPL
 
-- RA: mean 0.011619 deg; RMS 0.552418 deg.
-- Declination: mean -0.107755 deg; RMS 0.307939 deg.
-- Angular separation: mean 0.504461 deg; RMS 0.609038 deg.
+- RA: mean 0.165066 deg; RMS 0.574278 deg.
+- Declination: mean -0.184572 deg; RMS 0.304540 deg.
+- Angular separation: mean 0.496262 deg; RMS 0.624075 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
-  - 365.248 days, approximately 0.3349 deg.
-  - 248.633 days, approximately 0.2546 deg.
-  - 188.461 days, approximately 0.1694 deg.
-  - 343.942 days, approximately 0.1556 deg.
+  - 365.248 days, approximately 0.3586 deg.
+  - 248.633 days, approximately 0.2563 deg.
+  - 188.461 days, approximately 0.1706 deg.
+  - 343.942 days, approximately 0.1573 deg.
 
 ## Jupiter — true-of-date apparent
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: paired radial 3D baseline vs JPL
+Export configuration: paired-radial-3d current vs JPL
 
-- RA: mean 0.064832 deg; RMS 0.397217 deg.
-- Declination: mean -0.072908 deg; RMS 0.163615 deg.
-- Angular separation: mean 0.346750 deg; RMS 0.419618 deg.
+- RA: mean -0.001260 deg; RMS 0.308379 deg.
+- Declination: mean -0.023199 deg; RMS 0.132011 deg.
+- Angular separation: mean 0.280949 deg; RMS 0.327896 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
   - 365.248 days, approximately 0.2569 deg.
-  - 439.074 days, approximately 0.2504 deg.
+  - 439.074 days, approximately 0.2438 deg.
   - 190.637 days, approximately 0.1032 deg.
-  - 488.438 days, approximately 0.0509 deg.
+  - 488.438 days, approximately 0.0491 deg.
 
 ## Saturn — true-of-date apparent
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: paired radial 3D baseline vs JPL
+Export configuration: paired-radial-3d current vs JPL
 
-- RA: mean 0.171855 deg; RMS 0.554874 deg.
-- Declination: mean 0.002043 deg; RMS 0.151578 deg.
-- Angular separation: mean 0.455426 deg; RMS 0.553253 deg.
+- RA: mean 0.053115 deg; RMS 0.477682 deg.
+- Declination: mean -0.051463 deg; RMS 0.330901 deg.
+- Angular separation: mean 0.512443 deg; RMS 0.562672 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
-  - 378.651 days, approximately 0.6033 deg.
-  - 391.213 days, approximately 0.2118 deg.
-  - 365.248 days, approximately 0.1702 deg.
-  - 188.892 days, approximately 0.0636 deg.
+  - 365.248 days, approximately 0.1698 deg.
+  - 391.213 days, approximately 0.1616 deg.
+  - 406.631 days, approximately 0.0420 deg.
+  - 185.914 days, approximately 0.0313 deg.
 
 ## Uranus — true-of-date apparent
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: paired radial 3D baseline vs JPL
+Export configuration: paired-radial-3d current vs JPL
 
 - RA: mean 0.061031 deg; RMS 0.163963 deg.
 - Declination: mean -0.031778 deg; RMS 0.144268 deg.
@@ -128,7 +128,7 @@ Export configuration: paired radial 3D baseline vs JPL
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: paired radial 3D baseline vs JPL
+Export configuration: paired-radial-3d current vs JPL
 
 - RA: mean -0.081211 deg; RMS 0.169061 deg.
 - Declination: mean 0.005691 deg; RMS 0.058603 deg.
@@ -143,16 +143,16 @@ Export configuration: paired radial 3D baseline vs JPL
 
 Interval: 1800-06-21 00:00:00 to 2026-06-21 00:00:00; 82546 samples.
 
-Export configuration: paired radial 3D baseline vs JPL
+Export configuration: paired-radial-3d current vs JPL
 
-- RA: mean 0.430689 deg; RMS 1.769951 deg.
-- Declination: mean -0.157813 deg; RMS 1.846428 deg.
-- Angular separation: mean 2.239276 deg; RMS 2.511196 deg.
+- RA: mean 0.888326 deg; RMS 1.790952 deg.
+- Declination: mean 0.543549 deg; RMS 1.601296 deg.
+- Angular separation: mean 2.135099 deg; RMS 2.351944 deg.
 - Largest right ascension residual FFT peaks (finite-window estimates, not fitted orbital periods):
-  - 365.248 days, approximately 0.5065 deg.
-  - 370.161 days, approximately 0.1889 deg.
-  - 375.209 days, approximately 0.0184 deg.
-  - 183.029 days, approximately 0.0163 deg.
+  - 365.248 days, approximately 0.4751 deg.
+  - 370.161 days, approximately 0.1825 deg.
+  - 375.209 days, approximately 0.0172 deg.
+  - 183.029 days, approximately 0.0167 deg.
 
 ## Questions to investigate
 

@@ -1,5 +1,5 @@
 {
-  "bodies": ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"],
+  "bodies": ["sun", "moon", "venus", "mercury", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"],
   "start": "1800-06-21 00:00",
   "stop": "2026-06-21 00:00",
   "step": "1 d",

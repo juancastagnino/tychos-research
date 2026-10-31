@@ -17,7 +17,20 @@ def main():
     if not np.array_equal(dates, residuals['date']):
         raise ValueError('Vector and residual timestamps differ')
     split = residuals['date'].astype('datetime64[s]') < np.datetime64('2013-06-21')
-    sm = np.column_stack([vectors[f'sun_to_mars_{axis}'] for axis in 'xyz'])
+    names = set(vectors.dtype.names or [])
+    # Earlier diagnostics exported Sun→Mars directly.  The current TYCHOS
+    # binary CSV exports both world positions, which is preferable: derive the
+    # same vector rather than requiring a legacy-only column.
+    if all(f'sun_to_mars_{axis}' in names for axis in 'xyz'):
+        sm = np.column_stack([vectors[f'sun_to_mars_{axis}'] for axis in 'xyz'])
+    elif all(f'{body}_world_{axis}' in names for body in ('sun', 'mars') for axis in 'xyz'):
+        sm = np.column_stack([
+            vectors[f'mars_world_{axis}'] - vectors[f'sun_world_{axis}']
+            for axis in 'xyz'
+        ])
+    else:
+        raise ValueError('CSV has neither Sun→Mars vector nor Sun/Mars world positions')
+
     es = np.column_stack([vectors[f'earth_sun_d{axis}'] for axis in 'xyz'])
     sm_length = np.linalg.norm(sm, axis=1)
     es_length = np.linalg.norm(es, axis=1)
@@ -31,8 +44,8 @@ def main():
             _, score = fit_and_validate(design(angle), residuals[metric], split, ~split)
             print(f'{label}; {metric}: heldout R2={score:.4f}')
     print(f'Earth-Sun range={es_length.min():.6f}–{es_length.max():.6f} model units')
-    if 'mars_orbit_axis_y_x' in vectors.dtype.names:
-        normal = np.column_stack([vectors[f'mars_orbit_axis_y_{a}'] for a in 'xyz'])
+    if 'mars_orbit_normal_x' in vectors.dtype.names:
+        normal = np.column_stack([vectors[f'mars_orbit_normal_{a}'] for a in 'xyz'])
         def world_direction(prefix):
             ra = np.deg2rad(residuals[f'{prefix}_ra_deg'])
             dec = np.deg2rad(residuals[f'{prefix}_dec_deg'])
@@ -51,8 +64,13 @@ def main():
         for name, axis in [('projected-plane-normal', projected), ('in-plane sky direction', inplane)]:
             y = np.rad2deg(np.sum(displacement*axis, axis=1))
             train, test = split & valid, ~split & valid
-            _, score = fit_and_validate(design(phase), y, train, test)
+            coef, score = fit_and_validate(design(phase), y, train, test)
+            first_amplitude = np.hypot(coef[1], coef[2])
+            first_phase = np.rad2deg(np.arctan2(coef[2], coef[1]))
+            second_amplitude = np.hypot(coef[3], coef[4])
+            second_phase = np.rad2deg(np.arctan2(coef[4], coef[3]))
             print(f'{name}: validation RMS={np.sqrt(np.mean(y[test]**2)):.4f} deg; heldout R2={score:.4f}; n={sum(test)}')
+            print(f'  fitted Sun-Mars phase: offset={coef[0]:.4f} deg; first harmonic={first_amplitude:.4f} deg at {first_phase:.1f} deg; second harmonic={second_amplitude:.4f} deg at {second_phase:.1f} deg')
         print(f'excluded ill-conditioned projections={sum(~valid)}')
 
 
