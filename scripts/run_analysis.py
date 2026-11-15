@@ -144,14 +144,21 @@ def write_notes(summaries):
         for name, key in (("RA", "ra_residual"), ("Declination", "declination_residual"), ("Angular separation", "angular_separation")):
             v = s[key]
             lines.append(f"- {name}: mean {v['mean_deg']:.6f} deg; RMS {v['rms_deg']:.6f} deg.")
-        with (REPORTS/f"{prefix}_fft_peaks.csv").open(encoding='utf-8', newline='') as stream:
-            peaks = list(csv.DictReader(stream))[:4]
-        if peaks:
-            observable = s.get("fft_observable", "right ascension residual")
-            lines += [f"- Largest {observable} FFT peaks (finite-window estimates, not fitted orbital periods):"]
-            lines += [f"  - {float(p['period_days']):.3f} days, approximately {float(p['amplitude_deg']):.4f} deg." for p in peaks]
-        else:
-            lines.append("- No FFT peaks available; verify sample count and cadence regularity.")
+        fft_reports = (
+            ("right ascension residual", REPORTS/f"{prefix}_fft_peaks.csv"),
+            ("declination residual", REPORTS/f"{prefix}_declination_fft_peaks.csv"),
+        )
+        for observable, fft_path in fft_reports:
+            if not fft_path.exists():
+                lines.append(f"- No {observable} FFT peaks available; verify sample count and cadence regularity.")
+                continue
+            with fft_path.open(encoding='utf-8', newline='') as stream:
+                peaks = list(csv.DictReader(stream))[:4]
+            if peaks:
+                lines += [f"- Largest {observable} FFT peaks (finite-window estimates, not fitted orbital periods):"]
+                lines += [f"  - {float(p['period_days']):.3f} days, approximately {float(p['amplitude_deg']):.4f} deg." for p in peaks]
+            else:
+                lines.append(f"- No {observable} FFT peaks available; verify sample count and cadence regularity.")
         lines += [""]
     lines += ["## Questions to investigate", "",
               "- Test whether biases and fitted coefficients transfer to a separate time interval.",

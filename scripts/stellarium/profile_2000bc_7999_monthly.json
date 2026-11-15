@@ -1,0 +1,8 @@
+{
+  "name": "Long-range monthly Stellarium reference",
+  "description": "One apparent-of-date geocentric sample per calendar month across the supported long historical/future range.",
+  "start": "-1999-06-21 00:00",
+  "stop": "7999-06-21 00:00",
+  "step": "1 month",
+  "note": "Astronomical year -1999 corresponds to 2000 BCE. The current shared astronomical date representation supports this endpoint through year 7999 CE; extending through 8000 CE requires a date-layer extension."
+}

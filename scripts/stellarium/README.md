@@ -144,6 +144,35 @@ For a controlled before/after comparison against the same Stellarium reference:
 The comparison tool rejects comparisons between different reference sources.
 Machine learning still uses JPL; this change adds Stellarium to ephemeris analysis.
 
+## Long-range monthly profile: 2000 BCE–7999 CE
+
+`profile_2000bc_7999_monthly.json` prepares one sample per calendar month from
+astronomical year `-1999` (2000 BCE) through `7999 CE`. It produces 119,989
+timestamps and 1,199,890 positions for the standard ten-body selection. At a
+`0.2` second scene-update wait, the wait alone is about 6.7 hours, plus
+Stellarium calculation time. This profile is intended first as a reusable
+Stellarium reference; use `--reference-only` until a matching long-range
+TYCHOS export is available.
+
+```powershell
+.venv/Scripts/python.exe -B scripts/stellarium/dataset.py prepare --profile scripts/stellarium/profile_2000bc_7999_monthly --profile-spec scripts/stellarium/profile_2000bc_7999_monthly.json --wait 0.2
+
+$exportProfile = (Resolve-Path scripts/stellarium/profile_2000bc_7999_monthly).Path
+& 'C:/Program Files/Stellarium/stellarium.exe' --user-dir $exportProfile --startup-script export.ssc --full-screen no
+
+.venv/Scripts/python.exe -B scripts/stellarium/dataset.py collect --reference-only --profile scripts/stellarium/profile_2000bc_7999_monthly --output data/stellarium_2000bc_7999_monthly
+```
+
+The endpoint is `7999 CE`, not `8000 CE`, because the current shared
+astronomical-date wrapper uses a 2,000-year internal offset and cannot represent
+both `-1999` and `8000` simultaneously. Do not relabel this profile as ending
+in 8000 CE; extending that final year requires a deliberate date-layer change.
+
+Calendar months have unequal lengths. The reference can therefore be used for
+RA/Dec/separation metrics and long-range trend inspection, but the regular-grid
+FFT diagnostic is intentionally unavailable for this monthly dataset. Use a
+fixed-day cadence in a separate profile when an FFT is required.
+
 ## Checks
 
 ```powershell

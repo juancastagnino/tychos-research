@@ -15,7 +15,7 @@ The simulator and model settings are maintained in a separate project.
 | `run_analysis.py` | Validate inputs and orchestrate comparison, analysis and report generation |
 | `stellarium_analysis.py` | Reuse a validated Stellarium dataset via `run_analysis.py --source stellarium` |
 | `compare_ephemerides.py` | Match TYCHOS and JPL samples for one body |
-| `analyze_ephemerides.py` | Calculate RA/Dec/angular metrics, annual statistics and FFT diagnostics |
+| `analyze_ephemerides.py` | Calculate RA/Dec/angular metrics, annual statistics and separate RA/declination FFT diagnostics |
 | `generate_report.py` | Render a per-body Markdown report |
 | `ephemeris_io.py` | Shared strict parsers for TYCHOS and Horizons exports |
 | `compare_summary_metrics.py` | Compare generated summary JSON files with any preserved baseline directory |

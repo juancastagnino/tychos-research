@@ -113,25 +113,28 @@ def main(argv=None):
     dra = np.array([wrap_deg(v) for v in ty_ra - jp_ra])
     ddec = np.array([r['ddec_deg'] for r in rows])
     sep = np.array([r['sep_deg'] for r in rows])
-    fft_values = dra
-    fft_observable = 'right ascension residual'
     cadence_hours = None
     if len(dates) > 1:
         cadence_hours = float(np.median(np.diff(t_days)) * 24.0)
     ecliptic_note = ('Not computed: this audit reports matched-frame RA/Dec and angular separation only' if args.reference == 'icrf' else 'Not computed: true-of-date RA/Dec must not be rotated with fixed J2000 obliquity')
-    summary = {'body': args.body, 'profile': 'none', 'input_file': str(args.comparison_csv), 'reference_mode': args.reference, 'reference': REFERENCE_COLUMNS[args.reference]['label'], 'ecliptic_rotation': ecliptic_note, 'n_samples': len(rows), 'start': dates[0].strftime('%Y-%m-%d %H:%M:%S'), 'stop': dates[-1].strftime('%Y-%m-%d %H:%M:%S'), 'cadence_hours_median': cadence_hours, 'cadence_regular': bool(len(t_days) < 2 or np.allclose(np.diff(t_days), np.diff(t_days)[0], rtol=0, atol=1e-09)), 'fft_period_range_days': [1.0, 500.0], 'fft_observable': fft_observable, 'ra_residual': stats(dra), 'declination_residual': stats(ddec), 'angular_separation': stats(sep)}
+    summary = {'body': args.body, 'profile': 'none', 'input_file': str(args.comparison_csv), 'reference_mode': args.reference, 'reference': REFERENCE_COLUMNS[args.reference]['label'], 'ecliptic_rotation': ecliptic_note, 'n_samples': len(rows), 'start': dates[0].strftime('%Y-%m-%d %H:%M:%S'), 'stop': dates[-1].strftime('%Y-%m-%d %H:%M:%S'), 'cadence_hours_median': cadence_hours, 'cadence_regular': bool(len(t_days) < 2 or np.allclose(np.diff(t_days), np.diff(t_days)[0], rtol=0, atol=1e-09)), 'fft_period_range_days': [1.0, 500.0], 'fft_observables': {'right_ascension': 'right ascension residual', 'declination': 'declination residual'}, 'ra_residual': stats(dra), 'declination_residual': stats(ddec), 'angular_separation': stats(sep)}
     summary['reference_source'] = args.source
     if args.source == 'stellarium':
         summary['reference'] = 'Stellarium Earth geocentric apparent equinox-of-date RA/Dec (airless)'
     with (out_dir / f'{prefix}_summary.json').open('w', encoding='utf-8') as f:
         json.dump(summary, f, indent=2)
-    peaks = fft_peaks(t_days, fft_values)
-    with (out_dir / f'{prefix}_fft_peaks.csv').open('w', newline='', encoding='utf-8') as f:
-        fields = ['rank', 'period_days', 'amplitude_deg', 'frequency_cycles_per_day']
-        w = csv.DictWriter(f, fieldnames=fields)
-        w.writeheader()
-        for i, p in enumerate(peaks, 1):
-            w.writerow({'rank': i, **p})
+    def write_fft_peaks(filename, peaks):
+        with (out_dir / filename).open('w', newline='', encoding='utf-8') as f:
+            fields = ['rank', 'period_days', 'amplitude_deg', 'frequency_cycles_per_day']
+            w = csv.DictWriter(f, fieldnames=fields)
+            w.writeheader()
+            for i, p in enumerate(peaks, 1):
+                w.writerow({'rank': i, **p})
+
+    # Keep the established RA filename for backward compatibility and add the
+    # parallel declination diagnostic as a separate artifact.
+    write_fft_peaks(f'{prefix}_fft_peaks.csv', fft_peaks(t_days, dra))
+    write_fft_peaks(f'{prefix}_declination_fft_peaks.csv', fft_peaks(t_days, ddec))
     years = defaultdict(list)
     for i, d in enumerate(dates):
         years[d.year].append(i)

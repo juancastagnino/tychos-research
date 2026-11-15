@@ -19,6 +19,17 @@ class ExportValidationTests(unittest.TestCase):
             self.assertIn('"StelCore.flagUseAberration", true', script)
             self.assertNotIn('raJ2000', script)
 
+    def test_prepare_accepts_calendar_monthly_cadence_and_astronomical_years(self):
+        with tempfile.TemporaryDirectory() as directory:
+            args = SimpleNamespace(profile=Path(directory), start='-1999-06-21 00:00',
+                                   stop='-1999-08-21 00:00', step='1 month', wait=0.2)
+            prepare(args)
+            manifest = json.loads((Path(directory)/'manifest.json').read_text())
+            self.assertEqual(manifest['dates'], [
+                '-1999-06-21T00:00:00', '-1999-07-21T00:00:00', '-1999-08-21T00:00:00',
+            ])
+            self.assertEqual(manifest['cadence'], '1 month')
+
     def test_geometric_profile_and_disabled_corrections_rejected(self):
         manifest, entries = self.fixture()
         manifest.pop('reference_mode')

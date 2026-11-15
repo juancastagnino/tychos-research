@@ -10,6 +10,7 @@ import compare_ephemerides
 import generate_report
 from ephemeris_io import tychos_blocks
 from stellarium.dataset import read_export
+from astro_time import parse_iso
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -44,12 +45,9 @@ def run(args, registry, defaults):
     bodies = list(dict.fromkeys(bodies))
     if not bodies or set(bodies) - set(registry):
         raise ValueError('Select registered bodies available in both exports')
-    dates = [datetime.fromisoformat(date) for date in manifest['dates']]
+    dates = [parse_iso(date) for date in manifest['dates']]
     if dates != sorted(set(dates)) or len(dates) < 2:
         raise ValueError('Stellarium dates must be unique, increasing and nonempty')
-    step = dates[1] - dates[0]
-    if any(b - a != step for a, b in zip(dates, dates[1:])):
-        raise ValueError('Stellarium reference has irregular cadence')
     tychos = {}
     for body in bodies:
         if body not in blocks or body not in manifest['bodies']:
